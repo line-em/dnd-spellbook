@@ -19,6 +19,9 @@ I will be using the [Open 5e API](https://open5e.com/api-docs), and further cred
 -   [WoTC](https://dnd.wizards.com/resources/fan-site-kit) for the main Fan Site kit.
 -   [This thread at Reddit](https://www.reddit.com/r/DnD/comments/4t57fn/dd_5e_vector_icons/), by u/morepurplemorebetter, where said Fan Site Kit was converted to SVG files.
 -   [These great Schools of Magic symbols](https://www.reddit.com/r/DnD/comments/71s8s8/art_schools_of_magic_symbols/), by u/choren64, which are amazing.
+-   Logo Icon at [Flat Icon](https://www.flaticon.com/free-icon/book_1678998?term=spellbook&page=1&position=2&page=1&position=2&related_id=1678998&origin=style).
+
+<!-- Other icon option: https://www.flaticon.com/packs/fairytale-95 -->
 
 ## Changelog
 
