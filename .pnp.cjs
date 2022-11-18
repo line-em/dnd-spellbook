@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.1.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:18.2.0"],\
+            ["react-is", "npm:18.2.0"],\
             ["react-router-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:6.4.3"],\
             ["styled-components", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:5.3.6"],\
             ["vite", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:3.2.4"]\
@@ -1099,6 +1100,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:1.1.3"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:18.2.0"],\
+            ["react-is", "npm:18.2.0"],\
             ["react-router-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:6.4.3"],\
             ["styled-components", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:5.3.6"],\
             ["vite", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:3.2.4"]\
@@ -2170,6 +2172,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-is", "npm:16.13.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:18.2.0", {\
+          "packageLocation": "./.yarn/cache/react-is-npm-18.2.0-0cc5edb910-e72d0ba81b.zip/node_modules/react-is/",\
+          "packageDependencies": [\
+            ["react-is", "npm:18.2.0"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["react-refresh", [\
@@ -2474,7 +2483,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["hoist-non-react-statics", "npm:3.3.2"],\
             ["react", "npm:18.2.0"],\
             ["react-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:18.2.0"],\
-            ["react-is", null],\
+            ["react-is", "npm:18.2.0"],\
             ["shallowequal", "npm:1.1.0"],\
             ["supports-color", "npm:5.5.0"]\
           ],\
