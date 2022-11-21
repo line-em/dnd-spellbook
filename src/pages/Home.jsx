@@ -1,7 +1,9 @@
 import Heading from "../styled-components/Heading";
-import StyledButton from "../styled-components/StyledButton";
+import { StyledLinkButton } from "../styled-components/StyledButton";
 import { LogoImage250 as LogoImage } from "../styled-components/LogoImage";
 import { CenterFlexColumn } from "../styled-components/FlexStyles";
+import { Link } from "react-router-dom";
+import Filters from "./Filters";
 
 function Home() {
 	return (
@@ -10,10 +12,10 @@ function Home() {
 			<Heading type="1">DnD Spellbook</Heading>
 			<Heading type="3">How do you want to inspect this tome?</Heading>
 			<p>
-				You can filter through classes and schools, or use the advanced feature to type or
-				check mana costs and duration.
+				You can filter through classes and schools, or use the advanced search for more
+				input details.
 			</p>
-			<StyledButton func={(e) => console.log("oi")}>Begin</StyledButton>
+			<StyledLinkButton path="/filters">Begin</StyledLinkButton>
 		</CenterFlexColumn>
 	);
 }

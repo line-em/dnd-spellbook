@@ -1,17 +1,19 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-const Wrapper = styled.button`
+const StyledLink = styled(Link)`
+	cursor: pointer;
 	border-radius: 8px;
 	border: 2px solid var(--black);
 	padding: var(--xs) var(--s);
 	font: 400 var(--s) inherit;
 	background-color: var(--dark-gray);
 	color: var(--white);
-	cursor: pointer;
-	transition: border-color 0.25s;
+	transition: all 0.25s;
 
 	&:hover {
-		border-color: var(--purple);
+		border-color: var(--dark-gray);
+		background-color: var(--black);
 	}
 
 	&:focus,
@@ -20,7 +22,18 @@ const Wrapper = styled.button`
 	}
 `;
 
-const StyledButton = ({ func, children }) => {
+const Wrapper = styled(StyledLink)`
+	background-color: var(--white);
+	color: var(--dark-gray);
+
+	&:hover {
+		color: var(--white);
+		background-color: var(--transparent-white);
+		border-color: var(--white);
+	}
+`;
+
+export const StyledButton = ({ func, children }) => {
 	return (
 		<Wrapper role="button" onClick={func}>
 			{children}
@@ -28,13 +41,6 @@ const StyledButton = ({ func, children }) => {
 	);
 };
 
-export default StyledButton;
-
-// <button
-// 	className="accent-button
-// 	start-margin"
-// 	role="button"
-// 	onClick={(e) => setIsCustomizationHidden(!isCustomizationHidden)}
-// >
-// 	Customize
-// </button>
+export const StyledLinkButton = ({ path, children }) => {
+	return <StyledLink to={path}>{children}</StyledLink>;
+};

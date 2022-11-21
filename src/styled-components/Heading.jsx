@@ -13,8 +13,6 @@ const Heading = ({ type, children }) => {
 const Wrapper = styled.h1`
 	display: block;
 	font-family: ${({ type }) => (type === "1" || type === "3" ? "var(--serif)" : "var(--sans)")};
-	background-color: ${({ type }) => (type === "2" ? "var(--transparent-white)" : null)};
-	padding: ${({ type }) => (type === "2" ? "0 var(--s)" : null)};
 	font-style: ${({ type }) => (type === "3" ? "italic" : null)};
 	font-weight: ${({ type }) =>
 		type === "1" ? "700" : type === "2" ? "600" : type === "3" ? "200" : "600"};
@@ -37,6 +35,10 @@ const Wrapper = styled.h1`
 				break;
 		}
 	}};
+	// h2 specific
+	background-color: ${({ type }) => (type === "2" ? "var(--transparent-white)" : null)};
+	padding: ${({ type }) => (type === "2" ? "0 var(--s)" : null)};
+	border-radius: 8px;
 `;
 
 export default Heading;
