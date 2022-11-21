@@ -1,5 +1,6 @@
 import SpellbookLogo from "./assets/book.png";
 import styled from "styled-components";
+import Heading from "./styled-components/Heading";
 
 const LogoImage = styled.div`
 	background-image: url(${SpellbookLogo});
@@ -17,7 +18,7 @@ const LogoImage = styled.div`
 const FlexColumnWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: "var(--s)";
 `;
 
 const CenterFlexColumn = styled(FlexColumnWrapper)`
@@ -29,8 +30,13 @@ function App() {
 	return (
 		<CenterFlexColumn>
 			<LogoImage />
-			<h1>DnD Spellbook</h1>
-			<h3>How do you want to inspect this tome?</h3>
+			<Heading type="1">DnD Spellbook</Heading>
+			<Heading type="2">DnD Spellbook</Heading>
+			<Heading type="3">How do you want to inspect this tome?</Heading>
+			<Heading type="4">DnD Spellbook</Heading>
+			<Heading type="5">DnD Spellbook</Heading>
+			<Heading type="6">DnD Spellbook</Heading>
+			{/* <h1>DnD Spellbook</h1> */}
 			<p>
 				You can filter through classes and schools, or use the advanced feature to type or
 				check mana costs and duration.

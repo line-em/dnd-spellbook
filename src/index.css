@@ -1,6 +1,27 @@
 :root {
+	--black: #11100f;
+	--dark-gray: #242121;
+	--white: #c9ddff;
+	--transparent-white: #c9ddff30;
+	--steel: #607b7d;
+	--lilac: #d8c5d7;
+	--purple: #6b2d5c;
+	--neutral-purple: #8f5972;
+
+	--sans:  "Sono", "Helvetica", "Arial", sans-serif;
+	--serif: "Fraunces", "Georgia", "Times New Roman", serif;
+
+	--xxs: 0.1rem;
+	--xs: 0.5rem;
+	--s: 1rem;
+	--sm: 1.5rem;
+	--m: 2rem;
+	--sl: 2.5rem
+	--l: 3rem;
+	--xxl: 5rem;
+
 	font-family: Sono, "Helvetica", "Arial", sans-serif;
-	font-size: 16px;
+	font-size: clamp(0.75rem, 0.1vw + 0.9rem, 1.1rem);
 	line-height: 1.5;
 	font-weight: 400;
 	color: #c1aac0;
@@ -10,15 +31,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
-
-	--black: #11100f;
-	--dark-gray: #242121;
-	--white: #c9ddff;
-	--steel: #607b7d;
-	--lilac: #d8c5d7;
-	/* --lilac: #c1aac0; */
-	--purple: #6b2d5c;
-	--neutral-purple: #734b5e;
 }
 
 * {
@@ -51,25 +63,12 @@ html {
 
 body {
 	margin: 0 auto;
-	display: flex;
-	place-items: center;
 	min-width: 320px;
 	max-width: 1280px;
 	min-height: 100vh;
 	width: 80%;
-}
-
-h1 {
-	font-size: 3.2em;
-	font-family: Fraunces;
-}
-
-h3 {
-	font-size: 2.2em;
-	font-family: Fraunces;
-	font-weight: 200;
-	font-style: italic;
-	color: var(--steel);
+	display: grid;
+	place-items: center;
 }
 
 button {
