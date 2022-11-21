@@ -35,6 +35,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
+            ["@uiball/loaders", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:1.2.6"],\
             ["@vitejs/plugin-react", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:2.2.0"],\
             ["axios", "npm:1.1.3"],\
             ["react", "npm:18.2.0"],\
@@ -661,6 +662,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["@uiball/loaders", [\
+        ["npm:1.2.6", {\
+          "packageLocation": "./.yarn/cache/@uiball-loaders-npm-1.2.6-32631de17c-f5222ab2b9.zip/node_modules/@uiball/loaders/",\
+          "packageDependencies": [\
+            ["@uiball/loaders", "npm:1.2.6"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:1.2.6", {\
+          "packageLocation": "./.yarn/__virtual__/@uiball-loaders-virtual-a3760bd0ff/0/cache/@uiball-loaders-npm-1.2.6-32631de17c-f5222ab2b9.zip/node_modules/@uiball/loaders/",\
+          "packageDependencies": [\
+            ["@uiball/loaders", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:1.2.6"],\
+            ["@types/react", "npm:18.0.25"],\
+            ["@types/react-dom", "npm:18.0.9"],\
+            ["react", "npm:18.2.0"],\
+            ["react-dom", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:18.2.0"]\
+          ],\
+          "packagePeers": [\
+            "@types/react-dom",\
+            "@types/react",\
+            "react-dom",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["@vitejs/plugin-react", [\
         ["npm:2.2.0", {\
           "packageLocation": "./.yarn/cache/@vitejs-plugin-react-npm-2.2.0-a43e4127d1-cc85ab31b4.zip/node_modules/@vitejs/plugin-react/",\
@@ -1096,6 +1123,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dnd-5e-spellbook", "workspace:."],\
             ["@types/react", "npm:18.0.25"],\
             ["@types/react-dom", "npm:18.0.9"],\
+            ["@uiball/loaders", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:1.2.6"],\
             ["@vitejs/plugin-react", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:2.2.0"],\
             ["axios", "npm:1.1.3"],\
             ["react", "npm:18.2.0"],\

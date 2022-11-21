@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Heading from "./styled-components/Heading";
-import StyledButton from "./styled-components/StyledButton";
-import { LogoImage250 as LogoImage } from "./styled-components/LogoImage";
+import { Ripples } from "@uiball/loaders";
+import { useEffect, useState } from "react";
+import Home from "./pages/Home";
 
 const FlexColumnWrapper = styled.section`
 	display: flex;
@@ -15,16 +15,15 @@ const CenterFlexColumn = styled(FlexColumnWrapper)`
 `;
 
 function App() {
+	const [isLoading, setIsLoading] = useState(true);
+
+	useEffect(() => {
+		setTimeout(() => setIsLoading(false), 3000);
+	}, []);
+
 	return (
 		<CenterFlexColumn>
-			<LogoImage />
-			<Heading type="1">DnD Spellbook</Heading>
-			<Heading type="3">How do you want to inspect this tome?</Heading>
-			<p>
-				You can filter through classes and schools, or use the advanced feature to type or
-				check mana costs and duration.
-			</p>
-			<StyledButton func={(e) => console.log("oi")}>Begin</StyledButton>
+			{isLoading ? <Ripples size={50} color="var(--lilac)" /> : <Home />}
 		</CenterFlexColumn>
 	);
 }
