@@ -1,18 +1,9 @@
-import styled from "styled-components";
-import { Ripples } from "@uiball/loaders";
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { Ripples } from "@uiball/loaders";
+import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
-
-const FlexColumnWrapper = styled.section`
-	display: flex;
-	flex-direction: column;
-	gap: var(--sm);
-`;
-
-const CenterFlexColumn = styled(FlexColumnWrapper)`
-	place-items: center;
-	text-align: center;
-`;
+import Filters from "./pages/Filters";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +14,16 @@ function App() {
 
 	return (
 		<CenterFlexColumn>
-			{isLoading ? <Ripples size={50} color="var(--lilac)" /> : <Home />}
+			{isLoading ? (
+				<Ripples size={50} color="var(--lilac)" />
+			) : (
+				<Routes>
+					<Route index element={<Home />} />
+					<Route path="/" element={<Home />} />
+					<Route path="/filters" element={<Filters />} />
+					{/* <Route path="/results" element={<Results />} /> */}
+				</Routes>
+			)}
 		</CenterFlexColumn>
 	);
 }

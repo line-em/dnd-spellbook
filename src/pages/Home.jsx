@@ -1,18 +1,8 @@
 import Heading from "../styled-components/Heading";
 import StyledButton from "../styled-components/StyledButton";
 import { LogoImage250 as LogoImage } from "../styled-components/LogoImage";
-import styled from "styled-components";
+import { CenterFlexColumn } from "../styled-components/FlexStyles";
 
-const FlexColumnWrapper = styled.section`
-	display: flex;
-	flex-direction: column;
-	gap: var(--sm);
-`;
-
-const CenterFlexColumn = styled(FlexColumnWrapper)`
-	place-items: center;
-	text-align: center;
-`;
 function Home() {
 	return (
 		<CenterFlexColumn>
