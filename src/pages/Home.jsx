@@ -2,8 +2,6 @@ import Heading from "../styled-components/Heading";
 import { StyledLinkButton } from "../styled-components/StyledButton";
 import { LogoImage250 as LogoImage } from "../styled-components/LogoImage";
 import { CenterFlexColumn } from "../styled-components/FlexStyles";
-import { Link } from "react-router-dom";
-import Filters from "./Filters";
 
 function Home() {
 	return (
