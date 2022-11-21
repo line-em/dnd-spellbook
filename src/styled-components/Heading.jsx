@@ -12,7 +12,8 @@ const Heading = ({ type, children }) => {
 
 const Wrapper = styled.h1`
 	display: block;
-	font-family: ${({ type }) => (type === "1" || type === "3" ? "var(--serif)" : "var(--sans)")};
+	font-family: ${({ type }) =>
+		type === "1" || type === "2" || type === "3" ? "var(--serif)" : "var(--sans)"};
 	font-style: ${({ type }) => (type === "3" ? "italic" : null)};
 	font-weight: ${({ type }) =>
 		type === "1" ? "700" : type === "2" ? "600" : type === "3" ? "200" : "600"};
@@ -31,7 +32,7 @@ const Wrapper = styled.h1`
 			case "5":
 				return "clamp(0.8rem, 0.4vw + 0.9rem, 1.4rem)";
 			default:
-				return "clamp(0.8rem, 0.4vw + 0.9rem, 1.4rem)";
+				return "clamp(0.6rem, 0.2vw + 0.9rem, 1rem)";
 				break;
 		}
 	}};

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-const FlexColumnWrapper = styled.section`
+export const FlexColumnWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	gap: var(--sm);
+	gap: var(--s);
 `;
 
 export const CenterFlexColumn = styled(FlexColumnWrapper)`
-	place-items: center;
+	justify-content: center;
+	align-items: center;
 	text-align: center;
 `;
 
