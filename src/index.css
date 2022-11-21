@@ -70,23 +70,3 @@ body {
 	display: grid;
 	place-items: center;
 }
-
-button {
-	border-radius: 8px;
-	border: 2px solid var(--black);
-	padding: 0.6em 1.2em;
-	font-size: 1em;
-	font-weight: 400;
-	font-family: inherit;
-	background-color: var(--dark-gray);
-	color: var(--white);
-	cursor: pointer;
-	transition: border-color 0.25s;
-}
-button:hover {
-	border-color: var(--purple);
-}
-button:focus,
-button:focus-visible {
-	outline: 4px auto -webkit-focus-ring-color;
-}
