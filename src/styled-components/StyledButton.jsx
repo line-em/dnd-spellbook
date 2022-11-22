@@ -21,11 +21,6 @@ const StyledLink = styled(Link)`
 	&:focus-visible {
 		outline: 4px auto -webkit-focus-ring-color;
 	}
-
-	${FilterGrid} > & {
-		background-color: transparent;
-		border-color: transparent;
-	}
 `;
 
 const Wrapper = styled(StyledLink)`

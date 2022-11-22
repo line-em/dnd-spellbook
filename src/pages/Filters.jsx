@@ -3,7 +3,7 @@ import { FlexRowWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { StyledLinkButton } from "../styled-components/StyledButton";
 import BasicFilters from "../components/BasicFilters";
 
-const Filters = (props) => {
+const Filters = () => {
 	return (
 		<SpellbookPage>
 			<Heading type="2">The Spellbook</Heading>

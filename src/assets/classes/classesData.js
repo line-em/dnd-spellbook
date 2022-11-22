@@ -1,34 +1,56 @@
 export default [
 	{
 		class: "Artificer",
-		symbol: "./src/assets/classes/Class Icon - Artificer.svg"
+		query: "Artificer",
+		icon: "./src/assets/classes/Class Icon - Artificer.svg"
 	},
 	{
 		class: "Bard",
-		symbol: "./src/assets/classes/Class Icon - Bard.svg"
+		query: "Bard",
+		icon: "./src/assets/classes/Class Icon - Bard.svg"
 	},
 	{
 		class: "Cleric",
-		symbol: "./src/assets/classes/Class Icon - Cleric.svg"
+		query: "Cleric",
+		icon: "./src/assets/classes/Class Icon - Cleric.svg"
 	},
 	{
 		class: "Druid",
-		symbol: "./src/assets/classes/Class Icon - Druid.svg"
+		query: "Druid",
+		icon: "./src/assets/classes/Class Icon - Druid.svg"
 	},
 	{
 		class: "Paladin",
-		symbol: "./src/assets/classes/Class Icon - Paladin.svg"
+		query: "Paladin",
+		icon: "./src/assets/classes/Class Icon - Paladin.svg"
 	},
 	{
 		class: "Sorcerer",
-		symbol: "./src/assets/classes/Class Icon - Sorcerer.svg"
+		query: "Sorcerer",
+		icon: "./src/assets/classes/Class Icon - Sorcerer.svg"
 	},
 	{
 		class: "Warlock",
-		symbol: "./src/assets/classes/Class Icon - Warlock.svg"
+		query: "Warlock",
+		icon: "./src/assets/classes/Class Icon - Warlock.svg"
 	},
 	{
 		class: "Wizard",
-		symbol: "./src/assets/classes/Class Icon - Wizard.svg"
+		query: "Wizard",
+		icon: "./src/assets/classes/Class Icon - Wizard.svg"
+	},
+	{
+		class: "♾️ All Classes",
+		query: [
+			"Artificer",
+			"Bard",
+			"Druid",
+			"Cleric",
+			"Paladin",
+			"Sorcerer",
+			"Wizard",
+			"Warlock",
+			""
+		]
 	}
 ];

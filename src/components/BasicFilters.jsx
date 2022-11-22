@@ -10,29 +10,23 @@ const BasicFilters = () => {
 		filterArray.map((filter, index) => (
 			<div>
 				{/* selected */}
-				<StyledFilter isImg={filterArray === schoolsData}>
-					{filterArray === schoolsData ? (
-						<p>{filter.class}</p>
+				<StyledFilter isImg={!filter.icon}>
+					{filter.icon ? (
+						<img src={filter.icon} alt={filter.class} key={index} />
 					) : (
-						<img src={filter.symbol} alt={filter.class} key={index} />
+						<p>{filter.class}</p>
 					)}
 				</StyledFilter>
-				{filterArray === schoolsData ? "" : <p>{filter.class}</p>}
+				{filter.icon ? <p>{filter.class}</p> : ""}
 			</div>
 		));
 	return (
 		<WhiteSection>
 			<Heading type="4">Classes</Heading>
-			<FilterGrid>
-				{mapFilters(classesData)}
-				<a>All Classes</a>
-			</FilterGrid>
+			<FilterGrid>{mapFilters(classesData)}</FilterGrid>
 			<hr />
 			<Heading type="4">Schools of Magic</Heading>
-			<FilterGrid>
-				{mapFilters(schoolsData)}
-				<StyledButton>All Schools</StyledButton>
-			</FilterGrid>
+			<FilterGrid>{mapFilters(schoolsData)}</FilterGrid>
 		</WhiteSection>
 	);
 };
