@@ -73,5 +73,5 @@ body {
 }
 
 * + p {
-	margin-top: var(--s);
+	margin-top: var(--xs);
 }
