@@ -1,8 +1,8 @@
 import Heading from "../styled-components/Heading";
-import { WhiteSection } from "../styled-components/FlexStyles";
+import { FlexColumnWrapper, WhiteSection } from "../styled-components/FlexStyles";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
-import { StyledLinkButton } from "../styled-components/StyledButton";
+import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
 import { StyledFilter } from "../styled-components/ClassBubble";
 import styled from "styled-components";
 
@@ -13,38 +13,34 @@ const FilterGrid = styled.section`
 `;
 
 const Filters = (props) => {
-	const classMap = classesData.map((clss, index) => (
-		<div style={{ maxWidth: "150px" }}>
-			<StyledFilter>
-				<img src={clss.symbol} alt={clss.class} key={index} />
-			</StyledFilter>
-			<p style={{ fontSize: "14px" }}>{clss.class}</p>
-		</div>
-	));
-
-	const schoolMap = schoolsData.map((clss, index) => (
-		<div style={{ maxWidth: "150px" }}>
-			<StyledFilter isImg>
-				<img src={clss.symbol} alt={clss.class} key={index} />
-			</StyledFilter>
-			<p style={{ fontSize: "14px" }}>{clss.class}</p>
-		</div>
-	));
+	const mapFilters = (filterArray) =>
+		filterArray.map((filter, index) => (
+			<div>
+				<StyledFilter isImg={filterArray === schoolsData}>
+					<img src={filter.symbol} alt={filter.class} key={index} />
+				</StyledFilter>
+				<p>{filter.class}</p>
+			</div>
+		));
 
 	return (
-		<WhiteSection style={{ width: "100%" }}>
+		<WhiteSection>
 			<Heading type="2">The Spellbook</Heading>
-			<p>Please select the filters you'd like to apply, and click on Search.</p>
-			<WhiteSection style={{ display: "grid", gridTemplateColumns: "repeat(4, auto)" }}>
-				<div>
-					<Heading type="4">Classes</Heading>
-					<FilterGrid column="4">{classMap}</FilterGrid>
-				</div>
-				-
-				<div>
-					<Heading type="4">Schools</Heading>
-					<FilterGrid column="4">{schoolMap}</FilterGrid>
-				</div>
+			<p>Select the filters you'd like to apply, and click on Search.</p>
+			<WhiteSection>
+				<Heading type="4">Classes</Heading>
+				<FilterGrid column="4">
+					{mapFilters(classesData)}
+					<StyledButton>All Classes</StyledButton>
+				</FilterGrid>
+
+				<hr />
+
+				<Heading type="4">Schools of Magic</Heading>
+				<FilterGrid column="4">
+					{mapFilters(schoolsData)}
+					<StyledButton>All Schools</StyledButton>
+				</FilterGrid>
 			</WhiteSection>
 			<StyledLinkButton>Search</StyledLinkButton>
 		</WhiteSection>

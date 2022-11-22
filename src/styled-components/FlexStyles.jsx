@@ -12,8 +12,8 @@ export const CenterFlexColumn = styled(FlexColumnWrapper)`
 	text-align: center;
 `;
 
-export const WhiteSection = styled.section`
+export const WhiteSection = styled(FlexColumnWrapper)`
 	background-color: var(--transparent-white);
-	padding: var(--m);
+	padding: var(--s) var(--sm);
 	border-radius: 8px;
 `;
