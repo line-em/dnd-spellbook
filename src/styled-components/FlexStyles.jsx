@@ -18,6 +18,10 @@ export const CenterFlexColumn = styled(FlexColumnWrapper)`
 	text-align: center;
 `;
 
+export const FlexRowWrapper = styled(CenterFlexColumn)`
+	flex-direction: row;
+`;
+
 export const FilterGrid = styled(CenterFlexColumn)`
 	flex-direction: row;
 	& *:not(:last-child) {

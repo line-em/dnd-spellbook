@@ -1,5 +1,10 @@
 import Heading from "../styled-components/Heading";
-import { FilterGrid, SpellbookPage, WhiteSection } from "../styled-components/FlexStyles";
+import {
+	FilterGrid,
+	FlexRowWrapper,
+	SpellbookPage,
+	WhiteSection
+} from "../styled-components/FlexStyles";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
@@ -30,7 +35,7 @@ const Filters = (props) => {
 				<Heading type="4">Classes</Heading>
 				<FilterGrid column="4">
 					{mapFilters(classesData)}
-					<StyledButton>All Classes</StyledButton>
+					<a>All Classes</a>
 				</FilterGrid>
 
 				<hr />
@@ -41,8 +46,10 @@ const Filters = (props) => {
 					<StyledButton>All Schools</StyledButton>
 				</FilterGrid>
 			</WhiteSection>
-			<StyledLinkButton path="/">Home</StyledLinkButton>
-			<StyledLinkButton>Search</StyledLinkButton>
+			<FlexRowWrapper>
+				<StyledLinkButton path="/">Home</StyledLinkButton>
+				<StyledLinkButton>Search</StyledLinkButton>
+			</FlexRowWrapper>
 		</SpellbookPage>
 	);
 };

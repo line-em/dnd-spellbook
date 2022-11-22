@@ -24,6 +24,13 @@ function App() {
 					{/* <Route path="/results" element={<Results />} /> */}
 				</Routes>
 			)}
+			<footer>
+				Created with tea and love by{" "}
+				<a href="https://github.com/line-em" target="_blank" rel="noopener noreferrer">
+					@line-em
+				</a>
+				.
+			</footer>
 		</CenterFlexColumn>
 	);
 }

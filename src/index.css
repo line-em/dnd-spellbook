@@ -48,7 +48,6 @@
 	}
 }
 
-/* opt 2 */
 html {
 	background-color: var(--black);
 	background-attachment: fixed;
@@ -61,10 +60,6 @@ html {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-}
-
-p {
-	font: 400 clamp(0.7rem, 0.1vw + 0.8rem, 1rem) / 1.5 var(--sans);
 }
 
 body {
@@ -82,4 +77,19 @@ body {
 	body {
 		width: 100%;
 	}
+}
+
+/* some base styles */
+
+p {
+	font: 400 clamp(0.7rem, 0.1vw + 0.8rem, 1rem) / 1.5 var(--sans);
+}
+
+a {
+	color: var(--white);
+	transition: color 200ms;
+}
+
+a:hover {
+	color: var(--neutral-purple);
 }
