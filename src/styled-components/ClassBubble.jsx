@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-export const StyledFilter = ({ isImg, children }) =>
-	isImg ? <SchoolBubble>{children}</SchoolBubble> : <ClassBubble>{children}</ClassBubble>;
+export const StyledFilter = ({ isImg, selected, children }) => {
+	return isImg ? (
+		<SchoolBubble isSelected={selected}>{children}</SchoolBubble>
+	) : (
+		<ClassBubble isSelected={selected}>{children}</ClassBubble>
+	);
+};
 
 const ClassBubble = styled.button`
 	border-radius: 50%;
-	aspect-ratio: 1 / 1;
 	width: 50%;
 	background-color: var(--transparent-black);
-	border: 2px var(--dark-gray) solid;
+	border: ${({ isSelected }) =>
+		isSelected ? "2px var(--lilac) solid" : "2px var(--dark-gray) solid"};
 	transition: all 300ms;
 	cursor: pointer;
 
@@ -27,8 +32,8 @@ const ClassBubble = styled.button`
 `;
 
 const SchoolBubble = styled(ClassBubble)`
-	& img {
-		width: 95%;
-		height: auto;
-	}
+	border-radius: 8px;
+	width: 100%;
+	padding: var(--xxs) var(--xs);
+	color: var(--lilac);
 `;

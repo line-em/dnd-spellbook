@@ -1,30 +1,29 @@
 import Heading from "../styled-components/Heading";
-import { FlexColumnWrapper, WhiteSection } from "../styled-components/FlexStyles";
+import { FilterGrid, SpellbookPage, WhiteSection } from "../styled-components/FlexStyles";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
 import { StyledFilter } from "../styled-components/ClassBubble";
 import styled from "styled-components";
 
-const FilterGrid = styled.section`
-	display: grid;
-	gap: var(--xs);
-	grid-template-columns: ${({ column }) => `repeat(${column}, minmax(100px, 120px))`};
-`;
-
 const Filters = (props) => {
 	const mapFilters = (filterArray) =>
 		filterArray.map((filter, index) => (
 			<div>
+				{/* selected */}
 				<StyledFilter isImg={filterArray === schoolsData}>
-					<img src={filter.symbol} alt={filter.class} key={index} />
+					{filterArray === schoolsData ? (
+						<p>{filter.class}</p>
+					) : (
+						<img src={filter.symbol} alt={filter.class} key={index} />
+					)}
 				</StyledFilter>
-				<p>{filter.class}</p>
+				{filterArray === schoolsData ? "" : <p>{filter.class}</p>}
 			</div>
 		));
 
 	return (
-		<WhiteSection>
+		<SpellbookPage>
 			<Heading type="2">The Spellbook</Heading>
 			<p>Select the filters you'd like to apply, and click on Search.</p>
 			<WhiteSection>
@@ -42,8 +41,9 @@ const Filters = (props) => {
 					<StyledButton>All Schools</StyledButton>
 				</FilterGrid>
 			</WhiteSection>
+			<StyledLinkButton path="/">Home</StyledLinkButton>
 			<StyledLinkButton>Search</StyledLinkButton>
-		</WhiteSection>
+		</SpellbookPage>
 	);
 };
 

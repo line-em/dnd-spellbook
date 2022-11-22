@@ -9,7 +9,7 @@
 	--purple: #6b2d5c;
 	--neutral-purple: #8f5972;
 
-	--sans:  "Sono", "Helvetica", "Arial", sans-serif;
+	--sans: "Sono", "Helvetica", "Arial", sans-serif;
 	--serif: "Fraunces", "Georgia", "Times New Roman", serif;
 
 	--xxs: 0.1rem;
@@ -17,14 +17,15 @@
 	--s: 1rem;
 	--sm: 1.5rem;
 	--m: 2rem;
-	--sl: 2.5rem
+	--sl: 2.5rem;
 	--l: 3rem;
 	--xxl: 5rem;
 
-	font-family: var(--sans);
+	/* font-family: "Sono", "Helvetica", "Arial", sans-serif;
 	font-size: clamp(0.7rem, 0.1vw + 0.8rem, 1rem);
 	line-height: 1.5;
-	font-weight: 400;
+	font-weight: 400; */
+
 	color: #c1aac0;
 
 	font-synthesis: none;
@@ -62,16 +63,23 @@ html {
 	padding: 0;
 }
 
+p {
+	font: 400 clamp(0.7rem, 0.1vw + 0.8rem, 1rem) / 1.5 var(--sans);
+}
+
 body {
+	display: grid;
 	margin: 0 auto;
-	min-width: 320px;
+	min-width: 300px;
 	max-width: 1280px;
 	min-height: 100vh;
 	width: 80%;
-	display: grid;
 	place-items: center;
+	font: 400 clamp(0.7rem, 0.1vw + 0.8rem, 1rem) / 1.5 var(--sans);
 }
 
-/* * + p {
-	margin-top: var(--xs);
-} */
+@media screen and (max-width: 500px) {
+	body {
+		width: 100%;
+	}
+}

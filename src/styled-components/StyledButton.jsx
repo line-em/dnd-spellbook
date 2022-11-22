@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FilterGrid } from "./FlexStyles";
 
 const StyledLink = styled(Link)`
 	cursor: pointer;
@@ -19,6 +20,11 @@ const StyledLink = styled(Link)`
 	&:focus,
 	&:focus-visible {
 		outline: 4px auto -webkit-focus-ring-color;
+	}
+
+	${FilterGrid} > & {
+		background-color: transparent;
+		border-color: transparent;
 	}
 `;
 
