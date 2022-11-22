@@ -1,24 +1,34 @@
-import classesData from "../assets/classes/classesData.js";
-import schoolsData from "../assets/schools/schoolsData";
-import { WhiteSection } from "../styled-components/FlexStyles";
 import { useState } from "react";
-import BasicFiltersLogic from "./BasicFiltersLogic.jsx";
+import { StyledFilter } from "../styled-components/ClassBubble";
+import { FilterGrid } from "../styled-components/FlexStyles";
+import Heading from "../styled-components/Heading";
 
-const BasicFilters = () => {
-	const [isSelected, setIsSelected] = useState(false);
-
-	const handleSelected = (selection) => console.log((prev) => [...prev, selection]);
+const BasicFilters = ({ filterArray, title }) => {
+	const [isOpen, setIsOpen] = useState(false);
 
 	return (
-		<WhiteSection>
-			<BasicFiltersLogic title="Classes" filterArray={classesData} initialState={true} />
-			<hr />
-			<BasicFiltersLogic
-				title="Schools of Magic"
-				filterArray={schoolsData}
-				initialState={false}
-			/>
-		</WhiteSection>
+		<>
+			<Heading type="4">
+				<div onClick={() => setIsOpen(!isOpen)} style={{ cursor: "pointer" }}>
+					{title} {isOpen ? "➖" : "✖️"}
+				</div>
+			</Heading>
+			{isOpen && (
+				<FilterGrid>
+					{filterArray.map((filter, index) => (
+						<div>
+							<StyledFilter isImg={!filter.icon} selected={false}>
+								{filter.icon && (
+									<img src={filter.icon} alt={filter.class} key={index} />
+								)}
+								{!filter.icon && <p>{filter.class}</p>}
+							</StyledFilter>
+							{filter.icon ? <p>{filter.class}</p> : ""}
+						</div>
+					))}
+				</FilterGrid>
+			)}
+		</>
 	);
 };
 
