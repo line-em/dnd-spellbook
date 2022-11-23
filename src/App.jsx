@@ -4,6 +4,7 @@ import { Ripples } from "@uiball/loaders";
 import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
 import Filters from "./pages/Filters";
+import SearchResultsMain from "./pages/SearchResultsMain";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,7 @@ function App() {
 					<Route index element={<Home />} />
 					<Route path="/" element={<Home />} />
 					<Route path="/filters" element={<Filters />} />
+					<Route path="/searchresults" element={<SearchResultsMain />} />
 					{/* <Route path="/results" element={<Results />} /> */}
 				</Routes>
 			)}

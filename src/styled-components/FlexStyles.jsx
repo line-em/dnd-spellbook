@@ -4,7 +4,7 @@ export const FlexColumnWrapper = styled.section`
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: column;
-	gap: var(--s);
+	gap: var(--xs);
 	margin: var(--xs);
 
 	@media screen and (max-width: 500px) {
@@ -36,6 +36,10 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	backdrop-filter: blur(3px);
 	box-shadow: inset 0 0 20px #201f1f80;
 	position: relative;
+
+	& + & {
+		margin-top: var(--s);
+	}
 `;
 
 export const SpellbookPage = styled(WhiteSection)`

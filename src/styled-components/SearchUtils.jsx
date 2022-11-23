@@ -7,7 +7,8 @@ import Illusion from "../assets/schools/Illusion.png";
 
 export const SearchGrid = styled.article`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(33%, auto));
+	gap: var(--xxs) var(--s);
+	grid-template-columns: repeat(auto-fill, minmax(30%, auto));
 	place-items: center;
 `;
 
@@ -27,12 +28,8 @@ export const WhiteSectionBackdropLeft = styled.article`
 			? `url(${Transmutation})`
 			: `url(${Illusion})`};
 	/* background-image: url(${Necromancy}); */
-	background-size: 14%;
+	background-size: 20%;
 	background-repeat: no-repeat;
 	background-position: top left;
 	opacity: 0.3;
-`;
-
-export const WhiteSectionBackdropRight = styled(WhiteSectionBackdropLeft)`
-	background-position: top right;
 `;

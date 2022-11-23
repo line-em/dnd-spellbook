@@ -7,11 +7,7 @@ import { ErrorBox, FlexRowWrapper, SpellbookPage } from "../styled-components/Fl
 import { StyledLinkButton } from "../styled-components/StyledButton";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
-import {
-	SearchGrid,
-	WhiteSectionBackdropLeft,
-	WhiteSectionBackdropRight
-} from "../styled-components/SearchUtils.jsx";
+import SearchResultsMain from "./SearchResultsMain.jsx";
 
 const Filters = () => {
 	const [isSelected, setIsSelected] = useState(false);
@@ -21,7 +17,7 @@ const Filters = () => {
 	// 	const options = {
 	// 		method: "GET",
 	// 		url: "https://api.open5e.com/spells/",
-	// 		params: { school: "Transmutation" }
+	// 		params: { school: "Transmutation", limit: '2', page: '3', ordering: 'level' }
 	// 	};
 
 	// 	try {
@@ -55,7 +51,7 @@ const Filters = () => {
 				</WhiteSection>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledLinkButton>Search</StyledLinkButton>
+					<StyledLinkButton path="/searchresults">Search</StyledLinkButton>
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{/* <ErrorBox>
@@ -63,67 +59,6 @@ const Filters = () => {
 						An error has occured during the Search. <strong>Please try again.</strong>
 					</p>
 				</ErrorBox> */}
-			<div>
-				<Heading type="4">Search Results</Heading>
-				<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, 400px)" }}>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Abjuration2"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<WhiteSectionBackdropRight school="Abjuration2"></WhiteSectionBackdropRight>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Necromancy"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<WhiteSectionBackdropRight school="Necromancy"></WhiteSectionBackdropRight>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Illusion"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Transmutation"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Enchantment"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Evocation"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<SearchGrid>
-							<div>Bard,Druid</div>
-							<div>Illusion</div>
-							<StyledLinkButton>Read More</StyledLinkButton>
-						</SearchGrid>
-					</WhiteSection>
-				</div>
-			</div>
 		</>
 	);
 };
