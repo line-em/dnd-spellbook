@@ -6,10 +6,14 @@ import Transmutation from "../assets/schools/Transmutation.png";
 import Illusion from "../assets/schools/Illusion.png";
 
 export const SearchGrid = styled.article`
-	display: grid;
+	display: flex;
 	gap: var(--xxs) var(--s);
-	grid-template-columns: repeat(auto-fill, minmax(30%, auto));
 	place-items: center;
+	justify-content: space-between;
+
+	&:first-child {
+		flex-grow: 1;
+	}
 `;
 
 export const WhiteSectionBackdropLeft = styled.article`
