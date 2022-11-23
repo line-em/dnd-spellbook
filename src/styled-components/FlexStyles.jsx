@@ -33,6 +33,9 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	background-color: var(--transparent-white);
 	padding: var(--s) var(--sm);
 	border-radius: 8px;
+	backdrop-filter: blur(3px);
+	box-shadow: inset 0 0 20px #201f1f80;
+	position: relative;
 `;
 
 export const SpellbookPage = styled(WhiteSection)`

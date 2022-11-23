@@ -4,7 +4,7 @@ import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
 const BasicFilters = ({ filterArray, title }) => {
-	const [isOpen, setIsOpen] = useState(false);
+	const [isOpen, setIsOpen] = useState(true);
 
 	return (
 		<>

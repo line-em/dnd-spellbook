@@ -40,6 +40,7 @@ const Wrapper = styled.h1`
 		type === "2" || type === "4" ? "var(--transparent-white)" : null};
 	padding: ${({ type }) => (type === "2" ? "0 var(--s)" : null)};
 	border-radius: 8px;
+	box-shadow: inset 0 0 3px #201f1f80;
 `;
 
 export default Heading;
