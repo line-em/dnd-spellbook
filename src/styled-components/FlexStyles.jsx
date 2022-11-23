@@ -36,15 +36,15 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 `;
 
 export const SpellbookPage = styled(WhiteSection)`
-	width: 60%;
-
-	@media screen and (max-width: 1200px) {
-		width: 75%;
-	}
-	@media screen and (max-width: 800px) {
+	width: 65ch;
+	@media screen and (max-width: 700px) {
 		width: 90%;
 	}
 	@media screen and (max-width: 550px) {
 		width: 100%;
 	}
+`;
+
+export const ErrorBox = styled(SpellbookPage)`
+	background-color: var(--red);
 `;
