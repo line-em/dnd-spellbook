@@ -49,6 +49,12 @@ export const WhiteNavigation = styled(WhiteSection)`
 	width: fit-content;
 	margin-left: auto;
 	margin-top: var(--s);
+	opacity: 0.5;
+	transition: opacity 200ms;
+
+	&:hover {
+		opacity: 1;
+	}
 `;
 
 export const SpellbookPage = styled(WhiteSection)`

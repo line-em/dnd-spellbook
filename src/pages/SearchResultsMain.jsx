@@ -31,7 +31,7 @@ const SearchResultsMain = (props) => {
 							Transmutation <br /> Level 1
 						</Pill>
 					</ClassInfo>
-					<StyledLinkButton>Read More</StyledLinkButton>
+					<StyledLinkButton>read more</StyledLinkButton>
 				</WhiteSection>
 				<WhiteSection>
 					<WhiteSectionBackdropLeft school="Necromancy"></WhiteSectionBackdropLeft>
@@ -48,7 +48,7 @@ const SearchResultsMain = (props) => {
 					<ClassInfo>
 						<div>Bard,Druid</div>
 						<div>Illusion</div>
-						<StyledLinkButton>Read More</StyledLinkButton>
+						<StyledLinkButton>read more</StyledLinkButton>
 					</ClassInfo>
 				</WhiteSection>
 				<WhiteSection>

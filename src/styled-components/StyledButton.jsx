@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FilterGrid } from "./FlexStyles";
+import { SearchGrid } from "./SearchUtils";
 
 const StyledLink = styled(Link)`
 	cursor: pointer;
@@ -11,10 +11,23 @@ const StyledLink = styled(Link)`
 	background-color: var(--dark-gray);
 	color: var(--white);
 	transition: all 0.25s;
+	text-decoration: none;
+
+	${SearchGrid} & {
+		align-self: center;
+		padding: var(--xxs) var(--xs);
+		font-size: 0.85rem;
+		border-color: transparent;
+	}
 
 	&:hover {
+		color: var(--lilac);
 		border-color: var(--dark-gray);
 		background-color: var(--black);
+	}
+
+	${SearchGrid} &:hover {
+		border-color: transparent;
 	}
 
 	&:focus,

@@ -7,6 +7,7 @@ import Evocation from "../assets/schools/Evocation.png";
 import Illusion from "../assets/schools/Illusion.png";
 import Necromancy from "../assets/schools/Necromancy.png";
 import Transmutation from "../assets/schools/Transmutation.png";
+import { WhiteSection } from "./FlexStyles";
 
 export const SearchWrapper = styled.main`
 	width: 100%;
@@ -20,11 +21,15 @@ export const SearchWrapper = styled.main`
 		box-shadow: inset 0 0 20px #201f1f80;
 		position: relative;
 	}
+
+	& ${WhiteSection} p {
+		color: var(--white);
+	}
 `;
 
 export const SearchGrid = styled.section`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+	grid-template-columns: repeat(auto-fit, minmax(320px, auto));
 
 	@media screen and (max-width: 420px) {
 		grid-template-columns: 1fr;
@@ -42,7 +47,7 @@ export const ClassInfo = styled.article`
 	}
 `;
 
-export const WhiteSectionBackdropLeft = styled.article`
+export const WhiteSectionBackdropLeft = styled.div`
 	position: absolute;
 	z-index: -1;
 	top: 0;
@@ -70,8 +75,8 @@ export const WhiteSectionBackdropLeft = styled.article`
 				return `url(${Divination})`;
 		}
 	}};
-	background-size: 20%;
+	background-size: contain;
 	background-repeat: no-repeat;
-	background-position: top left;
-	opacity: 0.3;
+	background-position: left -74px center;
+	opacity: 0.2;
 `;
