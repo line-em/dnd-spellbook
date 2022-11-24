@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import { WhiteSection } from "./FlexStyles";
-import Necromancy from "../assets/schools/Necromancy.png";
+import Abjuration from "../assets/schools/Abjuration2.png";
+import Conjuration from "../assets/schools/Conjuration.png";
+import Divination from "../assets/schools/Divination.png";
+import Enchantment from "../assets/schools/Enchantment.png";
 import Evocation from "../assets/schools/Evocation.png";
-import Transmutation from "../assets/schools/Transmutation.png";
 import Illusion from "../assets/schools/Illusion.png";
+import Necromancy from "../assets/schools/Necromancy.png";
+import Transmutation from "../assets/schools/Transmutation.png";
 
 export const SearchWrapper = styled.main`
 	width: 100%;
