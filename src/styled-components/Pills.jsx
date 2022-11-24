@@ -10,6 +10,20 @@ export const PillBox = styled.div`
 	}
 `;
 
+export const SearchPills = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	margin: var(--m) 0 var(--sm) 0;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--transparent-white);
+
+	& p {
+		margin-bottom: 5px;
+	}
+`;
+
 export const Pill = styled.span`
 	display: inline-block;
 	color: white;

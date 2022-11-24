@@ -7,13 +7,24 @@ import {
 } from "../styled-components/SearchUtils.jsx";
 import { WhiteNavigation, WhiteSection } from "../styled-components/FlexStyles";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton.jsx";
-import { Pill, PillBox } from "../styled-components/Pills.jsx";
+import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 
 const SearchResultsMain = (props) => {
 	return (
 		<SearchWrapper>
 			<Heading type="4">Search Results</Heading>
-			<p>Your filters are...</p> - <a href="">Reset filters</a>
+			<SearchPills>
+				<div>
+					<p>Your filters are...</p>
+					<PillBox>
+						<Pill>Bard</Pill>
+						<Pill>Bard</Pill>
+						<Pill>Druid</Pill>
+						<Pill>Wizard</Pill>
+					</PillBox>
+				</div>
+				<a href="">Reset filters</a>
+			</SearchPills>
 			<SearchGrid>
 				<WhiteSection>
 					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
