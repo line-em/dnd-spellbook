@@ -42,6 +42,15 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	}
 `;
 
+export const WhiteNavigation = styled(WhiteSection)`
+	align-items: center;
+	justify-content: flex-end;
+	flex-direction: row;
+	width: fit-content;
+	margin-left: auto;
+	margin-top: var(--s);
+`;
+
 export const SpellbookPage = styled(WhiteSection)`
 	width: 65ch;
 	@media screen and (max-width: 700px) {
