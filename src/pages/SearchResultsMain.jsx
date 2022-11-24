@@ -16,7 +16,7 @@ const SearchResultsMain = (props) => {
 			<p>Your filters are...</p> - <a href="">Reset filters</a>
 			<SearchGrid>
 				<WhiteSection>
-					<WhiteSectionBackdropLeft school="Abjuration2"></WhiteSectionBackdropLeft>
+					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
 					<Heading type="4">"Abhorrent Apparition"</Heading>
 					<p>Lorem ipsum dolor sit amet consectetur...</p>
 					<ClassInfo>

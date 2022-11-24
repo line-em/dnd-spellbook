@@ -49,15 +49,27 @@ export const WhiteSectionBackdropLeft = styled.article`
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-image: ${({ school }) =>
-		school === "Evocation"
-			? `url(${Evocation})`
-			: school === "Necromancy"
-			? `url(${Necromancy})`
-			: school === "Transmutation"
-			? `url(${Transmutation})`
-			: `url(${Illusion})`};
-	/* background-image: url(${Necromancy}); */
+
+	background-image: ${({ school }) => {
+		switch (school) {
+			case "Necromancy":
+				return `url(${Necromancy})`;
+			case "Transmutation":
+				return `url(${Transmutation})`;
+			case "Abjuration":
+				return `url(${Abjuration})`;
+			case "Illusion":
+				return `url(${Illusion})`;
+			case "Conjuration":
+				return `url(${Conjuration})`;
+			case "Evocation":
+				return `url(${Evocation})`;
+			case "Enchantment":
+				return `url(${Enchantment})`;
+			default:
+				return `url(${Divination})`;
+		}
+	}};
 	background-size: 20%;
 	background-repeat: no-repeat;
 	background-position: top left;
