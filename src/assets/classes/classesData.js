@@ -40,6 +40,11 @@ export default [
 		icon: "./src/assets/classes/Class Icon - Wizard.svg"
 	},
 	{
+		class: "Ranger",
+		query: "Ranger",
+		icon: "./src/assets/classes/Class Icon - Ranger.svg"
+	},
+	{
 		class: "♾️ All Filters",
 		query: [
 			"Artificer",
@@ -50,6 +55,7 @@ export default [
 			"Sorcerer",
 			"Wizard",
 			"Warlock",
+			"Ranger",
 			""
 		]
 	}
