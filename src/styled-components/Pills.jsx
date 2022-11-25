@@ -12,12 +12,12 @@ export const PillBox = styled.div`
 
 export const SearchPills = styled.div`
 	display: flex;
+	flex-direction: column;
 	flex-wrap: wrap;
-	gap: 20px;
+	gap: 5px;
 	margin: var(--m) 0 var(--sm) 0;
 	justify-content: center;
 	align-items: center;
-	background-color: var(--transparent-white);
 
 	& p {
 		margin-bottom: 5px;

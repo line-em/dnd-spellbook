@@ -11,9 +11,11 @@ export const StyledFilter = ({ isImg, selected, children }) => {
 const ClassBubble = styled.button`
 	border-radius: 50%;
 	width: 50%;
-	background-color: var(--transparent-black);
+	/* background-color: ; */
 	border: ${({ isSelected }) =>
 		isSelected ? "2px var(--lilac) solid" : "2px var(--dark-gray) solid"};
+	background-color: ${({ isSelected }) =>
+		isSelected ? "var(--transparent-white)" : "var(--transparent-black)"};
 	transition: all 300ms;
 	cursor: pointer;
 

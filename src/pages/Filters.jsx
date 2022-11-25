@@ -10,7 +10,7 @@ import BasicFilters from "../components/BasicFilters";
 import SearchResultsMain from "./SearchResultsMain.jsx";
 
 const Filters = () => {
-	const [isSelected, setIsSelected] = useState(false);
+	const [selectedClasses, isSelectedClasses] = useState([]);
 	const handleSelected = (selection) => console.log((prev) => [...prev, selection]);
 
 	// useEffect(() => {
@@ -41,7 +41,7 @@ const Filters = () => {
 
 	return (
 		<>
-			<SpellbookPage style={{ opacity: "1" }}>
+			<SpellbookPage>
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
 				<WhiteSection>

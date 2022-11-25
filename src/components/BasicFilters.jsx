@@ -5,6 +5,15 @@ import Heading from "../styled-components/Heading";
 
 const BasicFilters = ({ filterArray, title }) => {
 	const [isOpen, setIsOpen] = useState(true);
+	const [selectedFilters, setSelectedFilters] = useState({});
+
+	const handleSelected = (filter) => {
+		setSelectedFilters((prev) => ({
+			...prev,
+			[filter]: !prev[filter]
+		}));
+		// setSelectedFilters((prev) => [...prev, [filter]: true]);
+	};
 
 	return (
 		<>
@@ -16,8 +25,11 @@ const BasicFilters = ({ filterArray, title }) => {
 			{isOpen && (
 				<FilterGrid>
 					{filterArray.map((filter, index) => (
-						<div>
-							<StyledFilter isImg={!filter.icon} selected={false}>
+						<div onClick={() => handleSelected(filter.class)}>
+							<StyledFilter
+								isImg={!filter.icon}
+								selected={selectedFilters[filter.class]}
+							>
 								{filter.icon && (
 									<img src={filter.icon} alt={filter.class} key={index} />
 								)}
