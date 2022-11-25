@@ -7,7 +7,6 @@ import { ErrorBox, FlexRowWrapper, SpellbookPage } from "../styled-components/Fl
 import { StyledLinkButton } from "../styled-components/StyledButton";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
-import SearchResultsMain from "./SearchResultsMain.jsx";
 
 const Filters = () => {
 	const [filterSchool, setFilterSchool] = useState([]);
@@ -17,21 +16,19 @@ const Filters = () => {
 		const classesArray = Object.keys(filters);
 		const chosenClasses = classesArray.filter((item) => filters[item]);
 		setFilterClasses(chosenClasses);
-		console.log(chosenClasses);
 	};
 
 	const updateSchools = (filters) => {
 		const schoolArray = Object.keys(filters);
 		const chosenSchool = schoolArray.filter((item) => filters[item]);
 		setFilterSchool(chosenSchool);
-		console.log(chosenSchool);
 	};
 
 	// useEffect(() => {
 	// 	const options = {
 	// 		method: "GET",
 	// 		url: "https://api.open5e.com/spells/",
-	// 		params: { school: "Transmutation", limit: '2', page: '3', ordering: 'level' }
+	// 		params: { school: "Transmutation", limit: '6', page: '3', ordering: 'level' }
 	// 	};
 
 	// 	try {
@@ -39,12 +36,11 @@ const Filters = () => {
 	// 			const filteredData = res.data.results.filter((result) => {
 	// 				const splitClasses = result.dnd_class.split(",");
 	// 				const trimClasses = splitClasses.map((item) => item.trim());
-	// 				const classesQuery = ["Bard", "Druid"];
-
+	// classesQuery =["Bard"]
 	// 				// const containsQuery = (unfilteredData, query) =>
 	// 				// 	query.every((element) => unfilteredData.includes(element));
 
-	// 				return classesQuery.every((element) => trimClasses.includes(element));
+	// 				return filteredClasses.every((element) => trimClasses.includes(element));
 	// 			});
 	// 			console.log(filteredData);
 	// 		});
