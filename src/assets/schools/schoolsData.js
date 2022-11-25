@@ -40,7 +40,7 @@ export default [
 		symbol: "./src/assets/schools/Transmutation.png"
 	},
 	{
-		class: "♾️ All Schools",
+		class: "♾️ All Filters",
 		query: [
 			"Transmutation",
 			"Necromancy",

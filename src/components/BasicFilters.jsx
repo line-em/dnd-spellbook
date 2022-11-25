@@ -8,11 +8,21 @@ const BasicFilters = ({ filterArray, title }) => {
 	const [selectedFilters, setSelectedFilters] = useState({});
 
 	const handleSelected = (filter) => {
-		setSelectedFilters((prev) => ({
-			...prev,
-			[filter]: !prev[filter]
-		}));
-		// setSelectedFilters((prev) => [...prev, [filter]: true]);
+		const everyFilter = "♾️ All Filters";
+		if (filter === everyFilter) {
+			filterArray.map((item) =>
+				setSelectedFilters((prev) => ({
+					...prev,
+					[item.class]: !prev[everyFilter]
+				}))
+			);
+			console.log(selectedFilters);
+		} else {
+			setSelectedFilters((prev) => ({
+				...prev,
+				[filter]: !prev[filter]
+			}));
+		}
 	};
 
 	return (
@@ -25,14 +35,12 @@ const BasicFilters = ({ filterArray, title }) => {
 			{isOpen && (
 				<FilterGrid>
 					{filterArray.map((filter, index) => (
-						<div onClick={() => handleSelected(filter.class)}>
+						<div onClick={() => handleSelected(filter.class)} key={index}>
 							<StyledFilter
 								isImg={!filter.icon}
 								selected={selectedFilters[filter.class]}
 							>
-								{filter.icon && (
-									<img src={filter.icon} alt={filter.class} key={index} />
-								)}
+								{filter.icon && <img src={filter.icon} alt={filter.class} />}
 								{!filter.icon && <p>{filter.class}</p>}
 							</StyledFilter>
 							{filter.icon ? <p>{filter.class}</p> : ""}

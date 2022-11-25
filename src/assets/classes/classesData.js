@@ -40,7 +40,7 @@ export default [
 		icon: "./src/assets/classes/Class Icon - Wizard.svg"
 	},
 	{
-		class: "♾️ All Classes",
+		class: "♾️ All Filters",
 		query: [
 			"Artificer",
 			"Bard",
