@@ -3,7 +3,7 @@ import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
-const BasicFilters = ({ filterArray, title, getClasses }) => {
+const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 	const [isOpen, setIsOpen] = useState(true);
 	const [selectedFilters, setSelectedFilters] = useState({});
 
@@ -22,7 +22,12 @@ const BasicFilters = ({ filterArray, title, getClasses }) => {
 				[filter]: !prev[filter]
 			}));
 		}
-		getClasses(selectedFilters);
+		if (getClasses) {
+			getClasses(selectedFilters);
+		}
+		if (getSchool) {
+			getSchool(selectedFilters);
+		}
 	};
 
 	return (

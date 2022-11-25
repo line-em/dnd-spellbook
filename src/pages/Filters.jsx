@@ -12,19 +12,19 @@ import SearchResultsMain from "./SearchResultsMain.jsx";
 const Filters = () => {
 	const [filterSchool, setFilterSchool] = useState([]);
 	const [filterClasses, setFilterClasses] = useState([]);
-	const handleSelected = (selection) => console.log((prev) => [...prev, selection]);
 
-	const updateFilters = (filters) => {
-		// if (Object.values(filters) === true) {
-		// 	console.log(Object.keys(filters));
-		// }
-		// console.log(Object.values(filters));
-		// console.log(filters);
-		console.log(Object.keys(filters));
+	const updateClasses = (filters) => {
 		const classesArray = Object.keys(filters);
+		const chosenClasses = classesArray.filter((item) => filters[item]);
+		setFilterClasses(chosenClasses);
+		console.log(chosenClasses);
+	};
 
-		const trueClasses = classesArray.filter((item) => filters[item]);
-		console.log(trueClasses);
+	const updateSchools = (filters) => {
+		const schoolArray = Object.keys(filters);
+		const chosenSchool = schoolArray.filter((item) => filters[item]);
+		setFilterSchool(chosenSchool);
+		console.log(chosenSchool);
 	};
 
 	// useEffect(() => {
@@ -62,10 +62,14 @@ const Filters = () => {
 					<BasicFilters
 						title="Classes"
 						filterArray={classesData}
-						getClasses={(classes) => updateFilters(classes)}
+						getClasses={(classes) => updateClasses(classes)}
 					/>
 					<hr />
-					<BasicFilters title="Schools of Magic" filterArray={schoolsData} />
+					<BasicFilters
+						title="Schools of Magic"
+						filterArray={schoolsData}
+						getSchool={(school) => updateSchools(school)}
+					/>
 				</WhiteSection>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
