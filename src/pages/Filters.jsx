@@ -13,6 +13,7 @@ const Filters = () => {
 	const [filterClasses, setFilterClasses] = useState([]);
 	const [numberOfResults, setNumberOfResults] = useState("6");
 	const [ordering, setOrdering] = useState("level");
+	const [filterData, setFilterData] = useState({});
 
 	const updateClasses = (filters) => {
 		const classesArray = Object.keys(filters);
@@ -25,13 +26,21 @@ const Filters = () => {
 		const chosenSchool = schoolArray.filter((item) => filters[item]);
 		setFilterSchool(chosenSchool);
 	};
-
 	useEffect(() => {
 		const options = {
 			method: "GET",
 			url: "https://api.open5e.com/spells/",
+			// `transformResponse` allows changes to the response data to be made before
+			// it is passed to then/catch
+			// transformResponse: [
+			// 	function (data) {
+			// 		// Do whatever you want to transform the data
+			// 		console.log(data);
+			// 		return data;
+			// 	}
+			// ],
 			params: {
-				school: "Transmutation",
+				// school: ,
 				limit: numberOfResults,
 				page: "1",
 				ordering: ordering
@@ -39,21 +48,34 @@ const Filters = () => {
 		};
 		try {
 			axios.request(options).then((res) => {
-				const queryClasses = res.data.results.filter((result) => {
-					const splitClasses = result.dnd_class.split(",");
-					const trimClasses = splitClasses.map((item) => item.trim());
-
-					return filterClasses.every((element) => trimClasses.includes(element));
-				});
 				const querySchools = res.data.results.filter((result) => {
 					const splitSchools = result.school.split(",");
 					const trimSchools = splitSchools.map((item) => item.trim());
-
 					return filterSchool.some((element) => trimSchools.includes(element));
 				});
-				console.log(queryClasses);
-				console.log(querySchools);
+				setFilterData(querySchools);
+				console.log(res.data.results);
 			});
+			// .then((res) => {
+			// 	const queryClasses = res.data.results.filter((result) => {
+			// 		const splitClasses = result.dnd_class.split(",");
+			// 		const trimClasses = splitClasses.map((item) => item.trim());
+
+			// 		return filterClasses.every((element) => trimClasses.includes(element));
+			// 	});
+			// 	setFilterData(queryClasses);
+			// 	console.log(filterData);
+			// })
+			// .then((res) => {
+			// 	const querySchools = filterData.filter((result) => {
+			// 		const splitSchools = result.school.split(",");
+			// 		const trimSchools = splitSchools.map((item) => item.trim());
+
+			// 		return filterSchool.some((element) => trimSchools.includes(element));
+			// 	});
+			// 	setFilterData(querySchools);
+			// })
+			// .then((filterData) => console.log(filterData));
 		} catch {
 			console.log("error");
 		}
@@ -84,13 +106,17 @@ const Filters = () => {
 				<label htmlFor="numberOfResults">Results per page</label>
 				<select id="numberOfResults" onChange={(e) => setNumberOfResults(e.target.value)}>
 					<option value="3">3</option>
-					<option value="6">6</option>
+					<option value="6" selected>
+						6
+					</option>
 					<option value="9">9</option>
 				</select>
 
 				<label htmlFor="ordering">Results per page</label>
 				<select id="ordering" onChange={(e) => setOrdering(e.target.value)}>
-					<option value="level">Level - ascending</option>
+					<option value="level" selected>
+						Level - ascending
+					</option>
 					<option value="-level">Level - descending</option>
 					<option value="name">Name - ascending</option>
 					<option value="-name">Name - descending</option>
