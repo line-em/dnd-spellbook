@@ -10,8 +10,22 @@ import BasicFilters from "../components/BasicFilters";
 import SearchResultsMain from "./SearchResultsMain.jsx";
 
 const Filters = () => {
-	const [selectedClasses, isSelectedClasses] = useState([]);
+	const [filterSchool, setFilterSchool] = useState([]);
+	const [filterClasses, setFilterClasses] = useState([]);
 	const handleSelected = (selection) => console.log((prev) => [...prev, selection]);
+
+	const updateFilters = (filters) => {
+		// if (Object.values(filters) === true) {
+		// 	console.log(Object.keys(filters));
+		// }
+		// console.log(Object.values(filters));
+		// console.log(filters);
+		console.log(Object.keys(filters));
+		const classesArray = Object.keys(filters);
+
+		const trueClasses = classesArray.filter((item) => filters[item]);
+		console.log(trueClasses);
+	};
 
 	// useEffect(() => {
 	// 	const options = {
@@ -45,7 +59,11 @@ const Filters = () => {
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
 				<WhiteSection>
-					<BasicFilters title="Classes" filterArray={classesData} />
+					<BasicFilters
+						title="Classes"
+						filterArray={classesData}
+						getClasses={(classes) => updateFilters(classes)}
+					/>
 					<hr />
 					<BasicFilters title="Schools of Magic" filterArray={schoolsData} />
 				</WhiteSection>
