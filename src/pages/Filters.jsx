@@ -39,16 +39,20 @@ const Filters = () => {
 		};
 		try {
 			axios.request(options).then((res) => {
-				const filteredClasses = res.data.results.filter((result) => {
+				const queryClasses = res.data.results.filter((result) => {
 					const splitClasses = result.dnd_class.split(",");
 					const trimClasses = splitClasses.map((item) => item.trim());
-					// classesQuery =["Bard"]
-					// const containsQuery = (unfilteredData, query) =>
-					// 	query.every((element) => unfilteredData.includes(element));
 
 					return filterClasses.every((element) => trimClasses.includes(element));
 				});
-				console.log(filteredClasses);
+				const querySchools = res.data.results.filter((result) => {
+					const splitSchools = result.school.split(",");
+					const trimSchools = splitSchools.map((item) => item.trim());
+
+					return filterSchool.some((element) => trimSchools.includes(element));
+				});
+				console.log(queryClasses);
+				console.log(querySchools);
 			});
 		} catch {
 			console.log("error");
@@ -66,6 +70,10 @@ const Filters = () => {
 						filterArray={classesData}
 						getClasses={(classes) => updateClasses(classes)}
 					/>
+					{/* <label htmlFor="everyClass">
+						<input type="checkbox" /> Spells must be available for all/some selected classes
+						// USE SELECTED FOR DROPDOWN
+					</label> */}
 					<hr />
 					<BasicFilters
 						title="Schools of Magic"
