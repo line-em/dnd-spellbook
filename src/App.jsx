@@ -5,6 +5,7 @@ import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
 import Filters from "./pages/Filters";
 import SearchResultsMain from "./pages/SearchResultsMain";
+import { ApiContextProvider } from "./context/ApiContext";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -18,13 +19,15 @@ function App() {
 			{isLoading ? (
 				<Ripples size={50} color="var(--lilac)" />
 			) : (
-				<Routes>
-					<Route index element={<Home />} />
-					<Route path="/" element={<Home />} />
-					<Route path="/filters" element={<Filters />} />
-					<Route path="/searchresults" element={<SearchResultsMain />} />
-					{/* <Route path="/results" element={<Results />} /> */}
-				</Routes>
+				<ApiContextProvider>
+					<Routes>
+						<Route index element={<Home />} />
+						<Route path="/" element={<Home />} />
+						<Route path="/filters" element={<Filters />} />
+						<Route path="/searchresults" element={<SearchResultsMain />} />
+						{/* <Route path="/results" element={<Results />} /> */}
+					</Routes>
+				</ApiContextProvider>
 			)}
 			<footer>
 				Created with tea and love by{" "}
