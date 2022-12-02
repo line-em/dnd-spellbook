@@ -35,6 +35,7 @@ const Filters = () => {
 		const stringifiedSchool = chosenSchool.toString();
 		setFilterSchool(stringifiedSchool);
 	};
+
 	useEffect(() => {
 		console.log(apiData);
 	}, [runSearch]);
@@ -84,9 +85,7 @@ const Filters = () => {
 					>
 						Search
 					</StyledLinkButton> */}
-					<StyledLinkButton onClick={() => setRunSearch(!runSearch)}>
-						Search
-					</StyledLinkButton>
+					<StyledLinkButton path="/searchresults">Search</StyledLinkButton>
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{/* <ErrorBox>
