@@ -14,6 +14,7 @@ const Filters = () => {
 	const [numberOfResults, setNumberOfResults] = useState("6");
 	const [ordering, setOrdering] = useState("level");
 	const [filterData, setFilterData] = useState({});
+	const [runSearch, setRunSearch] = useState(false);
 
 	const updateClasses = (filters) => {
 		const classesArray = Object.keys(filters);
@@ -24,61 +25,67 @@ const Filters = () => {
 	const updateSchools = (filters) => {
 		const schoolArray = Object.keys(filters);
 		const chosenSchool = schoolArray.filter((item) => filters[item]);
-		setFilterSchool(chosenSchool);
+		if (chosenSchool.includes("♾️ All Filters")) {
+			chosenSchool.pop();
+			console.log("No All Filters!");
+		}
+		const stringifiedSchool = chosenSchool.toString();
+		setFilterSchool(stringifiedSchool);
+		console.log(`This is currently the school: ${filterSchool}`);
 	};
 	useEffect(() => {
-		const options = {
-			method: "GET",
-			url: "https://api.open5e.com/spells/",
-			// `transformResponse` allows changes to the response data to be made before
-			// it is passed to then/catch
-			// transformResponse: [
-			// 	function (data) {
-			// 		// Do whatever you want to transform the data
-			// 		console.log(data);
-			// 		return data;
-			// 	}
-			// ],
-			params: {
-				// school: ,
-				limit: numberOfResults,
-				page: "1",
-				ordering: ordering
+		async function fetchAllPages(url) {
+			const data = [];
+			try {
+				do {
+					const response = await axios.get(url);
+					const results = await response.data;
+					url = results.next;
+					data.push(...results.results);
+					console.log(data);
+				} while (url);
+			} catch (err) {
+				console.log(err);
 			}
-		};
-		try {
-			axios.request(options).then((res) => {
-				const querySchools = res.data.results.filter((result) => {
-					const splitSchools = result.school.split(",");
-					const trimSchools = splitSchools.map((item) => item.trim());
-					return filterSchool.some((element) => trimSchools.includes(element));
-				});
-				setFilterData(querySchools);
-				console.log(res.data.results);
-			});
-			// .then((res) => {
-			// 	const queryClasses = res.data.results.filter((result) => {
-			// 		const splitClasses = result.dnd_class.split(",");
-			// 		const trimClasses = splitClasses.map((item) => item.trim());
+			// do {
+			// 	let response = fetch(url);
+			// 	const data = response.json();
+			// 	url = response.next;
+			// 	// data.push(...response.results);
+			// 	console.log(response.data);
+			// } while (url);
 
-			// 		return filterClasses.every((element) => trimClasses.includes(element));
-			// 	});
-			// 	setFilterData(queryClasses);
-			// 	console.log(filterData);
-			// })
-			// .then((res) => {
-			// 	const querySchools = filterData.filter((result) => {
-			// 		const splitSchools = result.school.split(",");
-			// 		const trimSchools = splitSchools.map((item) => item.trim());
-
-			// 		return filterSchool.some((element) => trimSchools.includes(element));
-			// 	});
-			// 	setFilterData(querySchools);
-			// })
-			// .then((filterData) => console.log(filterData));
-		} catch {
-			console.log("error");
+			return data;
 		}
+		fetchAllPages("https://api.open5e.com/spells/");
+		// const options = {
+		// 	method: "GET",
+		// 	url: "https://api.open5e.com/spells/",
+		// 	params: {
+		// 		school__in: filterSchool,
+		// 		// DOESNT WORK
+		// 		ordering: ordering
+		// 	}
+		// };
+		// try {
+		// 	axios.request(options).then((res) => {
+		// 		console.log(res.data);
+		// 		console.log(`Now it's running. Results num ${res.data.results.length}`);
+		// 		console.log(filterSchool);
+		// 		console.log(res.data.results);
+		// 		console.log("Now with the class filter.");
+		// 		const queryClasses = res.data.results.filter((result) => {
+		// 			const splitClasses = result.dnd_class.split(",");
+		// 			const trimClasses = splitClasses.map((item) => item.trim());
+
+		// 			return filterClasses.every((element) => trimClasses.includes(element));
+		// 		});
+		// 		setFilterData(queryClasses);
+		// 		console.log(filterData);
+		// 	});
+		// } catch {
+		// 	console.log("error");
+		// }
 	}, []);
 
 	return (
@@ -92,10 +99,6 @@ const Filters = () => {
 						filterArray={classesData}
 						getClasses={(classes) => updateClasses(classes)}
 					/>
-					{/* <label htmlFor="everyClass">
-						<input type="checkbox" /> Spells must be available for all/some selected classes
-						// USE SELECTED FOR DROPDOWN
-					</label> */}
 					<hr />
 					<BasicFilters
 						title="Schools of Magic"
@@ -106,7 +109,7 @@ const Filters = () => {
 				<label htmlFor="numberOfResults">Results per page</label>
 				<select id="numberOfResults" onChange={(e) => setNumberOfResults(e.target.value)}>
 					<option value="3">3</option>
-					<option value="6" selected>
+					<option value="6" defaultValue>
 						6
 					</option>
 					<option value="9">9</option>
@@ -114,7 +117,7 @@ const Filters = () => {
 
 				<label htmlFor="ordering">Results per page</label>
 				<select id="ordering" onChange={(e) => setOrdering(e.target.value)}>
-					<option value="level" selected>
+					<option value="level" defaultValue>
 						Level - ascending
 					</option>
 					<option value="-level">Level - descending</option>
@@ -124,7 +127,15 @@ const Filters = () => {
 
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledLinkButton path="/searchresults">Search</StyledLinkButton>
+					{/* <StyledLinkButton
+						path="/searchresults"
+						onClick={() => setRunSearch(!runSearch)}
+					>
+						Search
+					</StyledLinkButton> */}
+					<StyledLinkButton onClick={(e) => setRunSearch(!runSearch)}>
+						Search
+					</StyledLinkButton>
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{/* <ErrorBox>
