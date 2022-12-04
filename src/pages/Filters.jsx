@@ -38,6 +38,12 @@ const Filters = () => {
 
 	useEffect(() => {
 		console.log(apiData);
+		// useToggle
+		// Filter by class, including "",
+		// Filter by school
+		// Sort via ordering
+		// Slice correct quantity
+		// Figure out route props
 	}, [runSearch]);
 
 	return (
