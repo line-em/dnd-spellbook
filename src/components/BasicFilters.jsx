@@ -6,7 +6,7 @@ import Heading from "../styled-components/Heading";
 
 const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 	const [isOpen, setIsOpen] = useToggle();
-	const [selectedFilters, setSelectedFilters] = useState({ "♾️ All Filters": true });
+	const [selectedFilters, setSelectedFilters] = useState({});
 
 	const handleSelected = (filter) => {
 		const everyFilter = "♾️ All Filters";

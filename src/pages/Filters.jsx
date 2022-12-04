@@ -40,7 +40,10 @@ const Filters = () => {
 	console.log(runSearch);
 	useEffect(() => {
 		console.log(apiData);
-		const filtered = apiData.filter((spell) => spell["dnd_class"]);
+		console.log(filterClasses);
+		const filtered = apiData.filter((spell) =>
+			filterClasses.every((element) => spell["dnd_class"].includes(element))
+		);
 		console.log(filtered);
 		//  filterClasses.every((element) => trimClasses.includes(element))
 		// useToggle
