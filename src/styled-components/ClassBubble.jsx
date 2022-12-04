@@ -1,20 +1,29 @@
 import styled from "styled-components";
 
-export const StyledFilter = ({ isImg, selected, children }) => {
+export const StyledFilter = ({ isImg, isClear, selected, disabled, children }) => {
 	return isImg ? (
-		<SchoolBubble isSelected={selected}>{children}</SchoolBubble>
+		<SchoolBubble isSelected={selected} disabled={disabled} isClear={isClear}>
+			{children}
+		</SchoolBubble>
 	) : (
-		<ClassBubble isSelected={selected}>{children}</ClassBubble>
+		<ClassBubble isSelected={selected} disabled={disabled} isClear={isClear}>
+			{children}
+		</ClassBubble>
 	);
 };
 
 const ClassBubble = styled.button`
 	border-radius: 50%;
 	width: 50%;
+	opacity: 1;
 	border: ${({ isSelected }) =>
 		isSelected ? "2px var(--lilac) solid" : "2px var(--dark-gray) solid"};
-	background-color: ${({ isSelected }) =>
-		isSelected ? "var(--transparent-white)" : "var(--transparent-black)"};
+	background-color: ${({ isSelected, isClear }) =>
+		isClear
+			? "var(--transparent-red)"
+			: isSelected
+			? "var(--transparent-white)"
+			: "var(--transparent-black)"};
 	transition: all 300ms;
 	cursor: pointer;
 
@@ -29,6 +38,10 @@ const ClassBubble = styled.button`
 
 	&:active {
 		border-color: var(--lilac);
+	}
+
+	&:disabled {
+		opacity: 0.5;
 	}
 `;
 

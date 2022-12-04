@@ -40,16 +40,6 @@ export default [
 		symbol: "./src/assets/schools/Transmutation.png"
 	},
 	{
-		class: "♾️ All Filters",
-		query: [
-			"Transmutation",
-			"Necromancy",
-			"Illusion",
-			"Evocation",
-			"Enchantment",
-			"Divination",
-			"Conjuration",
-			"Abjuration"
-		]
+		class: "🧼 Clear Filters"
 	}
 ];

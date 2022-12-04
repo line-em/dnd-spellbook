@@ -7,14 +7,17 @@ import Heading from "../styled-components/Heading";
 const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 	const [isOpen, setIsOpen] = useToggle();
 	const [selectedFilters, setSelectedFilters] = useState({});
+	const filtersLength = Object.values(selectedFilters).filter(
+		(element) => element === true
+	).length;
+	const clear = "🧼 Clear Filters";
 
 	const handleSelected = (filter) => {
-		const everyFilter = "♾️ All Filters";
-		if (filter === everyFilter) {
+		if (filter === clear) {
 			filterArray.map((item) =>
 				setSelectedFilters((prev) => ({
 					...prev,
-					[item.class]: !prev[everyFilter]
+					[item.class]: false
 				}))
 			);
 		} else {
@@ -32,7 +35,6 @@ const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 			getSchool(selectedFilters);
 		}
 	};
-
 	return (
 		<>
 			<Heading type="4">
@@ -45,8 +47,10 @@ const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 					{filterArray.map((filter, index) => (
 						<div onClick={() => handleSelected(filter.class)} key={index}>
 							<StyledFilter
+								isClear={filter.class === clear}
 								isImg={!filter.icon}
 								selected={selectedFilters[filter.class]}
+								disabled={filter.class === clear && filtersLength === 0}
 							>
 								{filter.icon && <img src={filter.icon} alt={filter.class} />}
 								{!filter.icon && <p>{filter.class}</p>}

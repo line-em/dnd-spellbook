@@ -45,18 +45,6 @@ export default [
 		icon: "./src/assets/classes/Class Icon - Ranger.svg"
 	},
 	{
-		class: "♾️ All Filters",
-		query: [
-			"Artificer",
-			"Bard",
-			"Druid",
-			"Cleric",
-			"Paladin",
-			"Sorcerer",
-			"Wizard",
-			"Warlock",
-			"Ranger",
-			""
-		]
+		class: "🧼 Clear Filters"
 	}
 ];
