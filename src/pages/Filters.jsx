@@ -3,10 +3,11 @@ import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import { ErrorBox, FlexRowWrapper, SpellbookPage } from "../styled-components/FlexStyles";
-import { StyledLinkButton } from "../styled-components/StyledButton";
+import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
+import useToggle from "../hooks/useToggle.jsx";
 
 const Filters = () => {
 	const [filterSchool, setFilterSchool] = useState([]);
@@ -14,7 +15,7 @@ const Filters = () => {
 	const [numberOfResults, setNumberOfResults] = useState("6");
 	const [ordering, setOrdering] = useState("level");
 	const [filterData, setFilterData] = useState({});
-	const [runSearch, setRunSearch] = useState(false);
+	const [runSearch, setRunSearch] = useToggle();
 	const apiData = useContext(ApiContext);
 
 	const updateClasses = (filters) => {
@@ -36,8 +37,12 @@ const Filters = () => {
 		setFilterSchool(stringifiedSchool);
 	};
 
+	console.log(runSearch);
 	useEffect(() => {
 		console.log(apiData);
+		const filtered = apiData.filter((spell) => spell["dnd_class"]);
+		console.log(filtered);
+		//  filterClasses.every((element) => trimClasses.includes(element))
 		// useToggle
 		// Filter by class, including "",
 		// Filter by school
@@ -64,34 +69,40 @@ const Filters = () => {
 						getSchool={(school) => updateSchools(school)}
 					/>
 				</WhiteSection>
-				<label htmlFor="numberOfResults">Results per page</label>
-				<select id="numberOfResults" onChange={(e) => setNumberOfResults(e.target.value)}>
-					<option value="3">3</option>
-					<option value="6" defaultValue>
-						6
-					</option>
-					<option value="9">9</option>
-				</select>
-
-				<label htmlFor="ordering">Results per page</label>
-				<select id="ordering" onChange={(e) => setOrdering(e.target.value)}>
-					<option value="level" defaultValue>
-						Level - ascending
-					</option>
-					<option value="-level">Level - descending</option>
-					<option value="name">Name - ascending</option>
-					<option value="-name">Name - descending</option>
-				</select>
-
+				<FlexRowWrapper>
+					<div>
+						<label htmlFor="numberOfResults">
+							<Heading type="4">Results per page</Heading>
+						</label>
+						<select
+							id="numberOfResults"
+							onChange={(e) => setNumberOfResults(e.target.value)}
+						>
+							<option value="3">3</option>
+							<option value="6" defaultValue>
+								6
+							</option>
+							<option value="9">9</option>
+						</select>
+					</div>
+					<div>
+						<label htmlFor="ordering">
+							<Heading type="4">Ordering</Heading>
+						</label>
+						<select id="ordering" onChange={(e) => setOrdering(e.target.value)}>
+							<option value="level" defaultValue>
+								Level - ascending
+							</option>
+							<option value="-level">Level - descending</option>
+							<option value="name">Name - ascending</option>
+							<option value="-name">Name - descending</option>
+						</select>
+					</div>
+				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					{/* <StyledLinkButton
-						path="/searchresults"
-						onClick={() => setRunSearch(!runSearch)}
-					>
-						Search
-					</StyledLinkButton> */}
-					<StyledLinkButton path="/searchresults">Search</StyledLinkButton>
+					<StyledButton func={() => setRunSearch(!runSearch)}>Search</StyledButton>
+					{/* <StyledLinkButton path="/searchresults">Search</StyledLinkButton> */}
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{/* <ErrorBox>

@@ -10,6 +10,8 @@ import { StyledButton, StyledLinkButton } from "../styled-components/StyledButto
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 
 const SearchResultsMain = (props) => {
+	console.log("Is receiving props");
+	console.log(props.oi);
 	return (
 		<SearchWrapper>
 			<Heading type="4">Search Results</Heading>

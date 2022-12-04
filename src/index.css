@@ -97,3 +97,9 @@ a {
 a:hover {
 	color: var(--neutral-purple);
 }
+
+select {
+	padding: var(--xs);
+	color: var(--steel);
+	margin: var(--xs) auto;
+}

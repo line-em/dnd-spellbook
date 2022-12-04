@@ -1,11 +1,12 @@
 import { useState } from "react";
+import useToggle from "../hooks/useToggle";
 import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
 const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
-	const [isOpen, setIsOpen] = useState(true);
-	const [selectedFilters, setSelectedFilters] = useState({});
+	const [isOpen, setIsOpen] = useToggle();
+	const [selectedFilters, setSelectedFilters] = useState({ "♾️ All Filters": true });
 
 	const handleSelected = (filter) => {
 		const everyFilter = "♾️ All Filters";
@@ -22,9 +23,11 @@ const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 				[filter]: !prev[filter]
 			}));
 		}
+
 		if (getClasses) {
 			getClasses(selectedFilters);
 		}
+
 		if (getSchool) {
 			getSchool(selectedFilters);
 		}

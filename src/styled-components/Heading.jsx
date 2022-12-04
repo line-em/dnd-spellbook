@@ -37,7 +37,7 @@ const Wrapper = styled.h1`
 	}};
 	// h2 & h4 specific
 	background-color: ${({ type }) => (type === "2" || type === "4" ? "var(--light-gray)" : null)};
-	padding: ${({ type }) => (type === "2" ? "0 var(--s)" : null)};
+	padding: ${({ type }) => (type === "2" || type === "4" ? "0 var(--s)" : null)};
 	border-radius: 8px;
 	box-shadow: ${({ type }) => (type === "2" || type === "4" ? "inset 0 0 3px #201f1f80" : null)};
 `;
