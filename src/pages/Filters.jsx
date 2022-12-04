@@ -2,57 +2,79 @@ import { useContext, useEffect, useState } from "react";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
+import { Ripples } from "@uiball/loaders";
 import { ErrorBox, FlexRowWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
 import useToggle from "../hooks/useToggle.jsx";
+import { useNavigate, Route, Routes } from "react-router-dom";
+import SearchResultsMain from "./SearchResultsMain.jsx";
 
 const Filters = () => {
 	const [filterSchool, setFilterSchool] = useState([]);
 	const [filterClasses, setFilterClasses] = useState([]);
-	const [numberOfResults, setNumberOfResults] = useState("6");
-	const [ordering, setOrdering] = useState("level");
+	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [filterData, setFilterData] = useState({});
 	const [runSearch, setRunSearch] = useToggle();
+	const [showError, setShowError] = useToggle();
 	const apiData = useContext(ApiContext);
+	const navigate = useNavigate();
 
 	const updateClasses = (filters) => {
 		const classesArray = Object.keys(filters);
 		const chosenClasses = classesArray.filter((item) => filters[item]);
-		if (chosenClasses.includes("♾️ All Filters")) {
-			chosenClasses.pop();
-		}
 		setFilterClasses(chosenClasses);
 	};
 
 	const updateSchools = (filters) => {
 		const schoolArray = Object.keys(filters);
 		const chosenSchool = schoolArray.filter((item) => filters[item]);
-		if (chosenSchool.includes("♾️ All Filters")) {
-			chosenSchool.pop();
-		}
-		const stringifiedSchool = chosenSchool.toString();
-		setFilterSchool(stringifiedSchool);
+		setFilterSchool(chosenSchool);
 	};
 
-	console.log(runSearch);
+	const paginate = (arr) => {
+		const sliced = [];
+		const arrCopy = arr;
+
+		for (let i = 0; i < arr.length; i++) {
+			sliced.push([arrCopy.slice(0, resultsPerPage)]);
+			arrCopy.splice(0, resultsPerPage);
+		}
+
+		if (arrCopy.length !== 0) {
+			sliced.push([arrCopy]);
+		}
+		return sliced;
+	};
+
 	useEffect(() => {
-		console.log(apiData);
-		console.log(filterClasses);
-		const filtered = apiData.filter((spell) =>
+		const searchClass = apiData.filter((spell) =>
 			filterClasses.every((element) => spell["dnd_class"].includes(element))
 		);
-		console.log(filtered);
-		//  filterClasses.every((element) => trimClasses.includes(element))
-		// useToggle
-		// Filter by class, including "",
-		// Filter by school
-		// Sort via ordering
-		// Slice correct quantity
-		// Figure out route props
+		const searchSchool = searchClass.filter((spell) =>
+			filterSchool.some((element) => spell["school"].includes(element))
+		);
+		setFilterData(paginate(searchSchool));
 	}, [runSearch]);
+
+	useEffect(() => {
+		if (filterData.length > 0) {
+			// filterData.map((filter, index) => (
+			// 	<Routes>
+			// 		<Route
+			// 			path={"/searchresults/" + index}
+			// 			element={<SearchResultsMain filterData={filterData} />}
+			// 		/>
+			// 	</Routes>
+			// ));
+			console.log("Generated");
+			navigate("/searchresults/1");
+		} else {
+			setShowError(true);
+		}
+	}, [filterData]);
 
 	return (
 		<>
@@ -64,12 +86,14 @@ const Filters = () => {
 						title="Classes"
 						filterArray={classesData}
 						getClasses={(classes) => updateClasses(classes)}
+						info="Only spells available to ALL selected classes will be shown."
 					/>
 					<hr />
 					<BasicFilters
 						title="Schools of Magic"
 						filterArray={schoolsData}
 						getSchool={(school) => updateSchools(school)}
+						info="Spells included in the selected schools will be shown."
 					/>
 				</WhiteSection>
 				<FlexRowWrapper>
@@ -79,40 +103,27 @@ const Filters = () => {
 						</label>
 						<select
 							id="numberOfResults"
-							onChange={(e) => setNumberOfResults(e.target.value)}
+							value={resultsPerPage}
+							onChange={(e) => setResultsPerPage(e.target.value)}
 						>
 							<option value="3">3</option>
-							<option value="6" defaultValue>
-								6
-							</option>
+							<option value="6">6</option>
 							<option value="9">9</option>
-						</select>
-					</div>
-					<div>
-						<label htmlFor="ordering">
-							<Heading type="4">Ordering</Heading>
-						</label>
-						<select id="ordering" onChange={(e) => setOrdering(e.target.value)}>
-							<option value="level" defaultValue>
-								Level - ascending
-							</option>
-							<option value="-level">Level - descending</option>
-							<option value="name">Name - ascending</option>
-							<option value="-name">Name - descending</option>
 						</select>
 					</div>
 				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
 					<StyledButton func={() => setRunSearch(!runSearch)}>Search</StyledButton>
-					{/* <StyledLinkButton path="/searchresults">Search</StyledLinkButton> */}
 				</FlexRowWrapper>
 			</SpellbookPage>
-			{/* <ErrorBox>
+			{showError && (
+				<ErrorBox>
 					<p>
 						An error has occured during the Search. <strong>Please try again.</strong>
 					</p>
-				</ErrorBox> */}
+				</ErrorBox>
+			)}
 		</>
 	);
 };

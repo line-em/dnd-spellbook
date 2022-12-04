@@ -3,8 +3,9 @@ import useToggle from "../hooks/useToggle";
 import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
+import { Info } from "../styled-components/SearchUtils";
 
-const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
+const BasicFilters = ({ filterArray, title, info, getClasses, getSchool }) => {
 	const [isOpen, setIsOpen] = useToggle();
 	const [selectedFilters, setSelectedFilters] = useState({});
 	const filtersLength = Object.values(selectedFilters).filter(
@@ -37,11 +38,11 @@ const BasicFilters = ({ filterArray, title, getClasses, getSchool }) => {
 	};
 	return (
 		<>
-			<Heading type="4">
-				<div onClick={() => setIsOpen(!isOpen)} style={{ cursor: "pointer" }}>
-					{title} {isOpen ? "➖" : "✖️"}
-				</div>
-			</Heading>
+			<div onClick={() => setIsOpen(!isOpen)} style={{ cursor: "pointer" }}>
+				<Heading type="4">
+					{title} {isOpen ? "➖" : "✖️"} <Info title={info}>Info</Info>
+				</Heading>
+			</div>
 			{isOpen && (
 				<FilterGrid>
 					{filterArray.map((filter, index) => (

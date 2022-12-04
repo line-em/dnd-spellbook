@@ -80,3 +80,7 @@ export const WhiteSectionBackdropLeft = styled.div`
 	background-position: left -74px center;
 	opacity: 0.2;
 `;
+
+export const Info = styled.abbr`
+	text-decoration: underline 2px var(--red);
+`;
