@@ -3,7 +3,12 @@ import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import { Ripples } from "@uiball/loaders";
-import { ErrorBox, FlexRowWrapper, SpellbookPage } from "../styled-components/FlexStyles";
+import {
+	ErrorBox,
+	FlexRowSpacedWrapper,
+	FlexRowWrapper,
+	SpellbookPage
+} from "../styled-components/FlexStyles";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
@@ -13,17 +18,29 @@ import { paginate } from "../utils/utils";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
-	const [filterSchools, setFilterSchools] = useState([]);
-	const [filterClasses, setFilterClasses] = useState([]);
+	const [filterSchools, setFilterSchools] = useState({});
+	const [filterClasses, setFilterClasses] = useState({});
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [showError, setShowError] = useState();
 	const navigate = useNavigate();
 
+	const sanitize = (obj) => {
+		// const filterObj = Object.keys(obj);
+		// const chosenFilters = obj.filter((item) => filterClasses[item]);
+		// if (setFilterClasses) {
+		// 	setFilterClasses(chosenFilters);
+		// } else {
+		// 	const chosenFilters = filterObj.filter((item) => filterSchools[item]);
+		// 	setFilterSchools(chosenFilters);
+		// }
+	};
+
 	const handleSearch = async () => {
 		let filterData = {};
 		console.log("click");
+
 		try {
-			if (filterClasses.length === 0 && filterSchool.length === 0) {
+			if (filterClasses.length === 0 && filterSchools.length === 0) {
 				filterData = paginate(apiData, resultsPerPage);
 				console.log(filterData);
 			} else {
@@ -60,12 +77,12 @@ const Filters = () => {
 			<SpellbookPage>
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
-				{filterClasses.map((filter) => filter)}
-				{filterSchools.map((filter) => filter)}
+				\\ Filters filters.
 				<WhiteSection>
 					<BasicFilters
 						title="Classes"
 						filterArray={classesData}
+						filterClasses={filterClasses}
 						setFilterClasses={setFilterClasses}
 						info="Only spells available to ALL selected classes will be shown."
 					/>
@@ -73,15 +90,14 @@ const Filters = () => {
 					<BasicFilters
 						title="Schools of Magic"
 						filterArray={schoolsData}
+						filterSchools={filterSchools}
 						setFilterSchools={setFilterSchools}
 						info="Spells included in the selected schools will be shown."
 					/>
 				</WhiteSection>
-				<FlexRowWrapper>
-					<div>
-						<label htmlFor="numberOfResults">
-							<Heading type="4">Results per page</Heading>
-						</label>
+				<FlexRowSpacedWrapper>
+					<Heading type="4">
+						<label htmlFor="numberOfResults">Results per page</label>
 						<select
 							id="numberOfResults"
 							value={resultsPerPage}
@@ -91,12 +107,12 @@ const Filters = () => {
 							<option value="6">6</option>
 							<option value="9">9</option>
 						</select>
-					</div>
-				</FlexRowWrapper>
-				<FlexRowWrapper>
-					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledButton func={() => handleSearch()}>Search</StyledButton>
-				</FlexRowWrapper>
+					</Heading>
+					<FlexRowWrapper>
+						<StyledLinkButton path="/">Home</StyledLinkButton>
+						<StyledButton func={() => handleSearch()}>Search</StyledButton>
+					</FlexRowWrapper>
+				</FlexRowSpacedWrapper>
 			</SpellbookPage>
 			{showError && (
 				<ErrorBox>

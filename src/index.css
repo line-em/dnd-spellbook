@@ -100,7 +100,7 @@ a:hover {
 }
 
 select {
-	padding: var(--xs);
+	padding: 0.3rem;
 	color: var(--steel);
-	margin: var(--xs) auto;
+	margin: var(--xs) 0 var(--xs) var(--xs);
 }

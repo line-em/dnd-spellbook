@@ -22,6 +22,10 @@ export const FlexRowWrapper = styled(CenterFlexColumn)`
 	flex-direction: row;
 `;
 
+export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
+	justify-content: space-between;
+`;
+
 export const FilterGrid = styled(CenterFlexColumn)`
 	flex-direction: row;
 	& *:not(:last-child) {
