@@ -69,7 +69,6 @@ const Filters = () => {
 						filterArray={classesData}
 						filterClasses={filterClasses}
 						setFilterClasses={setFilterClasses}
-						info="Only spells available to ALL selected classes will be shown."
 					/>
 					<hr />
 					<BasicFilters
@@ -77,7 +76,6 @@ const Filters = () => {
 						filterArray={schoolsData}
 						filterSchools={filterSchools}
 						setFilterSchools={setFilterSchools}
-						info="Spells included in the selected schools will be shown."
 					/>
 				</WhiteSection>
 				<FlexRowSpacedWrapper>

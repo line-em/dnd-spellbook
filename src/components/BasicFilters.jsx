@@ -1,12 +1,10 @@
 import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
-import { Info } from "../styled-components/SearchUtils";
 
 const BasicFilters = ({
 	filterArray,
 	title,
-	info,
 	setFilterSchools,
 	setFilterClasses,
 	filterSchools,
@@ -50,9 +48,7 @@ const BasicFilters = ({
 
 	return (
 		<>
-			<Heading type="4">
-				{title} <Info title={info}>Info</Info>
-			</Heading>
+			<Heading type="4">{title}</Heading>
 			<FilterGrid>
 				{filterArray.map((filter, index) => (
 					<div onClick={() => handleSelected(filter.class)} key={index}>
