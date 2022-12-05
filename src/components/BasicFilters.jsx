@@ -5,7 +5,7 @@ import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import { Info } from "../styled-components/SearchUtils";
 
-const BasicFilters = ({ filterArray, title, info, getClasses, getSchool }) => {
+const BasicFilters = ({ filterArray, title, info, setFilterSchools, setFilterClasses }) => {
 	const [isOpen, setIsOpen] = useToggle();
 	const [selectedFilters, setSelectedFilters] = useState({});
 	const filtersLength = Object.values(selectedFilters).filter(
@@ -15,26 +15,68 @@ const BasicFilters = ({ filterArray, title, info, getClasses, getSchool }) => {
 
 	const handleSelected = (filter) => {
 		if (filter === clear) {
-			filterArray.map((item) =>
-				setSelectedFilters((prev) => ({
-					...prev,
-					[item.class]: false
-				}))
-			);
+			if (setFilterClasses) {
+				filterArray.map((item) =>
+					setFilterClasses((prev) => ({
+						...prev,
+						[item.class]: false
+					}))
+				);
+			} else {
+				filterArray.map((item) =>
+					setFilterSchools((prev) => ({
+						...prev,
+						[item.class]: false
+					}))
+				);
+			}
 		} else {
-			setSelectedFilters((prev) => ({
-				...prev,
-				[filter]: !prev[filter]
-			}));
+			if (setFilterClasses) {
+				setFilterClasses((prev) => ({
+					...prev,
+					[filter]: !prev[filter]
+				}));
+			} else {
+				setFilterSchools((prev) => ({
+					...prev,
+					[filter]: !prev[filter]
+				}));
+			}
 		}
 
-		if (getClasses) {
-			getClasses(selectedFilters);
+		const filterObj = Object.keys(selectedFilters);
+		const chosenFilters = filterObj.filter((item) => selectedFilters[item]);
+
+		if (setFilterClasses) {
+			setFilterClasses(chosenFilters);
+		}
+		if (setFilterSchools) {
+			setFilterSchools(chosenFilters);
 		}
 
-		if (getSchool) {
-			getSchool(selectedFilters);
-		}
+		// if (filter === clear) {
+		// 	filterArray.map((item) =>
+		// 		setSelectedFilters((prev) => ({
+		// 			...prev,
+		// 			[item.class]: false
+		// 		}))
+		// 	);
+		// } else {
+		// 	setSelectedFilters((prev) => ({
+		// 		...prev,
+		// 		[filter]: !prev[filter]
+		// 	}));
+		// }
+
+		// const filterObj = Object.keys(selectedFilters);
+		// const chosenFilters = filterObj.filter((item) => selectedFilters[item]);
+
+		// if (setFilterClasses) {
+		// 	setFilterClasses(chosenFilters);
+		// }
+		// if (setFilterSchools) {
+		// 	setFilterSchools(chosenFilters);
+		// }
 	};
 	return (
 		<>

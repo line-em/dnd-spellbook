@@ -8,77 +8,72 @@ import { StyledButton, StyledLinkButton } from "../styled-components/StyledButto
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
-import useToggle from "../hooks/useToggle.jsx";
 import { useNavigate } from "react-router-dom";
 import { paginate } from "../utils/utils";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
-	const [filterSchool, setFilterSchool] = useState([]);
+	const [filterSchools, setFilterSchools] = useState([]);
 	const [filterClasses, setFilterClasses] = useState([]);
 	const [resultsPerPage, setResultsPerPage] = useState("6");
-	const [filterData, setFilterData] = useState({});
-	const [showError, setShowError] = useToggle();
-	const [runSearch, setRunSearch] = useToggle(false);
+	const [showError, setShowError] = useState();
 	const navigate = useNavigate();
 
-	const updateClasses = (filters) => {
-		const classesArray = Object.keys(filters);
-		const chosenClasses = classesArray.filter((item) => filters[item]);
-		setFilterClasses(chosenClasses);
-	};
-
-	const updateSchools = (filters) => {
-		const schoolArray = Object.keys(filters);
-		const chosenSchool = schoolArray.filter((item) => filters[item]);
-		setFilterSchool(chosenSchool);
-	};
-
-	useEffect(() => setFilterData(apiData), []);
-
-	useEffect(() => {
-		setShowError(false);
-		if (filterClasses.length === 0 && filterSchool.length === 0) {
-			setFilterData(paginate(apiData, resultsPerPage));
-			console.log("no filter");
+	const handleSearch = async () => {
+		let filterData = {};
+		console.log("click");
+		try {
+			if (filterClasses.length === 0 && filterSchool.length === 0) {
+				filterData = paginate(apiData, resultsPerPage);
+				console.log(filterData);
+			} else {
+				const searchClass =
+					filterClasses.length > 0
+						? await apiData.filter((spell) =>
+								filterClasses.every((element) =>
+									spell["dnd_class"].includes(element)
+								)
+						  )
+						: apiData;
+				const searchSchool =
+					filterSchool.length > 0
+						? await searchClass.filter((spell) =>
+								filterSchool.some((element) => spell["school"].includes(element))
+						  )
+						: searchClass;
+				filterData = paginate(searchSchool, resultsPerPage);
+				console.log(filterData);
+			}
 			navigate("/searchresults", { state: filterData });
-		} else if (filterClasses.length !== 0 && filterSchool.length !== 0) {
-			const searchClass =
-				filterClasses.length > 0
-					? apiData.filter((spell) =>
-							filterClasses.every((element) => spell["dnd_class"].includes(element))
-					  )
-					: apiData;
-			const searchSchool =
-				filterSchool.length > 0
-					? searchClass.filter((spell) =>
-							filterSchool.some((element) => spell["school"].includes(element))
-					  )
-					: searchClass;
-			setFilterData(paginate(searchSchool, resultsPerPage));
-			navigate("/searchresults", { state: filterData });
-		} else {
+		} catch {
 			setShowError(true);
+			console.log(
+				"filterClasses.length === 0 && filterSchool.length === 0 is " +
+					filterClasses.length ===
+					0 && filterSchool.length === 0
+			);
 		}
-	}, [runSearch]);
+	};
 
 	return (
 		<>
 			<SpellbookPage>
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
+				{filterClasses.map((filter) => filter)}
+				{filterSchools.map((filter) => filter)}
 				<WhiteSection>
 					<BasicFilters
 						title="Classes"
 						filterArray={classesData}
-						getClasses={(classes) => updateClasses(classes)}
+						setFilterClasses={setFilterClasses}
 						info="Only spells available to ALL selected classes will be shown."
 					/>
 					<hr />
 					<BasicFilters
 						title="Schools of Magic"
 						filterArray={schoolsData}
-						getSchool={(school) => updateSchools(school)}
+						setFilterSchools={setFilterSchools}
 						info="Spells included in the selected schools will be shown."
 					/>
 				</WhiteSection>
@@ -100,7 +95,7 @@ const Filters = () => {
 				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledButton func={() => setRunSearch(!runSearch)}>Search</StyledButton>
+					<StyledButton func={() => handleSearch()}>Search</StyledButton>
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{showError && (
