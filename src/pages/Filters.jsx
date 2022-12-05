@@ -9,23 +9,8 @@ import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
 import useToggle from "../hooks/useToggle.jsx";
-import { useNavigate, Route, Routes } from "react-router-dom";
-import SearchResultsMain from "./SearchResultsMain.jsx";
-
-const paginate = (arr, pagination) => {
-	const sliced = [];
-	const arrCopy = arr;
-
-	for (let i = 0; i < arr.length; i++) {
-		sliced.push([arrCopy.slice(0, pagination)]);
-		arrCopy.splice(0, pagination);
-	}
-
-	if (arrCopy.length !== 0) {
-		sliced.push([arrCopy]);
-	}
-	return sliced;
-};
+import { useNavigate } from "react-router-dom";
+import { paginate } from "../utils/utils";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
@@ -33,8 +18,8 @@ const Filters = () => {
 	const [filterClasses, setFilterClasses] = useState([]);
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [filterData, setFilterData] = useState({});
-	const [runSearch, setRunSearch] = useToggle();
 	const [showError, setShowError] = useToggle();
+	const [runSearch, setRunSearch] = useToggle(false);
 	const navigate = useNavigate();
 
 	const updateClasses = (filters) => {
@@ -49,63 +34,33 @@ const Filters = () => {
 		setFilterSchool(chosenSchool);
 	};
 
-	// useEffect(() => {
-	// console.log(Object.values(filterData).length + " This is the initial length");
-	// console.log("Start");
-	// let searchClass = {};
-	// let searchSchool = {};
-	// if (filterClasses.length > 0) {
-	// 	searchClass = apiData.filter((spell) =>
-	// 		filterClasses.every((element) => spell["dnd_class"].includes(element))
-	// 	);
-	// }
-	// if (filterSchool.length > 0) {
-	// 	Object.values(searchClass).length > 0
-	// 		? (searchSchool = searchClass.filter((spell) =>
-	// 				filterSchool.some((element) => spell["school"].includes(element))
-	// 		  ))
-	// 		: (searchSchool = apiData.filter((spell) =>
-	// 				filterSchool.some((element) => spell["school"].includes(element))
-	// 		  ));
-	// }
-	// Object.values(searchClass).length > 0 && Object.values(searchSchool).length > 0
-	// 	? setFilterData(paginate(searchClass, resultsPerPage))
-	// 	: paginate(apiData, resultsPerPage);
-	// }, [runSearch]);
+	useEffect(() => setFilterData(apiData), []);
 
-	const handleSearch = async () => {
+	useEffect(() => {
 		setShowError(false);
-		try {
-			if (filterClasses.length === 0 && filterSchool.length === 0) {
-				setFilterData(paginate(apiData, resultsPerPage));
-				return navigate("/searchresults", { state: filterData });
-			} else {
-				const searchClass =
-					filterClasses.length > 0
-						? await apiData.filter((spell) =>
-								filterClasses.every((element) =>
-									spell["dnd_class"].includes(element)
-								)
-						  )
-						: apiData;
-				const searchSchool =
-					filterSchool.length > 0
-						? await searchClass.filter((spell) =>
-								filterSchool.some((element) => spell["school"].includes(element))
-						  )
-						: searchClass;
-				setFilterData(paginate(searchSchool, resultsPerPage));
-				return navigate("/searchresults", { state: filterData });
-			}
-		} catch {
+		if (filterClasses.length === 0 && filterSchool.length === 0) {
+			setFilterData(paginate(apiData, resultsPerPage));
+			console.log("no filter");
+			navigate("/searchresults", { state: filterData });
+		} else if (filterClasses.length !== 0 && filterSchool.length !== 0) {
+			const searchClass =
+				filterClasses.length > 0
+					? apiData.filter((spell) =>
+							filterClasses.every((element) => spell["dnd_class"].includes(element))
+					  )
+					: apiData;
+			const searchSchool =
+				filterSchool.length > 0
+					? searchClass.filter((spell) =>
+							filterSchool.some((element) => spell["school"].includes(element))
+					  )
+					: searchClass;
+			setFilterData(paginate(searchSchool, resultsPerPage));
+			navigate("/searchresults", { state: filterData });
+		} else {
 			setShowError(true);
-			console.log(
-				"filterClasses.length === 0 && filterSchool.length === 0 is " +
-					filterClasses.length ===
-					0 && filterSchool.length === 0
-			);
 		}
-	};
+	}, [runSearch]);
 
 	return (
 		<>
@@ -145,12 +100,7 @@ const Filters = () => {
 				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledButton func={() => handleSearch()}>Search</StyledButton>
-					{/* <div onClick={() => setRunSearch(!runSearch)}> */}
-					{/* <StyledLinkButton path="/searchresults" state={{ filterData }}>
-							Search
-						</StyledLinkButton>
-					</div> */}
+					<StyledButton func={() => setRunSearch(!runSearch)}>Search</StyledButton>
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{showError && (

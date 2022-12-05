@@ -17,51 +17,49 @@ const SearchResultsMain = (props) => {
 	console.log("and state");
 	console.log(state);
 
-	const ViewUserDetails = (_) => {
-		return (
-			<SearchWrapper>
-				<Heading type="4">Search Results</Heading>
-				<SearchPills>
-					<div>
-						<p>Your filters are...</p>
+	return (
+		<SearchWrapper>
+			<Heading type="4">Search Results</Heading>
+			<SearchPills>
+				<div>
+					<p>Your filters are...</p>
+					<PillBox>
+						<Pill>Bard</Pill>
+						<Pill>Bard</Pill>
+						<Pill>Druid</Pill>
+						<Pill>Wizard</Pill>
+					</PillBox>
+				</div>
+				<a href="">Reset filters</a>
+			</SearchPills>
+			<SearchGrid>
+				<WhiteSection>
+					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
+					<Heading type="4">"Abhorrent Apparition"</Heading>
+					<p>Lorem ipsum dolor sit amet consectetur...</p>
+					<ClassInfo>
 						<PillBox>
-							<Pill>Bard</Pill>
 							<Pill>Bard</Pill>
 							<Pill>Druid</Pill>
 							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
 						</PillBox>
-					</div>
-					<a href="">Reset filters</a>
-				</SearchPills>
-				<SearchGrid>
-					<WhiteSection>
-						<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
-						<Heading type="4">"Abhorrent Apparition"</Heading>
-						<p>Lorem ipsum dolor sit amet consectetur...</p>
-						<ClassInfo>
-							<PillBox>
-								<Pill>Bard</Pill>
-								<Pill>Druid</Pill>
-								<Pill>Wizard</Pill>
-								<Pill>Wizard</Pill>
-								<Pill>Wizard</Pill>
-							</PillBox>
-							<Pill>
-								Transmutation <br /> Level 1
-							</Pill>
-						</ClassInfo>
-						<StyledLinkButton>read more</StyledLinkButton>
-					</WhiteSection>
-				</SearchGrid>
-				<WhiteNavigation>
-					<StyledButton>Previous</StyledButton>
-					<p>
-						<strong>Page:</strong> 2 / 5
-					</p>
-					<StyledButton>Next</StyledButton>
-				</WhiteNavigation>
-			</SearchWrapper>
-		);
-	};
+						<Pill>
+							Transmutation <br /> Level 1
+						</Pill>
+					</ClassInfo>
+					<StyledLinkButton>read more</StyledLinkButton>
+				</WhiteSection>
+			</SearchGrid>
+			<WhiteNavigation>
+				<StyledButton>Previous</StyledButton>
+				<p>
+					<strong>Page:</strong> 2 / 5
+				</p>
+				<StyledButton>Next</StyledButton>
+			</WhiteNavigation>
+		</SearchWrapper>
+	);
 };
 export default SearchResultsMain;
