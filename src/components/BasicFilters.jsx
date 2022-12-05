@@ -16,23 +16,38 @@ const BasicFilters = ({
 	const currentFilter = filterClasses || filterSchools;
 	const filtersLength = Object.values(currentFilter).filter((element) => element === true).length;
 
+	if (currentFilter.hasOwnProperty(clear)) {
+		delete currentFilter[clear];
+	}
+
 	const handleSelected = (filter) => {
 		if (filter === clear) {
-			if (setFilterClasses) {
-				filterArray.map((item) =>
-					setFilterClasses((prev) => ({
-						...prev,
-						[item.class]: false
-					}))
-				);
-			} else {
-				filterArray.map((item) =>
-					setFilterSchools((prev) => ({
-						...prev,
-						[item.class]: false
-					}))
-				);
-			}
+			// if (setFilterClasses) {
+			// 	filterArray.map((item) =>
+			// 		setFilterClasses((prev) => ({
+			// 			...prev,
+			// 			[item.class]: false
+			// 		}))
+			// 	);
+			// } else {
+			// 	filterArray.map((item) =>
+			// 		setFilterSchools((prev) => ({
+			// 			...prev,
+			// 			[item.class]: false
+			// 		}))
+			// 	);
+			// }
+			filterArray.map((item) =>
+				setFilterClasses
+					? setFilterClasses((prev) => ({
+							...prev,
+							[item.class]: false
+					  }))
+					: setFilterSchools((prev) => ({
+							...prev,
+							[item.class]: false
+					  }))
+			);
 		} else {
 			if (setFilterClasses) {
 				setFilterClasses((prev) => ({
