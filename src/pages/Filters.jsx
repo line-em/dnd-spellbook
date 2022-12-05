@@ -33,6 +33,11 @@ const Filters = () => {
 		// 	const chosenFilters = filterObj.filter((item) => filterSchools[item]);
 		// 	setFilterSchools(chosenFilters);
 		// }
+		// const sanitizeFilter = (obj) => {
+		// 	const filterObj = Object.keys(obj);
+		// 	const chosenFilters = filterObj.filter((item) => obj[item]);
+		// 	return chosenFilters;
+		// };
 	};
 
 	const handleSearch = async () => {
@@ -53,9 +58,9 @@ const Filters = () => {
 						  )
 						: apiData;
 				const searchSchool =
-					filterSchool.length > 0
+					filterSchools.length > 0
 						? await searchClass.filter((spell) =>
-								filterSchool.some((element) => spell["school"].includes(element))
+								filterSchools.some((element) => spell["school"].includes(element))
 						  )
 						: searchClass;
 				filterData = paginate(searchSchool, resultsPerPage);
@@ -77,7 +82,6 @@ const Filters = () => {
 			<SpellbookPage>
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
-				\\ Filters filters.
 				<WhiteSection>
 					<BasicFilters
 						title="Classes"

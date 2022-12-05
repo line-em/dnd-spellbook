@@ -22,21 +22,6 @@ const BasicFilters = ({
 
 	const handleSelected = (filter) => {
 		if (filter === clear) {
-			// if (setFilterClasses) {
-			// 	filterArray.map((item) =>
-			// 		setFilterClasses((prev) => ({
-			// 			...prev,
-			// 			[item.class]: false
-			// 		}))
-			// 	);
-			// } else {
-			// 	filterArray.map((item) =>
-			// 		setFilterSchools((prev) => ({
-			// 			...prev,
-			// 			[item.class]: false
-			// 		}))
-			// 	);
-			// }
 			filterArray.map((item) =>
 				setFilterClasses
 					? setFilterClasses((prev) => ({
