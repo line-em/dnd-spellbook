@@ -49,42 +49,61 @@ const Filters = () => {
 		setFilterSchool(chosenSchool);
 	};
 
-	useEffect(() => {
-		console.log(Object.values(filterData).length + " This is the initial length");
-		console.log("Start");
-		let searchClass = {};
-		let searchSchool = {};
-		if (filterClasses.length > 0) {
-			searchClass = apiData.filter((spell) =>
-				filterClasses.every((element) => spell["dnd_class"].includes(element))
-			);
-		}
-		if (filterSchool.length > 0) {
-			Object.values(searchClass).length > 0
-				? (searchSchool = searchClass.filter((spell) =>
-						filterSchool.some((element) => spell["school"].includes(element))
-				  ))
-				: (searchSchool = apiData.filter((spell) =>
-						filterSchool.some((element) => spell["school"].includes(element))
-				  ));
-		}
-		Object.values(searchClass).length > 0 && Object.values(searchSchool).length > 0
-			? setFilterData(paginate(searchClass, resultsPerPage))
-			: paginate(apiData, resultsPerPage);
-	}, [runSearch]);
+	// useEffect(() => {
+	// console.log(Object.values(filterData).length + " This is the initial length");
+	// console.log("Start");
+	// let searchClass = {};
+	// let searchSchool = {};
+	// if (filterClasses.length > 0) {
+	// 	searchClass = apiData.filter((spell) =>
+	// 		filterClasses.every((element) => spell["dnd_class"].includes(element))
+	// 	);
+	// }
+	// if (filterSchool.length > 0) {
+	// 	Object.values(searchClass).length > 0
+	// 		? (searchSchool = searchClass.filter((spell) =>
+	// 				filterSchool.some((element) => spell["school"].includes(element))
+	// 		  ))
+	// 		: (searchSchool = apiData.filter((spell) =>
+	// 				filterSchool.some((element) => spell["school"].includes(element))
+	// 		  ));
+	// }
+	// Object.values(searchClass).length > 0 && Object.values(searchSchool).length > 0
+	// 	? setFilterData(paginate(searchClass, resultsPerPage))
+	// 	: paginate(apiData, resultsPerPage);
+	// }, [runSearch]);
 
-	const handleSearch = () => {
-		setRunSearch(!runSearch);
+	const handleSearch = async () => {
 		setShowError(false);
-		console.log(filterData);
-		console.log(Object.values(filterData).length + " This is the length");
-		if (Object.values(filterData).length > 0) {
-			setShowError(false);
-			console.log("Generated");
-			console.log(filterData);
-			navigate("/searchresults", { state: filterData });
-		} else {
+		try {
+			if (filterClasses.length === 0 && filterSchool.length === 0) {
+				setFilterData(paginate(apiData, resultsPerPage));
+				return navigate("/searchresults", { state: filterData });
+			} else {
+				const searchClass =
+					filterClasses.length > 0
+						? await apiData.filter((spell) =>
+								filterClasses.every((element) =>
+									spell["dnd_class"].includes(element)
+								)
+						  )
+						: apiData;
+				const searchSchool =
+					filterSchool.length > 0
+						? await searchClass.filter((spell) =>
+								filterSchool.some((element) => spell["school"].includes(element))
+						  )
+						: searchClass;
+				setFilterData(paginate(searchSchool, resultsPerPage));
+				return navigate("/searchresults", { state: filterData });
+			}
+		} catch {
 			setShowError(true);
+			console.log(
+				"filterClasses.length === 0 && filterSchool.length === 0 is " +
+					filterClasses.length ===
+					0 && filterSchool.length === 0
+			);
 		}
 	};
 
