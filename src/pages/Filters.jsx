@@ -24,49 +24,31 @@ const Filters = () => {
 	const [showError, setShowError] = useState();
 	const navigate = useNavigate();
 
-	const sanitize = (obj) => {
-		// const filterObj = Object.keys(obj);
-		// const chosenFilters = obj.filter((item) => filterClasses[item]);
-		// if (setFilterClasses) {
-		// 	setFilterClasses(chosenFilters);
-		// } else {
-		// 	const chosenFilters = filterObj.filter((item) => filterSchools[item]);
-		// 	setFilterSchools(chosenFilters);
-		// }
-		// const sanitizeFilter = (obj) => {
-		// 	const filterObj = Object.keys(obj);
-		// 	const chosenFilters = filterObj.filter((item) => obj[item]);
-		// 	return chosenFilters;
-		// };
+	const sanitizeFilter = (obj) => {
+		const filterObj = Object.keys(obj);
+		const chosenFilters = filterObj.filter((item) => obj[item]);
+		return chosenFilters;
 	};
 
-	const handleSearch = async () => {
+	const handleSearch = () => {
 		let filterData = {};
-		console.log("click");
+		let schoolsArrFilter = sanitizeFilter(filterSchools);
+		let classesArrFilter = sanitizeFilter(filterClasses);
 
 		try {
-			if (filterClasses.length === 0 && filterSchools.length === 0) {
+			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
 				filterData = paginate(apiData, resultsPerPage);
-				console.log(filterData);
 			} else {
-				const searchClass =
-					filterClasses.length > 0
-						? await apiData.filter((spell) =>
-								filterClasses.every((element) =>
-									spell["dnd_class"].includes(element)
-								)
-						  )
-						: apiData;
-				const searchSchool =
-					filterSchools.length > 0
-						? await searchClass.filter((spell) =>
-								filterSchools.some((element) => spell["school"].includes(element))
-						  )
-						: searchClass;
+				const searchClass = apiData.filter((spell) =>
+					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
+				);
+				const searchSchool = searchClass.filter((spell) =>
+					schoolsArrFilter.some((element) => spell["school"].includes(element))
+				);
 				filterData = paginate(searchSchool, resultsPerPage);
-				console.log(filterData);
 			}
-			navigate("/searchresults", { state: filterData });
+			console.log(filterData);
+			// navigate("/searchresults", { state: filterData });
 		} catch {
 			setShowError(true);
 			console.log(
