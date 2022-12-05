@@ -27,6 +27,10 @@ const ClassBubble = styled.button`
 	transition: all 300ms;
 	cursor: pointer;
 
+	&:active {
+		border-color: var(--lilac);
+	}
+
 	&:hover {
 		background-color: var(--transparent-white);
 		border-color: transparent;
@@ -36,12 +40,9 @@ const ClassBubble = styled.button`
 		filter: drop-shadow(0 0 10px #000);
 	}
 
-	&:active {
-		border-color: var(--lilac);
-	}
-
 	&:disabled {
 		opacity: 0.5;
+		cursor: disabled;
 	}
 `;
 

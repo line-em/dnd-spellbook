@@ -13,14 +13,8 @@ export const paginate = (arr, pagination) => {
 	return sliced;
 };
 
-// export const someFilter = (filterArr, query, data) => {
-// 	console.log(filterArr, query, data);
-// 	return filterArr.length > 0
-// 		? [data].filter((spell) => filterArr.some((element) => spell[query].includes(element)))
-// 		: data;
-// };
-
-// export const everyFilter = (filterArr, query, data) =>
-// 	filterArr.length > 0
-// 		? [data].filter((spell) => filterArr.every((element) => spell[query].includes(element)))
-// 		: data;
+export const sanitizeFilter = (obj) => {
+	const filterObj = Object.keys(obj);
+	const chosenFilters = filterObj.filter((item) => obj[item]);
+	return chosenFilters;
+};

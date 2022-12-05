@@ -7,12 +7,13 @@ import Filters from "./pages/Filters";
 import SearchResultsMain from "./pages/SearchResultsMain";
 import { ApiContextProvider } from "./context/ApiContext";
 import ErrorPage from "./pages/ErrorPage";
+import SearchResults from "./components/SearchResults";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
-		setTimeout(() => setIsLoading(false), 3000);
+		setTimeout(() => setIsLoading(false), 2000);
 	}, []);
 
 	return (
@@ -26,7 +27,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/filters" element={<Filters />} />
 						<Route path="/searchresults" element={<SearchResultsMain />}>
-							<Route path=":page" element={<SearchResultsMain />} />
+							<Route path=":page" element={<SearchResults />} />
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>

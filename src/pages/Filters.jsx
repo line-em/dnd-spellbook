@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
@@ -13,8 +14,7 @@ import { StyledButton, StyledLinkButton } from "../styled-components/StyledButto
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
-import { useNavigate } from "react-router-dom";
-import { paginate } from "../utils/utils";
+import { paginate, sanitizeFilter } from "../utils/utils";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
@@ -23,21 +23,24 @@ const Filters = () => {
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [showError, setShowError] = useState();
 	const navigate = useNavigate();
+	let filterData = {};
 
-	const sanitizeFilter = (obj) => {
-		const filterObj = Object.keys(obj);
-		const chosenFilters = filterObj.filter((item) => obj[item]);
-		return chosenFilters;
+	const handleNavigate = (url, data, filters) => {
+		return setTimeout(() => {
+			navigate(`${url}`, { state: { data, filters } });
+		}, 2000);
 	};
 
 	const handleSearch = () => {
-		let filterData = {};
+		setShowError(false);
 		let schoolsArrFilter = sanitizeFilter(filterSchools);
 		let classesArrFilter = sanitizeFilter(filterClasses);
+		let allFilters = schoolsArrFilter.concat(classesArrFilter);
 
 		try {
 			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
 				filterData = paginate(apiData, resultsPerPage);
+				handleNavigate("/searchresults", filterData, allFilters);
 			} else {
 				const searchClass = apiData.filter((spell) =>
 					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
@@ -46,16 +49,10 @@ const Filters = () => {
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
 				filterData = paginate(searchSchool, resultsPerPage);
+				handleNavigate("/searchresults", filterData, allFilters);
 			}
-			console.log(filterData);
-			// navigate("/searchresults", { state: filterData });
 		} catch {
 			setShowError(true);
-			console.log(
-				"filterClasses.length === 0 && filterSchool.length === 0 is " +
-					filterClasses.length ===
-					0 && filterSchool.length === 0
-			);
 		}
 	};
 
@@ -100,6 +97,7 @@ const Filters = () => {
 					</FlexRowWrapper>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
+
 			{showError && (
 				<ErrorBox>
 					<p>
