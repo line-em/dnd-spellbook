@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
@@ -22,10 +22,12 @@ const Filters = () => {
 	const [filterClasses, setFilterClasses] = useState({});
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [showError, setShowError] = useState();
+	const [isLoading, setIsLoading] = useState();
 	const navigate = useNavigate();
 	let filterData = {};
 
 	const handleNavigate = (url, data, filters) => {
+		setIsLoading(true);
 		return setTimeout(() => {
 			navigate(`${url}`, { state: { data, filters } });
 		}, 2000);
@@ -40,7 +42,7 @@ const Filters = () => {
 		try {
 			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
 				filterData = paginate(apiData, resultsPerPage);
-				handleNavigate("/searchresults", filterData, allFilters);
+				handleNavigate("/searchresults/1", filterData, allFilters);
 			} else {
 				const searchClass = apiData.filter((spell) =>
 					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
@@ -49,7 +51,7 @@ const Filters = () => {
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
 				filterData = paginate(searchSchool, resultsPerPage);
-				handleNavigate("/searchresults", filterData, allFilters);
+				handleNavigate("/searchresults/1", filterData, allFilters);
 			}
 		} catch {
 			setShowError(true);
@@ -93,7 +95,15 @@ const Filters = () => {
 					</Heading>
 					<FlexRowWrapper>
 						<StyledLinkButton path="/">Home</StyledLinkButton>
-						<StyledButton func={() => handleSearch()}>Search</StyledButton>
+						<StyledButton func={() => handleSearch()}>
+							{isLoading ? (
+								<>
+									<Ripples size={30} color="var(--black)" /> Loading...
+								</>
+							) : (
+								"Search"
+							)}
+						</StyledButton>
 					</FlexRowWrapper>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>

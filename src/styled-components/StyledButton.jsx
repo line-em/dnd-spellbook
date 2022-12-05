@@ -12,6 +12,7 @@ const StyledLink = styled(Link)`
 	color: var(--white);
 	transition: all 0.25s;
 	text-decoration: none;
+	text-align: center;
 
 	${SearchGrid} & {
 		align-self: center;
