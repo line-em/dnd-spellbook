@@ -55,6 +55,15 @@ export const StyledButton = ({ func, children }) => {
 	);
 };
 
-export const StyledLinkButton = ({ path, children }) => {
-	return <StyledLink to={path}>{children}</StyledLink>;
+export const StyledLinkButton = ({ path, state, children }) => {
+	return (
+		<StyledLink
+			to={{
+				pathname: path,
+				state: state
+			}}
+		>
+			{children}
+		</StyledLink>
+	);
 };

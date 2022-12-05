@@ -12,14 +12,29 @@ import useToggle from "../hooks/useToggle.jsx";
 import { useNavigate, Route, Routes } from "react-router-dom";
 import SearchResultsMain from "./SearchResultsMain.jsx";
 
+const paginate = (arr, pagination) => {
+	const sliced = [];
+	const arrCopy = arr;
+
+	for (let i = 0; i < arr.length; i++) {
+		sliced.push([arrCopy.slice(0, pagination)]);
+		arrCopy.splice(0, pagination);
+	}
+
+	if (arrCopy.length !== 0) {
+		sliced.push([arrCopy]);
+	}
+	return sliced;
+};
+
 const Filters = () => {
+	const apiData = useContext(ApiContext);
 	const [filterSchool, setFilterSchool] = useState([]);
 	const [filterClasses, setFilterClasses] = useState([]);
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [filterData, setFilterData] = useState({});
 	const [runSearch, setRunSearch] = useToggle();
 	const [showError, setShowError] = useToggle();
-	const apiData = useContext(ApiContext);
 	const navigate = useNavigate();
 
 	const updateClasses = (filters) => {
@@ -34,47 +49,44 @@ const Filters = () => {
 		setFilterSchool(chosenSchool);
 	};
 
-	const paginate = (arr) => {
-		const sliced = [];
-		const arrCopy = arr;
-
-		for (let i = 0; i < arr.length; i++) {
-			sliced.push([arrCopy.slice(0, resultsPerPage)]);
-			arrCopy.splice(0, resultsPerPage);
-		}
-
-		if (arrCopy.length !== 0) {
-			sliced.push([arrCopy]);
-		}
-		return sliced;
-	};
-
 	useEffect(() => {
-		const searchClass = apiData.filter((spell) =>
-			filterClasses.every((element) => spell["dnd_class"].includes(element))
-		);
-		const searchSchool = searchClass.filter((spell) =>
-			filterSchool.some((element) => spell["school"].includes(element))
-		);
-		setFilterData(paginate(searchSchool));
+		console.log(Object.values(filterData).length + " This is the initial length");
+		console.log("Start");
+		let searchClass = {};
+		let searchSchool = {};
+		if (filterClasses.length > 0) {
+			searchClass = apiData.filter((spell) =>
+				filterClasses.every((element) => spell["dnd_class"].includes(element))
+			);
+		}
+		if (filterSchool.length > 0) {
+			Object.values(searchClass).length > 0
+				? (searchSchool = searchClass.filter((spell) =>
+						filterSchool.some((element) => spell["school"].includes(element))
+				  ))
+				: (searchSchool = apiData.filter((spell) =>
+						filterSchool.some((element) => spell["school"].includes(element))
+				  ));
+		}
+		Object.values(searchClass).length > 0 && Object.values(searchSchool).length > 0
+			? setFilterData(paginate(searchClass, resultsPerPage))
+			: paginate(apiData, resultsPerPage);
 	}, [runSearch]);
 
-	useEffect(() => {
-		if (filterData.length > 0) {
-			// filterData.map((filter, index) => (
-			// 	<Routes>
-			// 		<Route
-			// 			path={"/searchresults/" + index}
-			// 			element={<SearchResultsMain filterData={filterData} />}
-			// 		/>
-			// 	</Routes>
-			// ));
+	const handleSearch = () => {
+		setRunSearch(!runSearch);
+		setShowError(false);
+		console.log(filterData);
+		console.log(Object.values(filterData).length + " This is the length");
+		if (Object.values(filterData).length > 0) {
+			setShowError(false);
 			console.log("Generated");
-			navigate("/searchresults/1");
+			console.log(filterData);
+			navigate("/searchresults", { state: filterData });
 		} else {
 			setShowError(true);
 		}
-	}, [filterData]);
+	};
 
 	return (
 		<>
@@ -114,7 +126,12 @@ const Filters = () => {
 				</FlexRowWrapper>
 				<FlexRowWrapper>
 					<StyledLinkButton path="/">Home</StyledLinkButton>
-					<StyledButton func={() => setRunSearch(!runSearch)}>Search</StyledButton>
+					<StyledButton func={() => handleSearch()}>Search</StyledButton>
+					{/* <div onClick={() => setRunSearch(!runSearch)}> */}
+					{/* <StyledLinkButton path="/searchresults" state={{ filterData }}>
+							Search
+						</StyledLinkButton>
+					</div> */}
 				</FlexRowWrapper>
 			</SpellbookPage>
 			{showError && (

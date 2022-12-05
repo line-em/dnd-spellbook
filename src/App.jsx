@@ -25,8 +25,9 @@ function App() {
 						<Route index element={<Home />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/filters" element={<Filters />} />
-						<Route path="/searchresults" element={<SearchResultsMain />} />
-						{/* <Route path="/searchresults/:id" element={<SearchResultsMain {...props} />} /> */}
+						<Route path="/searchresults" element={<SearchResultsMain />}>
+							<Route path=":page" element={<SearchResultsMain />} />
+						</Route>
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</ApiContextProvider>
