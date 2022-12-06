@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
-import { Ripples } from "@uiball/loaders";
 import {
 	ErrorBox,
 	FlexRowSpacedWrapper,
@@ -15,6 +14,7 @@ import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
 import { paginate, sanitizeFilter } from "../utils/utils";
+import { Ripples } from "@uiball/loaders";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
@@ -89,6 +89,7 @@ const Filters = () => {
 							<option value="3">3</option>
 							<option value="6">6</option>
 							<option value="9">9</option>
+							<option value="12">12</option>
 						</select>
 					</Heading>
 					<FlexRowWrapper>
