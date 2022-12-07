@@ -3,19 +3,23 @@ import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { WhiteNavigation } from "../styled-components/FlexStyles";
 import { StyledButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
-import { useLocation, useParams, Link, Outlet } from "react-router-dom";
+import { useLocation, useNavigate, useParams, Link, Outlet } from "react-router-dom";
 
 const SearchResultsMain = () => {
 	const { state } = useLocation();
-	const { params } = useParams();
+	const params = useParams();
+	const navigate = useNavigate();
 	let stateData;
 	let stateFilters;
 	let pages;
 	let currentPage;
 	let lastPage;
+	console.log(params);
 
 	if (state) {
 		stateData = state?.data;
+		// eachpage stateData[index] - length: 6 resultados
+		// eachspell stateData[index][index] - state[0][0].name - titulo da skill
 		stateFilters = state?.filters;
 		pages = stateData.length;
 		// currentPage = useParams?

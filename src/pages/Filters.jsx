@@ -28,10 +28,32 @@ const Filters = () => {
 
 	const handleNavigate = (url, data, filters) => {
 		setIsLoading(true);
+		// console.log(data);
+		// console.log(data.length);
+		// {
+		// 	stateData[0][0]?.map((title, index) => (
+		// 		<Link to={`/searchresults/${index + 1}`}>{title.name}'s Page</Link>
+		// 	));
+		// }
+		// generatePages(data.length)
+		const pageIndexes = Array.from(data.length, (value, index) => index + 1);
+		// create map of paths and only send relevant data to it
+		// from web        to={generatePath(Routes.MESSAGES, { userId: Routes.NEW_ID_VALUE })}
+		// generatePath('/user/:id', {
+		//     id: 1,
+		//     name: 'John',
+		// })
+		// Another possibility is the useSearchParams
 		return setTimeout(() => {
-			navigate(`${url}`, { state: { data, filters } });
+			navigate(`${url}/1`, { state: { data, filters } });
 		}, 2000);
 	};
+
+	// const generatePages = (numberOfPages) => {
+	// 	while (i < numberOfPages) {
+
+	// 	}
+	// }
 
 	const handleSearch = () => {
 		setShowError(false);
@@ -42,7 +64,7 @@ const Filters = () => {
 		try {
 			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
 				filterData = paginate(apiData, resultsPerPage);
-				handleNavigate("/searchresults/1", filterData, allFilters);
+				handleNavigate("/searchresults", filterData, allFilters);
 			} else {
 				const searchClass = apiData.filter((spell) =>
 					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
@@ -51,7 +73,7 @@ const Filters = () => {
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
 				filterData = paginate(searchSchool, resultsPerPage);
-				handleNavigate("/searchresults/1", filterData, allFilters);
+				handleNavigate("/searchresults", filterData, allFilters);
 			}
 		} catch {
 			setShowError(true);
