@@ -28,33 +28,11 @@ const Filters = () => {
 
 	const handleNavigate = (url, data, filters) => {
 		setIsLoading(true);
-		// console.log(data);
-		// console.log(data.length);
-		// {
-		// 	stateData[0][0]?.map((title, index) => (
-		// 		<Link to={`/searchresults/${index + 1}`}>{title.name}'s Page</Link>
-		// 	));
-		// }
-		// generatePages(data.length)
-		const pageIndexes = Array.from(data.length, (value, index) => index + 1);
-		// create map of paths and only send relevant data to it
-		// from web        to={generatePath(Routes.MESSAGES, { userId: Routes.NEW_ID_VALUE })}
-		// generatePath('/user/:id', {
-		//     id: 1,
-		//     name: 'John',
-		// })
-		// Another possibility is the useSearchParams
+		// const pagesCount = Math.ceil(items / pageSize);
 		return setTimeout(() => {
-			navigate(`${url}/1`, { state: { data, filters } });
+			navigate(`${url}/`, { state: { data, filters } });
 		}, 2000);
 	};
-
-	// const generatePages = (numberOfPages) => {
-	// 	while (i < numberOfPages) {
-
-	// 	}
-	// }
-
 	const handleSearch = () => {
 		setShowError(false);
 		let schoolsArrFilter = sanitizeFilter(filterSchools);
@@ -72,6 +50,7 @@ const Filters = () => {
 				const searchSchool = searchClass.filter((spell) =>
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
+				console.log(searchSchool);
 				filterData = paginate(searchSchool, resultsPerPage);
 				handleNavigate("/searchresults", filterData, allFilters);
 			}
