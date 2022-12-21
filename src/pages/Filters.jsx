@@ -4,7 +4,6 @@ import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import {
-	ErrorBox,
 	FlexRowSpacedWrapper,
 	FlexRowWrapper,
 	SpellbookPage
@@ -15,6 +14,7 @@ import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
 import { paginate, sanitizeFilter } from "../utils/utils";
 import { Ripples } from "@uiball/loaders";
+import ErrorMessage from "../components/ErrorMessage.jsx";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
@@ -26,13 +26,6 @@ const Filters = () => {
 	const navigate = useNavigate();
 	let filterData = {};
 
-	const handleNavigate = (url, data, filters) => {
-		setIsLoading(true);
-		// const pagesCount = Math.ceil(items / pageSize);
-		return setTimeout(() => {
-			navigate(`${url}/`, { state: { data, filters } });
-		}, 2000);
-	};
 	const handleSearch = () => {
 		setShowError(false);
 		let schoolsArrFilter = sanitizeFilter(filterSchools);
@@ -41,8 +34,7 @@ const Filters = () => {
 
 		try {
 			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
-				filterData = paginate(apiData, resultsPerPage);
-				handleNavigate("/searchresults", filterData, allFilters);
+				handleNavigate("/searchresults", apiData, allFilters);
 			} else {
 				const searchClass = apiData.filter((spell) =>
 					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
@@ -56,6 +48,13 @@ const Filters = () => {
 		} catch {
 			setShowError(true);
 		}
+	};
+
+	const handleNavigate = (url, data, filters) => {
+		setIsLoading(true);
+		return setTimeout(() => {
+			navigate(`${url}/`, { state: { data, filters } });
+		}, 2000);
 	};
 
 	return (
@@ -107,13 +106,7 @@ const Filters = () => {
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
 
-			{showError && (
-				<ErrorBox>
-					<p>
-						An error has occured during the Search. <strong>Please try again.</strong>
-					</p>
-				</ErrorBox>
-			)}
+			{showError && <ErrorMessage typeOfError="search" />}
 		</>
 	);
 };

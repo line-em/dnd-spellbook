@@ -14,7 +14,7 @@ const SearchResultsMain = () => {
 	let pages;
 	let currentPage;
 	let lastPage;
-	console.log(params);
+	console.log(state);
 
 	if (state) {
 		stateData = state?.data;
