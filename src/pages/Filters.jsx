@@ -3,18 +3,13 @@ import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData.js";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
-import {
-	FlexRowSpacedWrapper,
-	FlexRowWrapper,
-	SpellbookPage
-} from "../styled-components/FlexStyles";
-import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
+import { FlexRowSpacedWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import BasicFilters from "../components/BasicFilters";
 import { ApiContext } from "../context/ApiContext";
 import { paginate, sanitizeFilter } from "../utils/utils";
-import { Ripples } from "@uiball/loaders";
 import ErrorMessage from "../components/ErrorMessage.jsx";
+import RowButtons from "../components/RowButtons.jsx";
 
 const Filters = () => {
 	const apiData = useContext(ApiContext);
@@ -24,7 +19,6 @@ const Filters = () => {
 	const [showError, setShowError] = useState();
 	const [isLoading, setIsLoading] = useState();
 	const navigate = useNavigate();
-	let filterData = {};
 
 	const handleSearch = () => {
 		setShowError(false);
@@ -42,8 +36,7 @@ const Filters = () => {
 				const searchSchool = searchClass.filter((spell) =>
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
-				filterData = paginate(searchSchool, resultsPerPage);
-				handleNavigate("/searchresults", filterData, allFilters);
+				handleNavigate("/searchresults", searchSchool, allFilters);
 			}
 		} catch {
 			setShowError(true);
@@ -91,18 +84,11 @@ const Filters = () => {
 							<option value="12">12</option>
 						</select>
 					</Heading>
-					<FlexRowWrapper>
-						<StyledLinkButton path="/">Home</StyledLinkButton>
-						<StyledButton func={() => handleSearch()}>
-							{isLoading ? (
-								<>
-									<Ripples size={30} color="var(--black)" /> Loading...
-								</>
-							) : (
-								"Search"
-							)}
-						</StyledButton>
-					</FlexRowWrapper>
+					<RowButtons
+						loadingState={isLoading}
+						handleFunction={handleSearch}
+						buttonText="Search"
+					/>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
 
