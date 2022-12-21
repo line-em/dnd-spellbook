@@ -1,5 +1,4 @@
 export const paginate = (arr, pageSize, pageNumber) => {
-	console.log(arr);
 	const sliced = [];
 	const arrCopy = arr;
 

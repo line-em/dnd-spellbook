@@ -50,7 +50,6 @@ const Filters = () => {
 				const searchSchool = searchClass.filter((spell) =>
 					schoolsArrFilter.some((element) => spell["school"].includes(element))
 				);
-				console.log(searchSchool);
 				filterData = paginate(searchSchool, resultsPerPage);
 				handleNavigate("/searchresults", filterData, allFilters);
 			}
