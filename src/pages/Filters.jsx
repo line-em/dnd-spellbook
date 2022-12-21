@@ -30,13 +30,19 @@ const Filters = () => {
 			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
 				handleNavigate("/searchresults", apiData, allFilters);
 			} else {
-				const searchClass = apiData.filter((spell) =>
-					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
-				);
-				const searchSchool = searchClass.filter((spell) =>
-					schoolsArrFilter.some((element) => spell["school"].includes(element))
-				);
-				handleNavigate("/searchresults", searchSchool, allFilters);
+				const filterData = (data, filter1, filter2) => {
+					console.log(filter1.length > 0);
+					console.log(filter2.length > 0);
+					console.log(data);
+					// const searchClass = apiData.filter((spell) =>
+					// 	classesArrFilter.every((element) => spell["dnd_class"].includes(element))
+					// );
+					// const searchSchool = searchClass.filter((spell) =>
+					// 	schoolsArrFilter.some((element) => spell["school"].includes(element))
+					// );
+				};
+				filterData(apiData, schoolsArrFilter, classesArrFilter);
+				// handleNavigate("/searchresults", searchSchool, allFilters);
 			}
 		} catch {
 			setShowError(true);
