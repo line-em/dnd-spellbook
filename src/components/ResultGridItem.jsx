@@ -10,26 +10,64 @@ import { Pill, PillBox } from "../styled-components/Pills.jsx";
 
 const ResultGridItem = () => {
 	return (
-		<SearchGrid>
-			<WhiteSection>
-				<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
-				<Heading type="4">"Abhorrent Apparition"</Heading>
-				<p>Lorem ipsum dolor sit amet consectetur...</p>
-				<ClassInfo>
-					<PillBox>
-						<Pill>Bard</Pill>
-						<Pill>Druid</Pill>
-						<Pill>Wizard</Pill>
-						<Pill>Wizard</Pill>
-						<Pill>Wizard</Pill>
-					</PillBox>
-					<Pill>
-						Transmutation <br /> Level 1
-					</Pill>
-				</ClassInfo>
-				<StyledLinkButton>read more</StyledLinkButton>
-			</WhiteSection>
-		</SearchGrid>
+		<>
+			<SearchGrid>
+				<WhiteSection>
+					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
+					<Heading type="4">"Abhorrent Apparition"</Heading>
+					<p>Lorem ipsum dolor sit amet consectetur...</p>
+					<ClassInfo>
+						<PillBox>
+							<Pill>Bard</Pill>
+							<Pill>Druid</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+						</PillBox>
+						<Pill>
+							Transmutation <br /> Level 1
+						</Pill>
+					</ClassInfo>
+					<StyledLinkButton>read more</StyledLinkButton>
+				</WhiteSection>
+				<WhiteSection>
+					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
+					<Heading type="4">"Abhorrent Apparition"</Heading>
+					<p>Lorem ipsum dolor sit amet consectetur...</p>
+					<ClassInfo>
+						<PillBox>
+							<Pill>Bard</Pill>
+							<Pill>Druid</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+						</PillBox>
+						<Pill>
+							Transmutation <br /> Level 1
+						</Pill>
+					</ClassInfo>
+					<StyledLinkButton>read more</StyledLinkButton>
+				</WhiteSection>
+				<WhiteSection>
+					<WhiteSectionBackdropLeft school="Abjuration"></WhiteSectionBackdropLeft>
+					<Heading type="4">"Abhorrent Apparition"</Heading>
+					<p>Lorem ipsum dolor sit amet consectetur...</p>
+					<ClassInfo>
+						<PillBox>
+							<Pill>Bard</Pill>
+							<Pill>Druid</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+							<Pill>Wizard</Pill>
+						</PillBox>
+						<Pill>
+							Transmutation <br /> Level 1
+						</Pill>
+					</ClassInfo>
+					<StyledLinkButton>read more</StyledLinkButton>
+				</WhiteSection>
+			</SearchGrid>
+		</>
 	);
 };
 

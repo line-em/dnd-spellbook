@@ -62,7 +62,7 @@ export const WhiteNavigation = styled(WhiteSection)`
 `;
 
 export const SpellbookPage = styled(WhiteSection)`
-	width: 65ch;
+	max-width: 65ch;
 	@media screen and (max-width: 700px) {
 		width: 90%;
 	}

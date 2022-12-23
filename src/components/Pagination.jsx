@@ -9,6 +9,7 @@ const Pagination = ({ items, currentPage, resultsPerPage, changePage }) => {
 	const pages = Array.from({ length: numberOfPages }, (e, index) => index + 1);
 	return (
 		<WhiteNavigation>
+			<StyledButton>Homepage</StyledButton>
 			<StyledButton>Previous</StyledButton>
 			<strong>Page:</strong> {currentPage} / {numberOfPages}
 			<StyledButton>Next</StyledButton>

@@ -10,7 +10,7 @@ import Transmutation from "../assets/schools/Transmutation.png";
 import { WhiteSection } from "./FlexStyles";
 
 export const SearchWrapper = styled.main`
-	width: 100%;
+	width: ${({ results }) => (results <= 2 ? "null" : "100%")};
 	margin-top: var(--s);
 
 	@media screen and (min-width: 750px) {

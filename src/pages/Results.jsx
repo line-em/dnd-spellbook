@@ -19,7 +19,7 @@ const Results = () => {
 	const changePage = (page) => setCurrentPage(page);
 
 	return (
-		<SearchWrapper>
+		<SearchWrapper results={resultsLength}>
 			<Heading type="4">Search Results</Heading>
 			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
 			{resultsFilters?.length > 0 && (
@@ -28,12 +28,13 @@ const Results = () => {
 						{resultsFilters.map((el) => (
 							<Pill key={el}>{el}</Pill>
 						))}
+						<Pill className="reset">
+							<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
+						</Pill>
 					</PillBox>
 				</SearchPills>
 			)}
-			<Pill className="reset">
-				<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
-			</Pill>
+
 			<ResultGridItem />
 			{state && (
 				<Pagination
