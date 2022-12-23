@@ -6,7 +6,7 @@ import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import { FlexRowSpacedWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { WhiteSection } from "../styled-components/FlexStyles";
-import { paginate, sanitizeFilter } from "../utils/utils";
+import { sanitizeFilter } from "../utils/utils";
 import FilterGrid from "../components/FilterGrid";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 import RowButtons from "../components/RowButtons.jsx";

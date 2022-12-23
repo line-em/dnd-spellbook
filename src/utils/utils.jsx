@@ -1,25 +1,16 @@
 export const paginate = (arr, pageSize, pageNumber) => {
-	const sliced = [];
-	const arrCopy = arr;
-
-	for (let i = 0; i < arr.length; i++) {
-		sliced.push([arrCopy.slice(0, pageSize)]);
-		arrCopy.splice(0, pageSize);
-	}
-
-	if (arrCopy.length !== 0) {
-		sliced.push([arrCopy]);
-	}
-	return sliced;
+	const startIndex = (pageNumber - 1) * pageSize;
+	return arr.slice(startIndex, startIndex * pageSize);
 };
-
-// export const paginate = (items, pageNumber, pageSize) => {
-// 	const startIndex = (pageNumber - 1) * pageSize;
-// 	return items.slice(startIndex, startIndex + pageSize);
-// };
 
 export const sanitizeFilter = (obj) => {
 	const filterObj = Object.keys(obj);
 	const chosenFilters = filterObj.filter((item) => obj[item]);
 	return chosenFilters;
+};
+
+export const sanitizeClasses = (string) => {
+	const split = string.split(",");
+	const trim = split.map((item) => item.trim());
+	return trim;
 };
