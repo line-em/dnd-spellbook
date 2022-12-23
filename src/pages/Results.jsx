@@ -1,7 +1,7 @@
 import Heading from "../styled-components/Heading.jsx";
 import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { WhiteNavigation } from "../styled-components/FlexStyles";
-import { StyledButton } from "../styled-components/StyledButton.jsx";
+import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 import { useLocation, Link } from "react-router-dom";
 import ResultGridItem from "../components/ResultGridItem.jsx";
@@ -28,9 +28,9 @@ const Results = () => {
 				) : (
 					<PillBox>
 						{stateFilters && stateFilters.map((el) => <Pill key={el}>{el}</Pill>)}
-						<Link to="/filters">
-							<Pill>Reset filters</Pill>
-						</Link>
+						<Pill className="reset">
+							<StyledLinkButton to="/filters">Reset filters</StyledLinkButton>
+						</Pill>
 					</PillBox>
 				)}
 			</SearchPills>

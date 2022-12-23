@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { SearchGrid } from "./SearchUtils";
+import { Pill } from "./Pills";
 
 const StyledLink = styled(Link)`
 	cursor: pointer;
@@ -13,11 +14,17 @@ const StyledLink = styled(Link)`
 	transition: all 0.25s;
 	text-decoration: none;
 	text-align: center;
+	font-size: inherit;
 
 	${SearchGrid} & {
 		align-self: center;
 		padding: var(--xxs) var(--xs);
 		font-size: 0.85rem;
+		border-color: transparent;
+	}
+
+	${Pill} &, ${Pill} &:hover {
+		background-color: transparent;
 		border-color: transparent;
 	}
 
@@ -27,7 +34,7 @@ const StyledLink = styled(Link)`
 		background-color: var(--black);
 	}
 
-	${SearchGrid} &:hover {
+	${SearchGrid} &:hover, ${Pill} &:hover {
 		border-color: transparent;
 	}
 

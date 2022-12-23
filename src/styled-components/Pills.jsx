@@ -16,7 +16,7 @@ export const SearchPills = styled.div`
 	flex-wrap: wrap;
 	gap: 5px;
 	margin: var(--m) 0 var(--sm) 0;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 
 	& p {
@@ -27,10 +27,11 @@ export const SearchPills = styled.div`
 export const Pill = styled.span`
 	display: inline-block;
 	color: white;
-	padding: var(--xxs) var(--xs);
-	font-size: 0.7rem;
+	padding: 5px 10px;
+	font-size: 0.8rem;
 	border-radius: 8px;
 	background-color: var(--neutral-purple);
+	overflow: hidden;
 
 	&:nth-child(3n + 1) {
 		background-color: var(--steel);
@@ -38,5 +39,24 @@ export const Pill = styled.span`
 
 	&:nth-child(3n + 2) {
 		background-color: var(--purple);
+	}
+
+	&.reset {
+		background-color: var(--transparent-red);
+		transition: ease 300ms;
+		font-weight: 700;
+	}
+
+	&.reset > a::before {
+		content: "X";
+		margin-inline-end: 5px;
+		border: 1px solid var(--transparent-white);
+		border-radius: 8px;
+		padding: 0 var(--xs);
+	}
+
+	&.reset:hover {
+		background-color: var(--red);
+		transition: ease 300ms;
 	}
 `;
