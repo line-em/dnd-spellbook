@@ -91,7 +91,6 @@ const Filters = () => {
 					/>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
-
 			{showError && <ErrorMessage typeOfError="search" />}
 		</>
 	);
