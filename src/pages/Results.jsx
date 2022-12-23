@@ -3,11 +3,11 @@ import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { WhiteNavigation } from "../styled-components/FlexStyles";
 import { StyledButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
-import { useLocation, useNavigate, useParams, Link, Outlet } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
+import ResultGridItem from "../components/ResultGridItem.jsx";
 
 const Results = () => {
 	const { state } = useLocation();
-	const params = useParams();
 	const navigate = useNavigate();
 	let stateData;
 	let stateFilters;
@@ -31,25 +31,22 @@ const Results = () => {
 			<Heading type="4">Search Results</Heading>
 			<SearchPills>
 				{!state ? (
-					<>
-						<Heading type="5">
-							Your search haven't returned any data. Please try again.
-						</Heading>{" "}
-						<Link to="/filters">Reset filters</Link>
-					</>
+					<Heading type="5">
+						Your search haven't returned any data. Please try again.
+					</Heading>
 				) : (
 					<>
 						<p>Your filters are...</p>
 						<PillBox>
 							{stateFilters && stateFilters.map((el) => <Pill key={el}>{el}</Pill>)}
 						</PillBox>
-						<Link to="/filters">Reset filters</Link>
 					</>
 				)}
+				<Link to="/filters">Reset filters</Link>
 			</SearchPills>
 			{state && (
 				<>
-					<Outlet />
+					<ResultGridItem />
 					<WhiteNavigation>
 						<StyledButton>Previous</StyledButton>
 						<strong>Page:</strong> 2 / 5<StyledButton>Next</StyledButton>

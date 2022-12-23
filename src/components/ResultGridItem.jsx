@@ -8,7 +8,7 @@ import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import Heading from "../styled-components/Heading.jsx";
 import { Pill, PillBox } from "../styled-components/Pills.jsx";
 
-const SearchResults = () => {
+const ResultGridItem = () => {
 	return (
 		<SearchGrid>
 			<WhiteSection>
@@ -33,4 +33,4 @@ const SearchResults = () => {
 	);
 };
 
-export default SearchResults;
+export default ResultGridItem;
