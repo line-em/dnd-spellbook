@@ -21,6 +21,7 @@ const Results = () => {
 	return (
 		<SearchWrapper results={resultsLength}>
 			<Heading type="4">Search Results</Heading>
+
 			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
 			{resultsFilters?.length > 0 && (
 				<SearchPills>
