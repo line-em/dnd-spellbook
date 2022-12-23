@@ -6,7 +6,7 @@ export const PillBox = styled.div`
 	gap: 5px;
 
 	& > *:not(:only-child) {
-		flex-grow: 1;
+		/* flex-grow: 1; */
 	}
 `;
 
@@ -27,11 +27,10 @@ export const SearchPills = styled.div`
 export const Pill = styled.span`
 	display: inline-block;
 	color: white;
-	padding: 5px 10px;
-	font-size: 0.8rem;
+	padding: 2px 4px;
+	font-size: 0.7rem;
 	border-radius: 8px;
 	background-color: var(--neutral-purple);
-	overflow: hidden;
 
 	&:nth-child(3n + 1) {
 		background-color: var(--steel);

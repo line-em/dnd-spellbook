@@ -11,6 +11,7 @@ import { WhiteSection } from "./FlexStyles";
 
 export const SearchWrapper = styled.main`
 	width: ${({ results }) => (results <= 2 ? "null" : "100%")};
+	max-width: 90ch;
 	margin-top: var(--s);
 
 	@media screen and (min-width: 750px) {

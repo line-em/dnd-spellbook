@@ -6,15 +6,15 @@ import Heading from "../styled-components/Heading.jsx";
 import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
+import Home from "./Home.jsx";
 
 const Results = () => {
 	const { state } = useLocation();
-	const { currentPage, setCurrentPage } = useState("1");
+	const [currentPage, setCurrentPage] = useState(1);
 	const results = state?.data;
 	const resultsLength = state?.data.length;
 	const resultsPerPage = state?.resultsPerPage;
 	const resultsFilters = state?.filters;
-	console.log(resultsFilters.length === 0 && "All filters");
 
 	const changePage = (page) => setCurrentPage(page);
 
@@ -30,7 +30,7 @@ const Results = () => {
 							<Pill key={el}>{el}</Pill>
 						))}
 						<Pill className="reset">
-							<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
+							<StyledLinkButton path="/filters">Reset filters</StyledLinkButton>
 						</Pill>
 					</PillBox>
 				</SearchPills>
