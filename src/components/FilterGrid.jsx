@@ -2,17 +2,12 @@ import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
-const BasicFilters = ({
-	filterArray,
-	title,
-	setFilterSchools,
-	setFilterClasses,
-	filterSchools,
-	filterClasses
-}) => {
-	const clear = "🧼 Clear Filters";
+const FilterGrid = (props) => {
+	const { filterArray, title, setFilterSchools, setFilterClasses, filterSchools, filterClasses } =
+		props;
 	const currentFilter = filterClasses || filterSchools;
 	const filtersLength = Object.values(currentFilter).filter((element) => element === true).length;
+	const clear = "🧼 Clear Filters";
 
 	if (currentFilter.hasOwnProperty(clear)) {
 		delete currentFilter[clear];
@@ -69,4 +64,4 @@ const BasicFilters = ({
 	);
 };
 
-export default BasicFilters;
+export default FilterGrid;

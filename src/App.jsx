@@ -7,7 +7,7 @@ import Filters from "./pages/Filters";
 import SearchResultsMain from "./pages/Results";
 import { ApiContextProvider } from "./context/ApiContext";
 import ErrorPage from "./pages/ErrorPage";
-import SearchResults from "./components/SearchResults";
+import Results from "./components/Results";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);

@@ -26,23 +26,6 @@ const Results = () => {
 		lastPage = stateData[pages - 1];
 	}
 
-	// IMPORT USEPARAMS ON SEARCH RESULTS MAIN (SEARCH RESULTS) TO MAKE DYNAMIC PAGING (SEARCHRESULTS/1, SEARCHRESULTS/2), ETC.
-	// Params, ideally, will be current page. I will have to compare it with the total pages.
-	// Separate and coordinate the stateData (the data received) to the corresponding page -> PAGE 1, ARRAY INDEX 0, PAGE 2, ARRAY INDEX 1, AND SO ON.
-	// Make sure the App knows the last page/param.
-	// Pass props to the Outlet component to match the current page. Remember, props here are called Context. Context={array[currentPage]}, possibly stateData[currentPage]
-	// Outlet will have to map through the array. The READ MORE link will be another dynamic routing, using the spell SLUG, but leave it for later.
-	// MAKE PAGINATION ITS OWN COMPONENT. IT WILL RECEIVE THE SAME PROPS AS OUTLET. - PAGES, LASTPAGE, CURRENTPAGE
-
-	// Now in the component you render based on the route you can use useParams to get the params
-
-	// const ViewCompany = () => {
-	//    const { documentId } = useParams();
-	//    // do what want with documentId
-	// }
-
-	// Depending on the PAGE (PARAM), load THIS (ARRAY[CURRENTPAGE]).
-
 	return (
 		<SearchWrapper>
 			<Heading type="4">Search Results</Heading>

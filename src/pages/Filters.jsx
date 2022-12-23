@@ -1,13 +1,13 @@
+import { ApiContext } from "../context/ApiContext";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import classesData from "../assets/classes/classesData.js";
+import classesData from "../assets/classes/classesData";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import { FlexRowSpacedWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { WhiteSection } from "../styled-components/FlexStyles";
-import BasicFilters from "../components/BasicFilters";
-import { ApiContext } from "../context/ApiContext";
 import { paginate, sanitizeFilter } from "../utils/utils";
+import FilterGrid from "../components/FilterGrid";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 import RowButtons from "../components/RowButtons.jsx";
 
@@ -56,18 +56,18 @@ const Filters = () => {
 				<Heading type="2">The Spellbook</Heading>
 				<p>Select the filters you'd like to apply, and click on Search.</p>
 				<WhiteSection>
-					<BasicFilters
-						title="Classes"
-						filterArray={classesData}
-						filterClasses={filterClasses}
-						setFilterClasses={setFilterClasses}
-					/>
-					<hr />
-					<BasicFilters
+					<FilterGrid
 						title="Schools of Magic"
 						filterArray={schoolsData}
 						filterSchools={filterSchools}
 						setFilterSchools={setFilterSchools}
+					/>
+					<hr />
+					<FilterGrid
+						title="Classes"
+						filterArray={classesData}
+						filterClasses={filterClasses}
+						setFilterClasses={setFilterClasses}
 					/>
 				</WhiteSection>
 				<FlexRowSpacedWrapper>
