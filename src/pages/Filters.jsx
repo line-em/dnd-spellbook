@@ -46,7 +46,7 @@ const Filters = () => {
 	const handleNavigate = (url, data, filters) => {
 		setIsLoading(true);
 		return setTimeout(() => {
-			navigate(`${url}/`, { state: { data, filters } });
+			navigate(`${url}/`, { state: { data, filters, resultsPerPage } });
 		}, 2000);
 	};
 

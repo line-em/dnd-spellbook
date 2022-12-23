@@ -3,28 +3,19 @@ import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { WhiteNavigation } from "../styled-components/FlexStyles";
 import { StyledButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import ResultGridItem from "../components/ResultGridItem.jsx";
+import { useState } from "react";
 
 const Results = () => {
 	const { state } = useLocation();
-	const navigate = useNavigate();
-	let stateData;
-	let stateFilters;
-	let pages;
-	let currentPage;
-	let lastPage;
-	console.log(state);
+	const { currentPage, setCurrentPage } = useState();
 
-	if (state) {
-		stateData = state?.data;
-		// eachpage stateData[index] - length: 6 resultados
-		// eachspell stateData[index][index] - state[0][0].name - titulo da skill
-		stateFilters = state?.filters;
-		pages = stateData.length;
-		// currentPage = useParams?
-		lastPage = stateData[pages - 1];
-	}
+	const pageSize = state?.resultsPerPage;
+	const stateData = state?.data;
+	const stateFilters = state?.filters;
+
+	console.log(pageSize);
 
 	return (
 		<SearchWrapper>
@@ -35,14 +26,13 @@ const Results = () => {
 						Your search haven't returned any data. Please try again.
 					</Heading>
 				) : (
-					<>
-						<p>Your filters are...</p>
-						<PillBox>
-							{stateFilters && stateFilters.map((el) => <Pill key={el}>{el}</Pill>)}
-						</PillBox>
-					</>
+					<PillBox>
+						{stateFilters && stateFilters.map((el) => <Pill key={el}>{el}</Pill>)}
+						<Link to="/filters">
+							<Pill>Reset filters</Pill>
+						</Link>
+					</PillBox>
 				)}
-				<Link to="/filters">Reset filters</Link>
 			</SearchPills>
 			{state && (
 				<>
