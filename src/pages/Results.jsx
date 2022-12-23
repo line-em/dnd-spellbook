@@ -9,7 +9,7 @@ import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 
 const Results = () => {
 	const { state } = useLocation();
-	const { currentPage, setCurrentPage } = useState(1);
+	const { currentPage, setCurrentPage } = useState("1");
 
 	const results = state?.data;
 	const resultsLength = state?.data.length;
@@ -30,7 +30,7 @@ const Results = () => {
 					<PillBox>
 						{resultsFilters && resultsFilters.map((el) => <Pill key={el}>{el}</Pill>)}
 						<Pill className="reset">
-							<StyledLinkButton to="/filters">Reset filters</StyledLinkButton>
+							<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
 						</Pill>
 					</PillBox>
 				)}
