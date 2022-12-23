@@ -9,10 +9,12 @@ function Home() {
 			<LogoImage />
 			<Heading type="1">DnD Spellbook</Heading>
 			<Heading type="3">How do you want to inspect this tome?</Heading>
+			<hr />
 			<p>
 				You can filter through classes and schools, or use the advanced search for more
 				input details.
 			</p>
+			<hr />
 			<StyledLinkButton path="/filters">Begin</StyledLinkButton>
 		</CenterFlexColumn>
 	);

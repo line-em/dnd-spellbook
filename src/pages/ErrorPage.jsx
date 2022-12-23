@@ -1,7 +1,7 @@
 import { CenterFlexColumn } from "../styled-components/FlexStyles";
 import { StyledLinkButton } from "../styled-components/StyledButton";
 import styled from "styled-components";
-import Heading from "../styled-components/Heading";
+import ErrorMessage from "../components/ErrorMessage";
 
 const ErrorTitle = styled.h1`
 	font-size: clamp(2.5rem, 3.5rem + 5vw, 4.5rem + 10vw);
@@ -16,9 +16,7 @@ export default function ErrorPage() {
 	return (
 		<CenterFlexColumn>
 			<ErrorTitle>404</ErrorTitle>
-			<Heading type="2">
-				This page is blank. Please check the Spellbook and try again.
-			</Heading>
+			<ErrorMessage typeOfError="This page doesn't exist" />
 			<Margin>
 				<StyledLinkButton path="/">Go back</StyledLinkButton>
 			</Margin>

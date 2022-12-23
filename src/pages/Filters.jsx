@@ -16,9 +16,10 @@ const Filters = () => {
 	const [filterSchools, setFilterSchools] = useState({});
 	const [filterClasses, setFilterClasses] = useState({});
 	const [resultsPerPage, setResultsPerPage] = useState("6");
-	const [showError, setShowError] = useState();
+	const [showError, setShowError] = useState(false);
 	const [isLoading, setIsLoading] = useState();
 	const navigate = useNavigate();
+	const [errorMessage, setErrorMessage] = useState("An error has occured during search");
 
 	const handleSearch = () => {
 		setShowError(false);
@@ -26,28 +27,35 @@ const Filters = () => {
 		let classesArrFilter = sanitizeFilter(filterClasses);
 		let allFilters = schoolsArrFilter.concat(classesArrFilter);
 
-		try {
-			if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
-				handleNavigate("/results", apiData, allFilters);
-			} else {
-				const searchClass = apiData.filter((spell) =>
-					classesArrFilter.every((element) => spell["dnd_class"].includes(element))
-				);
-				const searchSchool = searchClass.filter((spell) =>
-					schoolsArrFilter.some((element) => spell["school"].includes(element))
-				);
-				handleNavigate("/results", searchSchool, allFilters);
-			}
-		} catch {
-			setShowError(true);
+		if (schoolsArrFilter.length === 0 && classesArrFilter.length === 0) {
+			handleNavigate("/results", apiData, allFilters);
+		} else {
+			const searchClass = apiData.filter((spell) =>
+				classesArrFilter.every((element) => spell["dnd_class"].includes(element))
+			);
+			const searchSchool = searchClass.filter((spell) =>
+				schoolsArrFilter.some((element) => spell["school"].includes(element))
+			);
+			handleNavigate("/results", searchSchool, allFilters);
 		}
 	};
 
 	const handleNavigate = (url, data, filters) => {
+		console.log(data);
 		setIsLoading(true);
-		return setTimeout(() => {
-			navigate(`${url}/`, { state: { data, filters, resultsPerPage } });
-		}, 2000);
+
+		if (data.length > 0)
+			return setTimeout(() => {
+				navigate(`${url}/`, { state: { data, filters, resultsPerPage } });
+			}, 2000);
+
+		if (data.length === 0) {
+			setIsLoading(false);
+			setShowError(true);
+			setFilterClasses({});
+			setFilterSchools({});
+			setErrorMessage("Your search hasn't wielded any results");
+		}
 	};
 
 	return (
@@ -91,7 +99,7 @@ const Filters = () => {
 					/>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
-			{showError && <ErrorMessage typeOfError="search" />}
+			{showError && <ErrorMessage typeOfError={errorMessage} />}
 		</>
 	);
 };

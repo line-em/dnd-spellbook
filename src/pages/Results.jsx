@@ -10,31 +10,30 @@ import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 const Results = () => {
 	const { state } = useLocation();
 	const { currentPage, setCurrentPage } = useState("1");
-
 	const results = state?.data;
 	const resultsLength = state?.data.length;
 	const resultsPerPage = state?.resultsPerPage;
 	const resultsFilters = state?.filters;
+	console.log(resultsFilters.length === 0 && "All filters");
 
 	const changePage = (page) => setCurrentPage(page);
 
 	return (
 		<SearchWrapper>
 			<Heading type="4">Search Results</Heading>
-			<SearchPills>
-				{!state ? (
-					<Heading type="5">
-						Your search haven't returned any data. Please try again.
-					</Heading>
-				) : (
+			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
+			{resultsFilters?.length > 0 && (
+				<SearchPills>
 					<PillBox>
-						{resultsFilters && resultsFilters.map((el) => <Pill key={el}>{el}</Pill>)}
-						<Pill className="reset">
-							<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
-						</Pill>
+						{resultsFilters.map((el) => (
+							<Pill key={el}>{el}</Pill>
+						))}
 					</PillBox>
-				)}
-			</SearchPills>
+				</SearchPills>
+			)}
+			<Pill className="reset">
+				<StyledLinkButton to="/home">Reset filters</StyledLinkButton>
+			</Pill>
 			<ResultGridItem />
 			{state && (
 				<Pagination
