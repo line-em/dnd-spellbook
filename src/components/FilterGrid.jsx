@@ -1,5 +1,5 @@
 import { StyledFilter } from "../styled-components/ClassBubble";
-import { FilterGrid } from "../styled-components/FlexStyles";
+import { FilterFlexGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
 const FilterGrid = (props) => {
@@ -44,7 +44,7 @@ const FilterGrid = (props) => {
 	return (
 		<>
 			<Heading type="4">{title}</Heading>
-			<FilterGrid>
+			<FilterFlexGrid>
 				{filterArray.map((filter, index) => (
 					<div onClick={() => handleSelected(filter.class)} key={index}>
 						<StyledFilter
@@ -59,7 +59,7 @@ const FilterGrid = (props) => {
 						{filter.icon ? <p>{filter.class}</p> : ""}
 					</div>
 				))}
-			</FilterGrid>
+			</FilterFlexGrid>
 		</>
 	);
 };

@@ -26,7 +26,7 @@ export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
 	justify-content: space-between;
 `;
 
-export const FilterGrid = styled(CenterFlexColumn)`
+export const FilterFlexGrid = styled(CenterFlexColumn)`
 	flex-direction: row;
 	& *:not(:last-child) {
 		flex-basis: 95px;
