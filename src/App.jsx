@@ -4,7 +4,7 @@ import { Ripples } from "@uiball/loaders";
 import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
 import Filters from "./pages/Filters";
-import SearchResultsMain from "./pages/SearchResultsMain";
+import SearchResultsMain from "./pages/Results";
 import { ApiContextProvider } from "./context/ApiContext";
 import ErrorPage from "./pages/ErrorPage";
 import SearchResults from "./components/SearchResults";
@@ -26,7 +26,7 @@ function App() {
 						<Route index element={<Home />} />
 						<Route path="/" element={<Home />} />
 						<Route path="/filters" element={<Filters />} />
-						<Route path="/searchresults" element={<SearchResultsMain />}>
+						<Route path="/results" element={<SearchResultsMain />}>
 							<Route path=":page" element={<SearchResults />} />
 						</Route>
 						<Route path="*" element={<ErrorPage />} />
