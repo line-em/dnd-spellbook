@@ -5,7 +5,7 @@ import { StyledButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 import { useLocation, useNavigate, useParams, Link, Outlet } from "react-router-dom";
 
-const SearchResultsMain = () => {
+const Results = () => {
 	const { state } = useLocation();
 	const params = useParams();
 	const navigate = useNavigate();
@@ -76,4 +76,4 @@ const SearchResultsMain = () => {
 		</SearchWrapper>
 	);
 };
-export default SearchResultsMain;
+export default Results;
