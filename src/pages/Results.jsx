@@ -1,21 +1,22 @@
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import ResultGridItem from "../components/ResultGridItem.jsx";
+import Pagination from "../components/Pagination.jsx";
 import Heading from "../styled-components/Heading.jsx";
 import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
-import { WhiteNavigation } from "../styled-components/FlexStyles";
-import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton.jsx";
+import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
-import { useLocation, Link } from "react-router-dom";
-import ResultGridItem from "../components/ResultGridItem.jsx";
-import { useState } from "react";
 
 const Results = () => {
 	const { state } = useLocation();
-	const { currentPage, setCurrentPage } = useState();
+	const { currentPage, setCurrentPage } = useState(1);
 
-	const pageSize = state?.resultsPerPage;
-	const stateData = state?.data;
-	const stateFilters = state?.filters;
+	const results = state?.data;
+	const resultsLength = state?.data.length;
+	const resultsPerPage = state?.resultsPerPage;
+	const resultsFilters = state?.filters;
 
-	console.log(pageSize);
+	const changePage = (page) => setCurrentPage(page);
 
 	return (
 		<SearchWrapper>
@@ -27,21 +28,21 @@ const Results = () => {
 					</Heading>
 				) : (
 					<PillBox>
-						{stateFilters && stateFilters.map((el) => <Pill key={el}>{el}</Pill>)}
+						{resultsFilters && resultsFilters.map((el) => <Pill key={el}>{el}</Pill>)}
 						<Pill className="reset">
 							<StyledLinkButton to="/filters">Reset filters</StyledLinkButton>
 						</Pill>
 					</PillBox>
 				)}
 			</SearchPills>
+			<ResultGridItem />
 			{state && (
-				<>
-					<ResultGridItem />
-					<WhiteNavigation>
-						<StyledButton>Previous</StyledButton>
-						<strong>Page:</strong> 2 / 5<StyledButton>Next</StyledButton>
-					</WhiteNavigation>
-				</>
+				<Pagination
+					items={resultsLength}
+					currentPage={currentPage}
+					resultsPerPage={resultsPerPage}
+					changePage={changePage}
+				/>
 			)}
 		</SearchWrapper>
 	);
