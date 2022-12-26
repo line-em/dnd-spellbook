@@ -17,7 +17,7 @@ const Wrapper = styled.h1`
 	font-weight: ${({ type }) =>
 		type === "1" ? "700" : type === "2" ? "600" : type === "3" ? "200" : "600"};
 	color: ${({ type }) =>
-		type === "1" ? "var(--lilac)" : type === "3" ? "var(--steel)" : "var(--white)"};
+		type === "1" ? "var(--lilac)" : type === "4" ? "#eef4ff" : "var(--white)"};
 	font-size: ${({ type }) => {
 		switch (type) {
 			case "1":
@@ -40,6 +40,10 @@ const Wrapper = styled.h1`
 	padding: ${({ type }) => (type === "2" || type === "4" ? "0 var(--s)" : null)};
 	border-radius: 8px;
 	box-shadow: ${({ type }) => (type === "2" || type === "4" ? "inset 0 0 3px #201f1f80" : null)};
+
+	& + & {
+		margin-top: 10px;
+	}
 `;
 
 export default Heading;

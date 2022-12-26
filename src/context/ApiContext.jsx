@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { sanitizeClasses } from "../utils/utils";
 import axios from "axios";
 
 export const ApiContext = createContext();
@@ -17,12 +18,6 @@ export const ApiContextProvider = ({ children }) => {
 	}, []);
 
 	return <ApiContext.Provider value={apiData}>{children}</ApiContext.Provider>;
-};
-
-const sanitizeClasses = (string) => {
-	const split = string.split(",");
-	const trim = split.map((item) => item.trim());
-	return trim;
 };
 
 async function fetchAllPages(url) {

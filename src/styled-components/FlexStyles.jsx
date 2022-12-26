@@ -20,13 +20,30 @@ export const CenterFlexColumn = styled(FlexColumnWrapper)`
 
 export const FlexRowWrapper = styled(CenterFlexColumn)`
 	flex-direction: row;
+	flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
+
+	@media screen and (max-width: 500px) {
+		flex-wrap: wrap;
+	}
 `;
 
 export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
 	justify-content: space-between;
+	text-align: justify;
+	margin-inline: 0;
+	margin-bottom: 0;
+	gap: 20px;
+	flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
+	align-items: ${({ flexStart }) => (flexStart ? "flex-start" : "center")};
+
+	@media screen and (max-width: 500px) {
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
+	}
 `;
 
-export const FilterGrid = styled(CenterFlexColumn)`
+export const FilterFlexGrid = styled(CenterFlexColumn)`
 	flex-direction: row;
 	& *:not(:last-child) {
 		flex-basis: 95px;
@@ -40,6 +57,7 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	backdrop-filter: blur(3px);
 	box-shadow: inset 0 0 20px #201f1f80;
 	position: relative;
+	max-width: ${({ maxWidth }) => maxWidth && "60ch"};
 
 	& + & {
 		margin-top: var(--s);
@@ -51,7 +69,7 @@ export const WhiteNavigation = styled(WhiteSection)`
 	justify-content: flex-end;
 	flex-direction: row;
 	width: fit-content;
-	margin-left: auto;
+	/* margin-left: auto; */
 	margin-top: var(--s);
 	opacity: 0.5;
 	transition: opacity 200ms;
@@ -62,7 +80,7 @@ export const WhiteNavigation = styled(WhiteSection)`
 `;
 
 export const SpellbookPage = styled(WhiteSection)`
-	width: 65ch;
+	max-width: 65ch;
 	@media screen and (max-width: 700px) {
 		width: 90%;
 	}

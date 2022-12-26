@@ -10,7 +10,8 @@ import Transmutation from "../assets/schools/Transmutation.png";
 import { WhiteSection } from "./FlexStyles";
 
 export const SearchWrapper = styled.main`
-	width: 100%;
+	width: ${({ results }) => (results <= 2 ? "null" : "100%")};
+	/* max-width: 90ch; */
 	margin-top: var(--s);
 
 	@media screen and (min-width: 750px) {
@@ -29,7 +30,9 @@ export const SearchWrapper = styled.main`
 
 export const SearchGrid = styled.section`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+	grid-template-columns: repeat(auto-fit, minmax(420px, auto));
+	margin-top: var(--sm);
+	gap: 15px;
 
 	@media screen and (max-width: 420px) {
 		grid-template-columns: 1fr;
@@ -42,8 +45,8 @@ export const ClassInfo = styled.article`
 	place-items: center;
 	justify-content: space-between;
 
-	&:first-child {
-		flex-grow: 1;
+	@media screen and (max-width: 450px) {
+		margin-top: 15px;
 	}
 `;
 
@@ -78,7 +81,7 @@ export const WhiteSectionBackdropLeft = styled.div`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: left -74px center;
-	opacity: 0.2;
+	opacity: 0.1;
 `;
 
 export const Info = styled.abbr`
