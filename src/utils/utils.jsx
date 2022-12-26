@@ -1,13 +1,9 @@
 export const paginate = (arr, pageSize, pageNumber) => {
-	console.log(typeof pageSize);
-	console.log(typeof pageNumber);
 	const startIndex = (pageNumber - 1) * pageSize;
-	console.log(typeof startIndex);
-	console.log(startIndex + " startIndex");
-	console.log(startIndex + pageSize + " startIndex + pageSize");
-	const sliced = arr.slice(startIndex, startIndex + pageSize);
-	return sliced;
+	return arr.slice(startIndex, startIndex + pageSize);
 };
+
+export const capitalize = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 export const sanitizeClasses = (string) => {
 	const split = string.split(",");

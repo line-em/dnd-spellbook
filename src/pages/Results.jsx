@@ -12,7 +12,7 @@ const Results = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [currentResults, setCurrentResults] = useState(state || []);
 	const results = currentResults?.data;
-	const resultsLength = currentResults?.data.length;
+	const resultsLength = currentResults?.data?.length;
 	const resultsPerPage = currentResults?.resultsPerPage;
 	const resultsFilters = currentResults?.filters;
 
@@ -33,7 +33,7 @@ const Results = () => {
 					slug={item.slug}
 					name={item.name}
 					description={item.desc}
-					classes={item.dnd_classes}
+					classes={item.dnd_class}
 					school={item.school}
 					level={item.level}
 				/>
