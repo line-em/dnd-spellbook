@@ -51,7 +51,7 @@ export const WhiteNavigation = styled(WhiteSection)`
 	justify-content: flex-end;
 	flex-direction: row;
 	width: fit-content;
-	margin-left: auto;
+	/* margin-left: auto; */
 	margin-top: var(--s);
 	opacity: 0.5;
 	transition: opacity 200ms;
