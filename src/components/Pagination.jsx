@@ -10,19 +10,23 @@ const Pagination = ({ items, currentPage, resultsPerPage, changePage }) => {
 			<WhiteNavigation>
 				<StyledLinkButton path="/filters">Go Back</StyledLinkButton>
 			</WhiteNavigation>
-			<WhiteNavigation>
-				{currentPage !== pages[0] && (
-					<StyledButton func={() => changePage(currentPage - 1)}>Previous</StyledButton>
-				)}
-				{numberOfPages > 1 && (
-					<>
-						<strong>Page:</strong> {currentPage} / {numberOfPages}
-					</>
-				)}
-				{numberOfPages !== currentPage && (
-					<StyledButton func={() => changePage(currentPage + 1)}>Next</StyledButton>
-				)}
-			</WhiteNavigation>
+			{numberOfPages > 1 && (
+				<WhiteNavigation>
+					{currentPage !== pages[0] && (
+						<StyledButton func={() => changePage(currentPage - 1)}>
+							Previous
+						</StyledButton>
+					)}
+					{numberOfPages > 1 && (
+						<>
+							<strong>Page:</strong> {currentPage} / {numberOfPages}
+						</>
+					)}
+					{numberOfPages !== currentPage && (
+						<StyledButton func={() => changePage(currentPage + 1)}>Next</StyledButton>
+					)}
+				</WhiteNavigation>
+			)}
 		</FlexRowSpacedWrapper>
 	);
 };
