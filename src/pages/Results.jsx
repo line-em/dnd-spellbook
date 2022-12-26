@@ -11,10 +11,10 @@ import Home from "./Home.jsx";
 const Results = () => {
 	const { state } = useLocation();
 	const [currentPage, setCurrentPage] = useState(1);
-	const results = state?.data;
-	const resultsLength = state?.data.length;
-	const resultsPerPage = state?.resultsPerPage;
-	const resultsFilters = state?.filters;
+	const [currentResults, setCurrentResults] = useState(state || []);
+	const resultsLength = currentResults.data.length;
+	const resultsPerPage = currentResults.resultsPerPage;
+	const resultsFilters = currentResults.filters;
 
 	const changePage = (page) => setCurrentPage(page);
 
@@ -37,14 +37,13 @@ const Results = () => {
 			)}
 
 			<ResultGridItem />
-			{state && (
-				<Pagination
-					items={resultsLength}
-					currentPage={currentPage}
-					resultsPerPage={resultsPerPage}
-					changePage={changePage}
-				/>
-			)}
+
+			<Pagination
+				items={resultsLength}
+				currentPage={currentPage}
+				resultsPerPage={resultsPerPage}
+				changePage={changePage}
+			/>
 		</SearchWrapper>
 	);
 };

@@ -5,17 +5,28 @@ const Pagination = ({ items, currentPage, resultsPerPage, changePage }) => {
 	const numberOfPages = Math.ceil(items / resultsPerPage);
 
 	numberOfPages === 1 && null;
-
+	console.log("resultsLength > Items: " + items);
+	console.log("currentPage: " + currentPage);
+	console.log("numberOfPages: " + numberOfPages);
 	const pages = Array.from({ length: numberOfPages }, (e, index) => index + 1);
+
 	return (
 		<FlexRowSpacedWrapper>
 			<WhiteNavigation>
 				<StyledLinkButton path="/filters">Go Back</StyledLinkButton>
 			</WhiteNavigation>
 			<WhiteNavigation>
-				{currentPage !== pages[0] && <StyledButton>Previous</StyledButton>}
-				<strong>Page:</strong> {currentPage} / {numberOfPages}
-				{numberOfPages !== currentPage && <StyledButton>Next</StyledButton>}
+				{currentPage !== pages[0] && (
+					<StyledButton func={() => changePage(currentPage - 1)}>Previous</StyledButton>
+				)}
+				{numberOfPages > 1 && (
+					<>
+						<strong>Page:</strong> {currentPage} / {numberOfPages}
+					</>
+				)}
+				{numberOfPages !== currentPage && (
+					<StyledButton func={() => changePage(currentPage + 1)}>Next</StyledButton>
+				)}
 			</WhiteNavigation>
 		</FlexRowSpacedWrapper>
 	);
