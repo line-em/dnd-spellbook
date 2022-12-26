@@ -9,9 +9,7 @@ const SelectedFiltersBox = ({ filters }) => {
 				{filters.map((el) => (
 					<Pill key={el}>{el}</Pill>
 				))}
-				<div style={{ marginLeft: "auto" }}>
-					<Link path="/filters">Reset filters</Link>
-				</div>
+				<Link to="/filters">Reset filters</Link>
 			</PillBox>
 		</SearchPills>
 	);

@@ -29,6 +29,8 @@ export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
 
 	@media screen and (max-width: 500px) {
 		flex-wrap: wrap;
+		align-items: center;
+		justify-content: center;
 	}
 `;
 
