@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
+import { transformObj, getClasses, getSchools } from "../utils/utils";
 import { FlexRowSpacedWrapper, SpellbookPage } from "../styled-components/FlexStyles";
 import { WhiteSection } from "../styled-components/FlexStyles";
-import { transformObj, getClasses, getSchools } from "../utils/utils";
 import FilterGrid from "../components/FilterGrid";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 import RowButtons from "../components/RowButtons.jsx";
@@ -49,7 +49,6 @@ const Filters = () => {
 	};
 
 	const handleNavigate = (url, data, filters) => {
-		console.log(data);
 		setIsLoading(true);
 
 		if (data.length > 0)
