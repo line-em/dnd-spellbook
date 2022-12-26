@@ -3,11 +3,6 @@ import { StyledButton, StyledLinkButton } from "../styled-components/StyledButto
 
 const Pagination = ({ items, currentPage, resultsPerPage, changePage }) => {
 	const numberOfPages = Math.ceil(items / resultsPerPage);
-
-	numberOfPages === 1 && null;
-	console.log("resultsLength > Items: " + items);
-	console.log("currentPage: " + currentPage);
-	console.log("numberOfPages: " + numberOfPages);
 	const pages = Array.from({ length: numberOfPages }, (e, index) => index + 1);
 
 	return (
