@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills";
 import { StyledLinkButton } from "../styled-components/StyledButton";
 
@@ -8,9 +9,9 @@ const SelectedFiltersBox = ({ filters }) => {
 				{filters.map((el) => (
 					<Pill key={el}>{el}</Pill>
 				))}
-				<Pill className="reset">
-					<StyledLinkButton path="/filters">Reset filters</StyledLinkButton>
-				</Pill>
+				<div style={{ marginLeft: "auto" }}>
+					<Link path="/filters">Reset filters</Link>
+				</div>
 			</PillBox>
 		</SearchPills>
 	);

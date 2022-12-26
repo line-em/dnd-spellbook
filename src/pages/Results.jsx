@@ -6,6 +6,7 @@ import SelectedFiltersBox from "../components/SelectedFiltersBox.jsx";
 import Heading from "../styled-components/Heading.jsx";
 import { SearchGrid, SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { paginate } from "../utils/utils.jsx";
+import { FlexRowSpacedWrapper } from "../styled-components/FlexStyles.jsx";
 
 const Results = () => {
 	const { state } = useLocation();
@@ -22,11 +23,18 @@ const Results = () => {
 
 	return (
 		<SearchWrapper results={resultsLength}>
-			<Heading type="4">Search Results</Heading>
-
-			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
-			{resultsFilters?.length > 0 && <SelectedFiltersBox filters={resultsFilters} />}
-
+			<FlexRowSpacedWrapper nowrap flexStart>
+				<Heading type="2">Search Results</Heading>
+				{resultsFilters?.length === 0 && (
+					<Heading type="3">Showing all spells ({resultsLength} spells)</Heading>
+				)}
+				<div>
+					{resultsFilters?.length !== 0 && (
+						<Heading type="4">Spells Found: {resultsLength}</Heading>
+					)}
+					{resultsFilters?.length > 0 && <SelectedFiltersBox filters={resultsFilters} />}
+				</div>
+			</FlexRowSpacedWrapper>
 			<SearchGrid>
 				{paginatedItems.map((item) => (
 					<ResultGridItem
@@ -40,6 +48,7 @@ const Results = () => {
 					/>
 				))}
 			</SearchGrid>
+
 			<Pagination
 				items={resultsLength}
 				currentPage={currentPage}

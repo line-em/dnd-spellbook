@@ -24,6 +24,12 @@ export const FlexRowWrapper = styled(CenterFlexColumn)`
 
 export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
 	justify-content: space-between;
+	flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
+	align-items: ${({ flexStart }) => (flexStart ? "flex-start" : "center")};
+
+	@media screen and (max-width: 500px) {
+		flex-wrap: wrap;
+	}
 `;
 
 export const FilterFlexGrid = styled(CenterFlexColumn)`
