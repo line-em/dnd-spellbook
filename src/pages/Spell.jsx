@@ -13,9 +13,17 @@ const Spell = () => {
 	const currentSpell = apiData.find((spell) => spell.slug === slug);
 	const { name, desc, school } = currentSpell;
 	// console.log(name, dnd_class, desc);
+
+	// FIXME: State in local storage to avoid errors.
 	return (
 		<>
-			<WhiteSection>
+			<WhiteSection maxWidth>
+				<Heading type="1">{name}</Heading>
+				<WhiteSection>
+					<p>{desc}</p>
+				</WhiteSection>
+			</WhiteSection>
+			<WhiteSection maxWidth>
 				<Heading type="1">{name}</Heading>
 				<WhiteSection>
 					<p>{desc}</p>
