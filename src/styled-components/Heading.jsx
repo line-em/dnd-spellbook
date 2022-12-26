@@ -16,7 +16,8 @@ const Wrapper = styled.h1`
 	font-style: ${({ type }) => (type === "3" ? "italic" : null)};
 	font-weight: ${({ type }) =>
 		type === "1" ? "700" : type === "2" ? "600" : type === "3" ? "200" : "600"};
-	color: ${({ type }) => (type === "1" ? "var(--lilac)" : "var(--white)")};
+	color: ${({ type }) =>
+		type === "1" ? "var(--lilac)" : type === "4" ? "#eef4ff" : "var(--white)"};
 	font-size: ${({ type }) => {
 		switch (type) {
 			case "1":

@@ -7,6 +7,7 @@ import Filters from "./pages/Filters";
 import Results from "./pages/Results";
 import { ApiContextProvider } from "./context/ApiContext";
 import ErrorPage from "./pages/ErrorPage";
+import Spell from "./pages/Spell";
 
 function App() {
 	const [isLoading, setIsLoading] = useState(true);
@@ -26,6 +27,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/filters" element={<Filters />} />
 						<Route path="/results" element={<Results />} />
+						<Route path="/spell/:slug" element={<Spell />} />
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</ApiContextProvider>
