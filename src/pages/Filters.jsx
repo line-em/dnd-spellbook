@@ -55,7 +55,7 @@ const Filters = () => {
 		if (data.length > 0)
 			return setTimeout(() => {
 				navigate(`${url}/`, { state: { data, filters, resultsPerPage } });
-			}, 2000);
+			}, 1000);
 
 		if (data.length === 0) {
 			setShowError(true);

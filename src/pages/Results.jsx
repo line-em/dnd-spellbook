@@ -7,6 +7,7 @@ import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import { Pill, PillBox, SearchPills } from "../styled-components/Pills.jsx";
 import Home from "./Home.jsx";
+import SelectedFiltersBox from "../components/SelectedFiltersBox.jsx";
 
 const Results = () => {
 	const { state } = useLocation();
@@ -23,18 +24,7 @@ const Results = () => {
 			<Heading type="4">Search Results</Heading>
 
 			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
-			{resultsFilters?.length > 0 && (
-				<SearchPills>
-					<PillBox>
-						{resultsFilters.map((el) => (
-							<Pill key={el}>{el}</Pill>
-						))}
-						<Pill className="reset">
-							<StyledLinkButton path="/filters">Reset filters</StyledLinkButton>
-						</Pill>
-					</PillBox>
-				</SearchPills>
-			)}
+			{resultsFilters?.length > 0 && <SelectedFiltersBox filters={resultsFilters} />}
 
 			<ResultGridItem />
 
