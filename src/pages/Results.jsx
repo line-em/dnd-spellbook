@@ -25,10 +25,11 @@ const Results = () => {
 		<SearchWrapper results={resultsLength}>
 			<FlexRowSpacedWrapper nowrap flexStart>
 				<Heading type="2">Search Results</Heading>
-				{resultsFilters?.length === 0 && (
-					<Heading type="3">Showing all spells ({resultsLength} spells)</Heading>
-				)}
+
 				<div>
+					{resultsFilters?.length === 0 && (
+						<Heading type="2">Showing all spells ({resultsLength} spells)</Heading>
+					)}
 					{resultsFilters?.length !== 0 && (
 						<Heading type="4">Spells Found: {resultsLength}</Heading>
 					)}

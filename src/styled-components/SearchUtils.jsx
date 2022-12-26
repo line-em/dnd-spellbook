@@ -31,6 +31,8 @@ export const SearchWrapper = styled.main`
 export const SearchGrid = styled.section`
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(420px, auto));
+	margin-top: var(--sm);
+	gap: 15px;
 
 	@media screen and (max-width: 420px) {
 		grid-template-columns: 1fr;
@@ -43,8 +45,8 @@ export const ClassInfo = styled.article`
 	place-items: center;
 	justify-content: space-between;
 
-	&:first-child {
-		flex-grow: 1;
+	@media screen and (max-width: 450px) {
+		margin-top: 15px;
 	}
 `;
 

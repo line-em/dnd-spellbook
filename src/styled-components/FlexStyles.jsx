@@ -20,10 +20,19 @@ export const CenterFlexColumn = styled(FlexColumnWrapper)`
 
 export const FlexRowWrapper = styled(CenterFlexColumn)`
 	flex-direction: row;
+	flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
+
+	@media screen and (max-width: 500px) {
+		flex-wrap: wrap;
+	}
 `;
 
 export const FlexRowSpacedWrapper = styled(FlexRowWrapper)`
 	justify-content: space-between;
+	text-align: justify;
+	margin-inline: 0;
+	margin-bottom: 0;
+	gap: 20px;
 	flex-wrap: ${({ nowrap }) => (nowrap ? "nowrap" : "wrap")};
 	align-items: ${({ flexStart }) => (flexStart ? "flex-start" : "center")};
 

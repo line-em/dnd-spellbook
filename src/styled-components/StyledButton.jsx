@@ -17,9 +17,8 @@ const StyledLink = styled(Link)`
 	font-size: inherit;
 
 	${SearchGrid} & {
-		align-self: center;
-		padding: var(--xxs) var(--xs);
-		font-size: 0.85rem;
+		padding: var(--xs);
+		width: 33%;
 		border-color: transparent;
 	}
 
