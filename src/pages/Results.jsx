@@ -4,7 +4,7 @@ import ResultGridItem from "../components/ResultGridItem.jsx";
 import Pagination from "../components/Pagination.jsx";
 import SelectedFiltersBox from "../components/SelectedFiltersBox.jsx";
 import Heading from "../styled-components/Heading.jsx";
-import { SearchWrapper } from "../styled-components/SearchUtils.jsx";
+import { SearchGrid, SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { paginate } from "../utils/utils.jsx";
 
 const Results = () => {
@@ -27,18 +27,19 @@ const Results = () => {
 			{resultsFilters?.length === 0 && <Heading type="3">Showing all spells.</Heading>}
 			{resultsFilters?.length > 0 && <SelectedFiltersBox filters={resultsFilters} />}
 
-			{paginatedItems.map((item) => (
-				<ResultGridItem
-					key={item.slug}
-					slug={item.slug}
-					name={item.name}
-					description={item.desc}
-					classes={item.dnd_class}
-					school={item.school}
-					level={item.level}
-				/>
-			))}
-
+			<SearchGrid>
+				{paginatedItems.map((item) => (
+					<ResultGridItem
+						key={item.slug}
+						slug={item.slug}
+						name={item.name}
+						description={item.desc}
+						classes={item.dnd_class}
+						school={item.school}
+						level={item.level}
+					/>
+				))}
+			</SearchGrid>
 			<Pagination
 				items={resultsLength}
 				currentPage={currentPage}

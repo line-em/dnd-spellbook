@@ -30,7 +30,7 @@ export const SearchWrapper = styled.main`
 
 export const SearchGrid = styled.section`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, auto));
+	grid-template-columns: repeat(auto-fit, minmax(420px, auto));
 
 	@media screen and (max-width: 420px) {
 		grid-template-columns: 1fr;
@@ -79,7 +79,7 @@ export const WhiteSectionBackdropLeft = styled.div`
 	background-size: contain;
 	background-repeat: no-repeat;
 	background-position: left -74px center;
-	opacity: 0.2;
+	opacity: 0.1;
 `;
 
 export const Info = styled.abbr`
