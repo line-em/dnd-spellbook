@@ -57,7 +57,7 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	backdrop-filter: blur(3px);
 	box-shadow: inset 0 0 20px #201f1f80;
 	position: relative;
-	max-width: ${({ maxWidth }) => maxWidth && "60ch"};
+	max-width: ${({ maxWidth }) => maxWidth};
 
 	& + & {
 		margin-top: var(--s);

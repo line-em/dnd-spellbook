@@ -11,14 +11,18 @@ import { FlexRowSpacedWrapper } from "../styled-components/FlexStyles.jsx";
 const Results = () => {
 	const { state } = useLocation();
 	const [currentPage, setCurrentPage] = useState(1);
-	const [currentResults, setCurrentResults] = useState(state || []);
+
+	localStorage.setItem("search", JSON.stringify(state));
+	const [currentResults, setCurrentResults] = useState(
+		JSON.parse(localStorage.getItem("search")) || []
+	);
+
 	const results = currentResults?.data;
 	const resultsLength = currentResults?.data?.length;
 	const resultsPerPage = currentResults?.resultsPerPage;
 	const resultsFilters = currentResults?.filters;
 
 	const changePage = (page) => setCurrentPage(page);
-
 	const paginatedItems = paginate(results, Number(resultsPerPage), currentPage);
 
 	return (

@@ -16,7 +16,7 @@ const ResultGridItem = ({ slug, name, description, classes, school, level }) => 
 	const upperSchool = capitalize(school);
 
 	return (
-		<WhiteSection>
+		<WhiteSection key={slug}>
 			<WhiteSectionBackdropLeft school={upperSchool}></WhiteSectionBackdropLeft>
 			<Heading type="4">{name}</Heading>
 			<FlexRowSpacedWrapper nowrap>
