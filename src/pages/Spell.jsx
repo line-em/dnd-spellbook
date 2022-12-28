@@ -1,12 +1,13 @@
-// const found = array1.find((element) => element > 10);
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
+import classesData from "../assets/classes/classesData";
 import { capitalize, sanitizeClasses } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
+import { StyledFilter } from "../styled-components/ClassBubble";
 
 const Spell = () => {
 	const { slug } = useParams();
@@ -36,17 +37,25 @@ const Spell = () => {
 		}
 	}, []);
 
+	const dndClassTags = dnd_class?.map((item) => (
+		<div style={{ border: "red 5px solid" }}>
+			{item}
+			{classesData.filter((dndClass) => dndClass.query === item)}
+		</div>
+	));
+
 	return (
 		<>
 			<WhiteSection maxWidth="90ch">
 				<Heading type="1">{name}</Heading>
-				<WhiteSection>{dnd_class.map((classes) => classes)}</WhiteSection>
+				<WhiteSection>{dndClassTags}</WhiteSection>
 				<WhiteSection>
 					<p>{desc}</p>
 					<p>{school}</p>
 				</WhiteSection>
 				<WhiteSection>
-					<RowButtons buttonText={"Return"} handleFunction={() => navigate("/results")} />
+					{/* doesnt work */}
+					{/* <RowButtons buttonText={"Return"} handleFunction={() => navigate("/results")} /> */}
 				</WhiteSection>
 			</WhiteSection>
 			{school && (
