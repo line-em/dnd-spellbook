@@ -1,27 +1,37 @@
 // const found = array1.find((element) => element > 10);
 import { useParams } from "react-router-dom";
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { ApiContext } from "../context/ApiContext";
 import { capitalize } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
 import { WhiteSection } from "../styled-components/FlexStyles";
-import Heading from "../styled-components/Heading";
-import useLocalStorage from "../hooks/useLocalStorage";
 
 const Spell = () => {
 	const { slug } = useParams();
 	let currentSpell;
 	if (localStorage.getItem("api")) {
-		console.log(slug);
-		const apiData = useContext(ApiContext);
-		currentSpell = apiData.find((spell) => spell.slug === slug);
-		console.log(currentSpell.name);
+		const localSpells = JSON.parse(localStorage.getItem("api"));
+		currentSpell = localSpells.find((spell) => spell.slug === slug);
+		console.log(currentSpell);
 	} else {
 		console.log("need new api call directly to spells");
+		// Only for avoiding problems, context is loading in the background.
+		useEffect(() => {
+			const fetchUniqueSpell = async () => {
+				try {
+					const url = `${import.meta.env.VITE_URL}?slug=${slug}`;
+					const response = await axios.get(url);
+					const results = await response.data.results[0];
+					const parseResults = await results.dnd_class;
+					console.log(parseResults);
+				} catch (error) {
+					console.log(error);
+				}
+			};
+			fetchUniqueSpell();
+		}, []);
 	}
 
-	// const { name, desc, school } = currentSpell;
-	// console.log(name, dnd_class, desc);
 	return (
 		<>
 			<WhiteSection maxWidth="90ch">
