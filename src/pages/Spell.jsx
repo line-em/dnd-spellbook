@@ -2,7 +2,7 @@
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { capitalize } from "../utils/utils";
+import { capitalize, sanitizeClasses } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
 import { WhiteSection } from "../styled-components/FlexStyles";
 
@@ -15,15 +15,15 @@ const Spell = () => {
 		console.log(currentSpell);
 	} else {
 		console.log("need new api call directly to spells");
-		// Only for avoiding problems, context is loading in the background.
+		// Only for avoiding problems in case the person skipped the Filters page.
 		useEffect(() => {
 			const fetchUniqueSpell = async () => {
 				try {
 					const url = `${import.meta.env.VITE_URL}?slug=${slug}`;
 					const response = await axios.get(url);
-					const results = await response.data.results[0];
-					const parseResults = await results.dnd_class;
-					console.log(parseResults);
+					const results = await response.data.results;
+					results[0].dnd_class = sanitizeClasses(results[0].dnd_class);
+					return results;
 				} catch (error) {
 					console.log(error);
 				}
