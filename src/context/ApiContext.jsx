@@ -6,7 +6,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 export const ApiContext = createContext();
 
 export const ApiContextProvider = ({ children }) => {
-	const [apiData, setApiData] = useLocalStorage("api", "testing");
+	const [apiData, setApiData] = useLocalStorage("api", {});
 
 	const fetchSpells = async (url) => {
 		if (localStorage.getItem("api") && localStorage.getItem("api") !== undefined) {

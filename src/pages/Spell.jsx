@@ -10,19 +10,25 @@ import useLocalStorage from "../hooks/useLocalStorage";
 
 const Spell = () => {
 	const { slug } = useParams();
-	const apiData = useContext(ApiContext);
-	console.log(slug);
-	const currentSpell = apiData.find((spell) => spell.slug === slug);
+	let currentSpell;
+	if (localStorage.getItem("api")) {
+		console.log(slug);
+		const apiData = useContext(ApiContext);
+		currentSpell = apiData.find((spell) => spell.slug === slug);
+		console.log(currentSpell.name);
+	} else {
+		console.log("need new api call directly to spells");
+	}
 
 	// const { name, desc, school } = currentSpell;
 	// console.log(name, dnd_class, desc);
 	return (
 		<>
 			<WhiteSection maxWidth="90ch">
-				<Heading type="1">{currentSpell.name}</Heading>
+				{/* <Heading type="1">{currentSpell.name}</Heading>
 				<WhiteSection>
 					<p>{currentSpell.desc}</p>
-				</WhiteSection>
+				</WhiteSection> */}
 			</WhiteSection>
 			<WhiteSectionBackdropLeft
 			// school={capitalize(currentSpell.school)}
