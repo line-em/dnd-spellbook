@@ -8,12 +8,15 @@ export const ApiContextProvider = ({ children }) => {
 	const [apiData, setApiData] = useState([]);
 
 	useEffect(() => {
-		if (localStorage.getItem("api")) {
+		if (JSON.parse(localStorage.getItem("api")).length > 0) {
 			setApiData(JSON.parse(localStorage.getItem("api")));
 		} else {
 			console.log("FETCHING THE API!");
 			setApiData(fetchAllPages("https://api.open5e.com/spells/"));
-			localStorage.setItem("api", JSON.stringify(apiData));
+			localStorage.setItem(
+				"api",
+				JSON.stringify(fetchAllPages("https://api.open5e.com/spells/"))
+			);
 		}
 	}, []);
 
