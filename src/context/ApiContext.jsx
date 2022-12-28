@@ -7,8 +7,10 @@ export const ApiContext = createContext();
 
 export const ApiContextProvider = ({ children }) => {
 	const [apiData, setApiData] = useLocalStorage("api", "testing");
+
 	const fetchSpells = async (url) => {
 		if (localStorage.getItem("api") && localStorage.getItem("api") !== undefined) {
+			console.log("got it already");
 			return apiData;
 		} else {
 			console.log("fetching the api");
@@ -31,6 +33,8 @@ export const ApiContextProvider = ({ children }) => {
 	};
 
 	fetchSpells("https://api.open5e.com/spells/");
+
+	console.log("context loaded");
 
 	return <ApiContext.Provider value={apiData}>{children}</ApiContext.Provider>;
 };

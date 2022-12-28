@@ -11,7 +11,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const Spell = () => {
 	const { slug } = useParams();
 	const apiData = useContext(ApiContext);
-
+	console.log(slug);
 	const currentSpell = apiData.find((spell) => spell.slug === slug);
 
 	// const { name, desc, school } = currentSpell;

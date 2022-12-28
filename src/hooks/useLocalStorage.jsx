@@ -27,7 +27,7 @@ function useLocalStorage(key, initialValue) {
 			// Allow value to be a function so we have same API as useState
 			const valueToStore = value instanceof Function ? value(storedValue) : value;
 			// Save state
-			console.log("valueToStore" + valueToStore);
+			console.log("valueToStore:" + valueToStore);
 			// Save to local storage
 			if (typeof window !== "undefined") {
 				window.localStorage.setItem(key, JSON.stringify(valueToStore));
