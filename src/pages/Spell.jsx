@@ -15,6 +15,17 @@ const Spell = () => {
 	const [spell, setSpell] = useState([]);
 	const { name, desc, school, dnd_class } = spell;
 
+	const capitalizedSchool = () => (
+		<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
+	);
+
+	const descriptionArea = (
+		<WhiteSection>
+			<p>{desc}</p>
+			<p>{school}</p>
+		</WhiteSection>
+	);
+
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
 			// FIXME:not tested
@@ -40,27 +51,22 @@ const Spell = () => {
 	const dndClassTags = dnd_class?.map((item) => (
 		<div style={{ border: "red 5px solid" }}>
 			{item}
-			{classesData.filter((dndClass) => dndClass.query === item)}
+			{/* {classesData.filter((dndClass) => dndClass.query === item)} */}
 		</div>
 	));
 
 	return (
 		<>
 			<WhiteSection maxWidth="90ch">
-				<Heading type="1">{name}</Heading>
-				<WhiteSection>{dndClassTags}</WhiteSection>
-				<WhiteSection>
-					<p>{desc}</p>
-					<p>{school}</p>
-				</WhiteSection>
+				<Heading type="1">{name && name}</Heading>
+				<WhiteSection>{dnd_class && dndClassTags}</WhiteSection>
+				{desc && descriptionArea}
 				<WhiteSection>
 					{/* doesnt work */}
 					{/* <RowButtons buttonText={"Return"} handleFunction={() => navigate("/results")} /> */}
 				</WhiteSection>
 			</WhiteSection>
-			{school && (
-				<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
-			)}
+			{school && capitalizedSchool}
 		</>
 	);
 };

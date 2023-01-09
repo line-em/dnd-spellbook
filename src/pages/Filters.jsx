@@ -26,26 +26,43 @@ const Filters = () => {
 		const parsedSchools = transformObj(filterSchools);
 		const parsedClasses = transformObj(filterClasses);
 		const allFilters = parsedSchools.concat(parsedClasses);
-		let searchResult = [];
 
-		if (parsedSchools.length === 0 && parsedClasses.length === 0) {
-			handleNavigate("/results", apiData, allFilters);
-		} else {
+		if (parsedSchools.length > 0 || parsedClasses.length > 0) {
+			let searchResult;
+
 			if (parsedSchools.length > 0 && parsedClasses.length > 0) {
 				const filteredClasses = getClasses(apiData, parsedClasses, "dnd_class");
 				searchResult = getSchools(filteredClasses, parsedSchools, "school");
-			}
-
-			if (parsedSchools.length > 0 && parsedClasses.length === 0) {
+			} else if (parsedSchools.length > 0) {
 				searchResult = getSchools(apiData, parsedSchools, "school");
-			}
-
-			if (parsedClasses.length > 0 && parsedSchools.length === 0) {
+			} else if (parsedClasses.length > 0) {
 				searchResult = getClasses(apiData, parsedClasses, "dnd_class");
 			}
 
 			handleNavigate("/results", searchResult, allFilters);
+		} else {
+			handleNavigate("/results", apiData, allFilters);
 		}
+
+		// let searchResult = [];
+		// if (parsedSchools.length === 0 && parsedClasses.length === 0) {
+		// 	handleNavigate("/results", apiData, allFilters);
+		// } else {
+		// 	if (parsedSchools.length > 0 && parsedClasses.length > 0) {
+		// 		const filteredClasses = getClasses(apiData, parsedClasses, "dnd_class");
+		// 		searchResult = getSchools(filteredClasses, parsedSchools, "school");
+		// 	}
+
+		// 	if (parsedSchools.length > 0 && parsedClasses.length === 0) {
+		// 		searchResult = getSchools(apiData, parsedSchools, "school");
+		// 	}
+
+		// 	if (parsedClasses.length > 0 && parsedSchools.length === 0) {
+		// 		searchResult = getClasses(apiData, parsedClasses, "dnd_class");
+		// 	}
+
+		// 	handleNavigate("/results", searchResult, allFilters);
+		// }
 	};
 
 	const handleNavigate = (url, data, filters) => {
