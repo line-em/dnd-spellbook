@@ -3,9 +3,12 @@ import { FilterFlexGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
 const FilterGrid = (props) => {
-	const { filterArray, title, setFilterSchools, setFilterClasses, filterSchools, filterClasses } =
-		props;
-	const currentFilter = filterClasses || filterSchools;
+	const { filterArray, title, setFilters, filters } = props;
+	// const { filterArray, title, setFilterSchools, setFilterClasses, filterSchools, filterClasses } =
+	// 	props;
+	// filterArray.filter((item) => item.class.includes("Bard"))
+	const currentFilter = title === "Classes" ? filters.classes : filters.schools;
+	console.log(currentFilter);
 	const filtersLength = Object.values(currentFilter).filter((element) => element === true).length;
 	const clear = "🧼 Clear Filters";
 
@@ -15,31 +18,51 @@ const FilterGrid = (props) => {
 
 	const handleSelected = (filter) => {
 		if (filter === clear) {
-			filterArray.map((item) =>
-				setFilterClasses
-					? setFilterClasses((prev) => ({
-							...prev,
-							[item.class]: false
-					  }))
-					: setFilterSchools((prev) => ({
-							...prev,
-							[item.class]: false
-					  }))
-			);
+			filterArray.map((item) => {
+				setFilters((prev) => ({
+					...prev,
+					classes: { ...prev.classes, [item.class]: false },
+					schools: { ...prev.schools, [item.class]: false }
+				}));
+			});
 		} else {
-			if (setFilterClasses) {
-				setFilterClasses((prev) => ({
+			setFilters((prev) => {
+				return {
 					...prev,
-					[filter]: !prev[filter]
-				}));
-			} else {
-				setFilterSchools((prev) => ({
-					...prev,
-					[filter]: !prev[filter]
-				}));
-			}
+					[title === "Classes" ? "classes" : "schools"]: {
+						...currentFilter,
+						[filter]: !filter
+					}
+				};
+			});
 		}
 	};
+
+	// if (filter === clear) {
+	// 	filterArray.map((item) =>
+	// 		setFilterClasses
+	// 			? setFilterClasses((prev) => ({
+	// 					...prev,
+	// 					[item.class]: false
+	// 			  }))
+	// 			: setFilterSchools((prev) => ({
+	// 					...prev,
+	// 					[item.class]: false
+	// 			  }))
+	// 	);
+	// } else {
+	// 	if (setFilterClasses) {
+	// 		setFilterClasses((prev) => ({
+	// 			...prev,
+	// 			[filter]: !prev[filter]
+	// 		}));
+	// 	} else {
+	// 		setFilterSchools((prev) => ({
+	// 			...prev,
+	// 			[filter]: !prev[filter]
+	// 		}));
+	// 	}
+	// }
 
 	return (
 		<>

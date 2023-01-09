@@ -14,8 +14,12 @@ import RowButtons from "../components/RowButtons.jsx";
 const Filters = () => {
 	const navigate = useNavigate();
 	const apiData = useContext(ApiContext);
-	const [filterSchools, setFilterSchools] = useState({});
-	const [filterClasses, setFilterClasses] = useState({});
+	// const [filterSchools, setFilterSchools] = useState({});
+	// const [filterClasses, setFilterClasses] = useState({});
+	const [filters, setFilters] = useState({
+		classes: {},
+		schools: {}
+	});
 	const [resultsPerPage, setResultsPerPage] = useState("6");
 	const [showError, setShowError] = useState(false);
 	const [isLoading, setIsLoading] = useState();
@@ -23,8 +27,10 @@ const Filters = () => {
 
 	const handleSearch = () => {
 		setShowError(false);
-		const parsedSchools = transformObj(filterSchools);
-		const parsedClasses = transformObj(filterClasses);
+		const parsedSchools = transformObj(filters.schools);
+		const parsedClasses = transformObj(filters.classes);
+		// const parsedSchools = transformObj(filterSchools);
+		// const parsedClasses = transformObj(filterClasses);
 		const allFilters = parsedSchools.concat(parsedClasses);
 
 		if (parsedSchools.length > 0 || parsedClasses.length > 0) {
@@ -43,26 +49,6 @@ const Filters = () => {
 		} else {
 			handleNavigate("/results", apiData, allFilters);
 		}
-
-		// let searchResult = [];
-		// if (parsedSchools.length === 0 && parsedClasses.length === 0) {
-		// 	handleNavigate("/results", apiData, allFilters);
-		// } else {
-		// 	if (parsedSchools.length > 0 && parsedClasses.length > 0) {
-		// 		const filteredClasses = getClasses(apiData, parsedClasses, "dnd_class");
-		// 		searchResult = getSchools(filteredClasses, parsedSchools, "school");
-		// 	}
-
-		// 	if (parsedSchools.length > 0 && parsedClasses.length === 0) {
-		// 		searchResult = getSchools(apiData, parsedSchools, "school");
-		// 	}
-
-		// 	if (parsedClasses.length > 0 && parsedSchools.length === 0) {
-		// 		searchResult = getClasses(apiData, parsedClasses, "dnd_class");
-		// 	}
-
-		// 	handleNavigate("/results", searchResult, allFilters);
-		// }
 	};
 
 	const handleNavigate = (url, data, filters) => {
@@ -91,15 +77,19 @@ const Filters = () => {
 					<FilterGrid
 						title="Schools of Magic"
 						filterArray={schoolsData}
-						filterSchools={filterSchools}
-						setFilterSchools={setFilterSchools}
+						// filterSchools={filterSchools}
+						// setFilterSchools={setFilterSchools}
+						filters={filters}
+						setFilters={setFilters}
 					/>
 					<hr />
 					<FilterGrid
 						title="Classes"
 						filterArray={classesData}
-						filterClasses={filterClasses}
-						setFilterClasses={setFilterClasses}
+						filters={filters}
+						setFilters={setFilters}
+						// filterClasses={filterClasses}
+						// setFilterClasses={setFilterClasses}
 					/>
 				</WhiteSection>
 				<FlexRowSpacedWrapper>
