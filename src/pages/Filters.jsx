@@ -55,8 +55,7 @@ const Filters = () => {
 		if (data.length === 0) {
 			setShowError(true);
 			setIsLoading(false);
-			setFilterClasses({});
-			setFilterSchools({});
+			setFilters({});
 			setErrorMessage("Your search hasn't wielded any results");
 		}
 	};
