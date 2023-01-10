@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+export const GlobalStyle = createGlobalStyle`
 :root {
 	--black: #11100f;
 	--transparent-black: #11100f43;
@@ -99,3 +102,5 @@ select {
 	color: var(--steel);
 	margin: var(--xs) 0 var(--xs) var(--xs);
 }
+
+`;
