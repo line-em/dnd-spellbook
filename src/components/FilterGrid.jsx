@@ -2,16 +2,11 @@ import { StyledFilter } from "../styled-components/ClassBubble";
 import { FilterFlexGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 
-const FilterGrid = (props) => {
-	const { filterArray, title, setFilters, filters } = props;
-	// const { filterArray, title, setFilterSchools, setFilterClasses, filterSchools, filterClasses } =
-	// 	props;
-	// filterArray.filter((item) => item.class.includes("Bard"))
+const FilterGrid = ({ filterArray, title, setFilters, filters }) => {
 	const currentFilter = title === "Classes" ? filters.classes : filters.schools;
-	console.log(currentFilter);
 	const filtersLength = Object.values(currentFilter).filter((element) => element === true).length;
-	const clear = "🧼 Clear Filters";
 
+	const clear = "🧼 Clear Filters";
 	if (currentFilter.hasOwnProperty(clear)) {
 		delete currentFilter[clear];
 	}
@@ -27,42 +22,17 @@ const FilterGrid = (props) => {
 			});
 		} else {
 			setFilters((prev) => {
+				const type = title === "Classes" ? "classes" : "schools";
 				return {
 					...prev,
-					[title === "Classes" ? "classes" : "schools"]: {
-						...currentFilter,
-						[filter]: !filter
+					[type]: {
+						...prev[type],
+						[filter]: !prev[type][filter]
 					}
 				};
 			});
 		}
 	};
-
-	// if (filter === clear) {
-	// 	filterArray.map((item) =>
-	// 		setFilterClasses
-	// 			? setFilterClasses((prev) => ({
-	// 					...prev,
-	// 					[item.class]: false
-	// 			  }))
-	// 			: setFilterSchools((prev) => ({
-	// 					...prev,
-	// 					[item.class]: false
-	// 			  }))
-	// 	);
-	// } else {
-	// 	if (setFilterClasses) {
-	// 		setFilterClasses((prev) => ({
-	// 			...prev,
-	// 			[filter]: !prev[filter]
-	// 		}));
-	// 	} else {
-	// 		setFilterSchools((prev) => ({
-	// 			...prev,
-	// 			[filter]: !prev[filter]
-	// 		}));
-	// 	}
-	// }
 
 	return (
 		<>

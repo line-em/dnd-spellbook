@@ -1,12 +1,11 @@
-import { ApiContext } from "../context/ApiContext";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ApiContext } from "../context/ApiContext";
 import classesData from "../assets/classes/classesData";
 import schoolsData from "../assets/schools/schoolsData";
 import Heading from "../styled-components/Heading";
 import { transformObj, getClasses, getSchools } from "../utils/utils";
-import { FlexRowSpacedWrapper, SpellbookPage } from "../styled-components/FlexStyles";
-import { WhiteSection } from "../styled-components/FlexStyles";
+import { FlexRowSpacedWrapper, SpellbookPage, WhiteSection } from "../styled-components/FlexStyles";
 import FilterGrid from "../components/FilterGrid";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 import RowButtons from "../components/RowButtons.jsx";
@@ -14,8 +13,6 @@ import RowButtons from "../components/RowButtons.jsx";
 const Filters = () => {
 	const navigate = useNavigate();
 	const apiData = useContext(ApiContext);
-	// const [filterSchools, setFilterSchools] = useState({});
-	// const [filterClasses, setFilterClasses] = useState({});
 	const [filters, setFilters] = useState({
 		classes: {},
 		schools: {}
@@ -29,13 +26,10 @@ const Filters = () => {
 		setShowError(false);
 		const parsedSchools = transformObj(filters.schools);
 		const parsedClasses = transformObj(filters.classes);
-		// const parsedSchools = transformObj(filterSchools);
-		// const parsedClasses = transformObj(filterClasses);
 		const allFilters = parsedSchools.concat(parsedClasses);
 
 		if (parsedSchools.length > 0 || parsedClasses.length > 0) {
 			let searchResult;
-
 			if (parsedSchools.length > 0 && parsedClasses.length > 0) {
 				const filteredClasses = getClasses(apiData, parsedClasses, "dnd_class");
 				searchResult = getSchools(filteredClasses, parsedSchools, "school");
@@ -44,7 +38,6 @@ const Filters = () => {
 			} else if (parsedClasses.length > 0) {
 				searchResult = getClasses(apiData, parsedClasses, "dnd_class");
 			}
-
 			handleNavigate("/results", searchResult, allFilters);
 		} else {
 			handleNavigate("/results", apiData, allFilters);
@@ -77,8 +70,6 @@ const Filters = () => {
 					<FilterGrid
 						title="Schools of Magic"
 						filterArray={schoolsData}
-						// filterSchools={filterSchools}
-						// setFilterSchools={setFilterSchools}
 						filters={filters}
 						setFilters={setFilters}
 					/>
@@ -88,8 +79,6 @@ const Filters = () => {
 						filterArray={classesData}
 						filters={filters}
 						setFilters={setFilters}
-						// filterClasses={filterClasses}
-						// setFilterClasses={setFilterClasses}
 					/>
 				</WhiteSection>
 				<FlexRowSpacedWrapper>
