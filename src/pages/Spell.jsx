@@ -8,6 +8,7 @@ import { WhiteSection } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
 import { StyledFilter } from "../styled-components/ClassBubble";
+import Pills from "../components/Pills";
 
 const Spell = () => {
 	const { slug } = useParams();
@@ -37,13 +38,6 @@ const Spell = () => {
 		}
 	}, []);
 
-	const dndClassTags = dnd_class?.map((item) => (
-		<div style={{ border: "red 5px solid" }}>
-			{item}
-			{/* {classesData.filter((dndClass) => dndClass.query === item)} */}
-		</div>
-	));
-
 	const handleNavigate = () => {
 		navigate(-1);
 	};
@@ -52,7 +46,7 @@ const Spell = () => {
 		<>
 			<WhiteSection maxWidth="90ch" key={slug}>
 				<Heading type="1">{name && name}</Heading>
-				<WhiteSection>{dnd_class && dndClassTags}</WhiteSection>
+				{dnd_class && <Pills items={dnd_class} />}
 				<WhiteSection>
 					{desc ?? (
 						<>
