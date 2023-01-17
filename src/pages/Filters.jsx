@@ -15,16 +15,20 @@ const Filters = () => {
 	const apiData = useContext(ApiContext);
 	const [filters, setFilters] = useState({
 		classes: {},
-		schools: {}
+		schools: {},
+		resultsPerPage: 6
 	});
-	const [resultsPerPage, setResultsPerPage] = useState("6");
-	const [showError, setShowError] = useState(false);
-	const [isLoading, setIsLoading] = useState();
-	const [errorMessage, setErrorMessage] = useState("An error has occured during search");
-	// Make only one state
+	const [status, setStatus] = useState({
+		error: false,
+		empty: false,
+		emptySearch: "Your search hasn't wielded any results",
+		errorMessage: "An error has occured during search",
+		loading: false
+	});
+	// const [resultsPerPage, setResultsPerPage] = useState("6");
 
 	const handleSearch = () => {
-		setShowError(false);
+		setStatus((prev) => ({ ...prev, error: false }));
 		const parsedSchools = transformObj(filters.schools);
 		const parsedClasses = transformObj(filters.classes);
 		const allFilters = parsedSchools.concat(parsedClasses);
@@ -45,19 +49,21 @@ const Filters = () => {
 		}
 	};
 
-	const handleNavigate = (url, data, filters) => {
-		setIsLoading(true);
+	const handleNavigate = (url, data, query) => {
+		setStatus((prev) => ({ ...prev, loading: true }));
+		const resultsPerPage = filters.resultsPerPage;
 
 		if (data.length > 0)
 			return setTimeout(() => {
-				navigate(`${url}/`, { state: { data, filters, resultsPerPage } });
+				navigate(`${url}/`, { state: { data, query, resultsPerPage } });
 			}, 1000);
 
 		if (data.length === 0) {
-			setShowError(true);
-			setIsLoading(false);
-			setFilters({});
-			setErrorMessage("Your search hasn't wielded any results");
+			setStatus((prev) => ({ ...prev, error: true, empty: true, loading: false }));
+			setFilters({
+				classes: {},
+				schools: {}
+			});
 		}
 	};
 
@@ -86,23 +92,29 @@ const Filters = () => {
 						<label htmlFor="numberOfResults">Results per page</label>
 						<select
 							id="numberOfResults"
-							value={resultsPerPage}
-							onChange={(e) => setResultsPerPage(e.target.value)}
+							value={filters.resultsPerPage}
+							onChange={(e) =>
+								setFilters((prev) => ({ ...prev, resultsPerPage: e.target.value }))
+							}
 						>
-							<option value="6">6</option>
-							<option value="9">9</option>
-							<option value="12">12</option>
-							<option value="15">15</option>
+							<option value={6}>6</option>
+							<option value={9}>9</option>
+							<option value={12}>12</option>
+							<option value={15}>15</option>
 						</select>
 					</Heading>
 					<RowButtons
-						loadingState={isLoading}
+						loadingState={status.loading}
 						handleFunction={handleSearch}
 						buttonText="Search"
 					/>
 				</FlexRowSpacedWrapper>
 			</SpellbookPage>
-			{showError && <ErrorMessage typeOfError={errorMessage} />}
+			{status.error && (
+				<ErrorMessage
+					typeOfError={status.empty ? status.emptySearch : status.errorMessage}
+				/>
+			)}
 		</>
 	);
 };

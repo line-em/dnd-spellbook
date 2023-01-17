@@ -28,8 +28,6 @@ export const GlobalStyle = createGlobalStyle`
 	--l: 3rem;
 	--xxl: 5rem;
 
-	color: #c1aac0;
-
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
 	-webkit-font-smoothing: antialiased;
@@ -51,6 +49,7 @@ export const GlobalStyle = createGlobalStyle`
 }
 
 html {
+	color: var(--lilac);
 	background-color: var(--black);
 	background-attachment: fixed;
 	background-repeat: repeat;

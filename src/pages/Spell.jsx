@@ -11,20 +11,9 @@ import { StyledFilter } from "../styled-components/ClassBubble";
 
 const Spell = () => {
 	const { slug } = useParams();
-	const { navigate } = useNavigate();
+	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
 	const { name, desc, school, dnd_class } = spell;
-
-	const capitalizedSchool = () => (
-		<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
-	);
-
-	const descriptionArea = (
-		<WhiteSection>
-			<p>{desc}</p>
-			<p>{school}</p>
-		</WhiteSection>
-	);
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
@@ -55,18 +44,30 @@ const Spell = () => {
 		</div>
 	));
 
+	const handleNavigate = () => {
+		navigate(-1);
+	};
+
 	return (
 		<>
-			<WhiteSection maxWidth="90ch">
+			<WhiteSection maxWidth="90ch" key={slug}>
 				<Heading type="1">{name && name}</Heading>
 				<WhiteSection>{dnd_class && dndClassTags}</WhiteSection>
-				{desc && descriptionArea}
 				<WhiteSection>
-					{/* doesnt work */}
-					{/* <RowButtons buttonText={"Return"} handleFunction={() => navigate("/results")} /> */}
+					{desc ?? (
+						<>
+							<p>{desc}</p>
+							<p>{school}</p>
+						</>
+					)}
+				</WhiteSection>
+				<WhiteSection>
+					<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
 				</WhiteSection>
 			</WhiteSection>
-			{school && capitalizedSchool}
+			{school && (
+				<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
+			)}
 		</>
 	);
 };
