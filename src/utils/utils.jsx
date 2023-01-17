@@ -1,6 +1,6 @@
 export const paginate = (arr, pageSize, pageNumber) => {
 	const startIndex = (pageNumber - 1) * pageSize;
-	if (arr) return arr.slice(startIndex, startIndex + pageSize);
+	return arr.slice(startIndex, startIndex + pageSize);
 };
 
 export const capitalize = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ApiContext } from "../context/ApiContext";
 import classesData from "../assets/classes/classesData";
@@ -25,7 +25,6 @@ const Filters = () => {
 		errorMessage: "An error has occured during search",
 		loading: false
 	});
-	// const [resultsPerPage, setResultsPerPage] = useState("6");
 
 	const handleSearch = () => {
 		setStatus((prev) => ({ ...prev, error: false }));
@@ -66,6 +65,10 @@ const Filters = () => {
 			});
 		}
 	};
+
+	useEffect(() => {
+		localStorage.removeItem("search");
+	}, []);
 
 	return (
 		<>

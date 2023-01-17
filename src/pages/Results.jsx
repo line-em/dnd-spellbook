@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ResultGridItem from "../components/ResultGridItem.jsx";
 import Pagination from "../components/Pagination.jsx";
@@ -7,17 +7,18 @@ import Heading from "../styled-components/Heading.jsx";
 import { SearchGrid, SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { paginate } from "../utils/utils.jsx";
 import { FlexRowSpacedWrapper } from "../styled-components/FlexStyles.jsx";
-import { useParams, useNavigate } from "react-router-dom";
 
 const Results = () => {
 	const { state } = useLocation();
 	const navigate = useNavigate();
 	const [currentPage, setCurrentPage] = useState(1);
-
-	localStorage.setItem("search", JSON.stringify(state));
 	const [currentResults, setCurrentResults] = useState(
-		JSON.parse(localStorage.getItem("search")) || []
+		state || JSON.parse(localStorage.getItem("search")) || []
 	);
+
+	useEffect(() => {
+		state && localStorage.setItem("search", JSON.stringify(state));
+	}, []);
 
 	const results = currentResults?.data;
 	const resultsLength = currentResults?.data?.length;

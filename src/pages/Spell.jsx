@@ -8,14 +8,12 @@ import { WhiteSection } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
 import Pills from "../components/Pills";
-import ReactMarkdown from "react-markdown";
 
 const Spell = () => {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
 	const { name, desc, school, dnd_class } = spell;
-	const mkdown = <ReactMarkdown>#oi ##oi</ReactMarkdown>;
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
@@ -52,7 +50,6 @@ const Spell = () => {
 			<WhiteSection>
 				{desc ?? (
 					<>
-						{mkdown}
 						<p>{school}</p>
 					</>
 				)}
