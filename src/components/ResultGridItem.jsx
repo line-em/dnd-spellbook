@@ -2,8 +2,9 @@ import { ClassInfo, WhiteSectionBackdropLeft } from "../styled-components/Search
 import { FlexRowSpacedWrapper, WhiteSection } from "../styled-components/FlexStyles";
 import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import Heading from "../styled-components/Heading.jsx";
-import { Pill, PillBox } from "../styled-components/Pills.jsx";
+import { Pill } from "../styled-components/Pills.jsx";
 import { capitalize } from "../utils/utils.jsx";
+import Pills from "./Pills.jsx";
 
 const ResultGridItem = ({ slug, name, description, classes, school, level }) => {
 	const shortDesc =
@@ -20,11 +21,7 @@ const ResultGridItem = ({ slug, name, description, classes, school, level }) => 
 					<StyledLinkButton path={`/results/spell/${slug}`}>Read more</StyledLinkButton>
 				</FlexRowSpacedWrapper>
 				<ClassInfo>
-					<PillBox>
-						{classes.map((item) => (
-							<Pill>{item}</Pill>
-						))}
-					</PillBox>
+					<Pills items={classes} />
 					<Pill>
 						<strong>{upperSchool}</strong> <br /> {level}
 					</Pill>
