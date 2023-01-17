@@ -21,6 +21,7 @@ const Filters = () => {
 	const [showError, setShowError] = useState(false);
 	const [isLoading, setIsLoading] = useState();
 	const [errorMessage, setErrorMessage] = useState("An error has occured during search");
+	// Make only one state
 
 	const handleSearch = () => {
 		setShowError(false);
