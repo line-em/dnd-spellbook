@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ResultGridItem from "../components/ResultGridItem.jsx";
 import Pagination from "../components/Pagination.jsx";
 import SelectedFiltersBox from "../components/SelectedFiltersBox.jsx";
@@ -7,9 +7,11 @@ import Heading from "../styled-components/Heading.jsx";
 import { SearchGrid, SearchWrapper } from "../styled-components/SearchUtils.jsx";
 import { paginate } from "../utils/utils.jsx";
 import { FlexRowSpacedWrapper } from "../styled-components/FlexStyles.jsx";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Results = () => {
 	const { state } = useLocation();
+	const navigate = useNavigate();
 	const [currentPage, setCurrentPage] = useState(1);
 
 	localStorage.setItem("search", JSON.stringify(state));
@@ -21,9 +23,12 @@ const Results = () => {
 	const resultsLength = currentResults?.data?.length;
 	const resultsPerPage = currentResults?.resultsPerPage;
 	const resultsFilters = currentResults?.filters;
-
 	const changePage = (page) => setCurrentPage(page);
 	const paginatedItems = paginate(results, Number(resultsPerPage), currentPage);
+
+	if (!paginatedItems) {
+		navigate("/404");
+	}
 
 	return (
 		<SearchWrapper results={resultsLength}>

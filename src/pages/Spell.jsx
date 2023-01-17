@@ -7,20 +7,22 @@ import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
-import { StyledFilter } from "../styled-components/ClassBubble";
 import Pills from "../components/Pills";
+import ReactMarkdown from "react-markdown";
 
 const Spell = () => {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
 	const { name, desc, school, dnd_class } = spell;
+	const mkdown = <ReactMarkdown>#oi ##oi</ReactMarkdown>;
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
 			console.log("has api");
 			const localSpells = JSON.parse(localStorage.getItem("api"));
 			let spellObj = localSpells.find((spell) => spell.slug === slug);
+			console.log(spellObj);
 			return setSpell(spellObj);
 		} else {
 			console.log("will call api");
@@ -44,30 +46,28 @@ const Spell = () => {
 	};
 
 	return (
-		<>
-			<WhiteSection maxWidth="90ch" key={slug}>
-				<Heading type="1">{name && name}</Heading>
-				{dnd_class && <Pills items={dnd_class} />}
-				<WhiteSection>
-					{desc ?? (
-						<>
-							<p>{desc}</p>
-							<p>{school}</p>
-						</>
-					)}
-				</WhiteSection>
-				<WhiteSection>
-					{localStorage.getItem("search") ? (
-						<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
-					) : (
-						<RowButtons />
-					)}
-				</WhiteSection>
+		<WhiteSection maxWidth="90ch" key={slug}>
+			<Heading type="1">{name && name}</Heading>
+			{dnd_class && <Pills items={dnd_class} />}
+			<WhiteSection>
+				{desc ?? (
+					<>
+						{mkdown}
+						<p>{school}</p>
+					</>
+				)}
+			</WhiteSection>
+			<WhiteSection>
+				{localStorage.getItem("search") ? (
+					<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
+				) : (
+					<RowButtons />
+				)}
 			</WhiteSection>
 			{school && (
 				<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
 			)}
-		</>
+		</WhiteSection>
 	);
 };
 
