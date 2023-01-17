@@ -27,7 +27,7 @@ function App() {
 						<Route path="/" element={<Home />} />
 						<Route path="/filters" element={<Filters />} />
 						<Route path="/results" element={<Results />} />
-						<Route path="/spell/:slug" element={<Spell />} />
+						<Route path="/results/spell/:slug" element={<Spell />} />
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</ApiContextProvider>

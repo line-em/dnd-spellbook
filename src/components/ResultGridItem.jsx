@@ -17,7 +17,7 @@ const ResultGridItem = ({ slug, name, description, classes, school, level }) => 
 				<Heading type="4">{name}</Heading>
 				<FlexRowSpacedWrapper nowrap>
 					<p>{shortDesc}</p>
-					<StyledLinkButton path={`/spell/${slug}`}>Read more</StyledLinkButton>
+					<StyledLinkButton path={`/results/spell/${slug}`}>Read more</StyledLinkButton>
 				</FlexRowSpacedWrapper>
 				<ClassInfo>
 					<PillBox>
