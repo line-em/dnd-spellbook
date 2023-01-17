@@ -18,11 +18,12 @@ const Spell = () => {
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
-			// FIXME:not tested
+			console.log("has api");
 			const localSpells = JSON.parse(localStorage.getItem("api"));
 			let spellObj = localSpells.find((spell) => spell.slug === slug);
 			return setSpell(spellObj);
 		} else {
+			console.log("will call api");
 			const getSpell = async () => {
 				try {
 					const url = `${import.meta.env.VITE_URL}?slug=${slug}`;
@@ -56,7 +57,11 @@ const Spell = () => {
 					)}
 				</WhiteSection>
 				<WhiteSection>
-					<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
+					{localStorage.getItem("search") ? (
+						<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
+					) : (
+						<RowButtons />
+					)}
 				</WhiteSection>
 			</WhiteSection>
 			{school && (
