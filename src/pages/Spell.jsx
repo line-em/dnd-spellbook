@@ -1,19 +1,19 @@
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import classesData from "../assets/classes/classesData";
+import { useEffect, useState } from "react";
 import { capitalize, sanitizeClasses } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
 import { WhiteSection } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
-import Pills from "../components/Pills";
+import SpellInfo from "../components/SpellInfo";
+import SpellDetails from "../components/SpellDetails";
 
 const Spell = () => {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
-	const { name, desc, school, dnd_class } = spell;
+	let { name, desc, school, dnd_class, casting_time, level_int, range, ritual, duration } = spell;
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
@@ -46,21 +46,24 @@ const Spell = () => {
 	return (
 		<WhiteSection maxWidth="90ch" key={slug}>
 			<Heading type="1">{name && name}</Heading>
-			{dnd_class && <Pills items={dnd_class} />}
-			<WhiteSection>
-				{desc ?? (
-					<>
-						<p>{school}</p>
-					</>
-				)}
-			</WhiteSection>
-			<WhiteSection>
-				{localStorage.getItem("search") ? (
-					<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
-				) : (
-					<RowButtons />
-				)}
-			</WhiteSection>
+
+			<SpellDetails
+				dnd_class={dnd_class}
+				casting_time={casting_time}
+				level_int={level_int}
+				range={range}
+				ritual={ritual}
+				duration={duration}
+				school={school}
+			/>
+			<WhiteSection>{desc ?? <SpellInfo content={spell.desc} />}</WhiteSection>
+
+			{localStorage.getItem("search") ? (
+				<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
+			) : (
+				<RowButtons />
+			)}
+
 			{school && (
 				<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
 			)}
