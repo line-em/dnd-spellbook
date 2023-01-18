@@ -24,19 +24,31 @@ export const PillBox = styled.div`
 `;
 
 export const Container = styled.div`
-	flex: auto;
-	flex-basis: 200px;
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	justify-content: space-evenly;
+	justify-content: center;
 	gap: 10px;
 	background: var(--transparent-white);
 	padding: var(--xs);
 	border-radius: 8px;
 	text-align: center;
+	grid-column: ${({ span }) => span && "span 2"};
+
+	/* &:nth-child(1) {
+		grid-column: span 2;
+	} */
+
+	/* @media screen and (min-width: 540px) and (max-width: 740px) {
+		&:nth-child(1) {
+			grid-column: span 3;
+		}
+	} */
 
 	& ${PillBox} {
-		max-width: 100%;
+		max-width: 90%;
+		margin: auto;
+		justify-content: center;
 	}
 
 	& svg {

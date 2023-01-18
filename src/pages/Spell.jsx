@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { capitalize, sanitizeClasses } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
-import { WhiteSection, FlexRowSpacedWrapper } from "../styled-components/FlexStyles";
+import { WhiteSection, DetailsGrid } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
 import SpellInfo from "../components/SpellInfo";
@@ -14,11 +14,12 @@ const Spell = () => {
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
 	const [detailedInfo, setDetailedInfo] = useState({});
+	const [rawDescription, setRawDescription] = useState("");
 	const { name, desc, school } = spell;
 
 	const getInfo = (obj) => {
 		return Object.keys(obj).map((key) => {
-			return <SpellDetails value={obj[key]} type={key} />;
+			return <SpellDetails value={obj[key]} type={key} key={key} />;
 		});
 	};
 
@@ -27,16 +28,20 @@ const Spell = () => {
 			console.log("has api");
 			const localSpells = JSON.parse(localStorage.getItem("api"));
 			let spellObj = localSpells.find((spell) => spell.slug === slug);
-			console.log(spellObj);
+
+			console.log(spellObj.desc);
+			setRawDescription(spellObj.desc);
+
 			setDetailedInfo({
+				dnd_class: spellObj.dnd_class,
 				casting_time: spellObj.casting_time,
 				level_int: spellObj.level_int,
 				range: spellObj.range,
 				ritual: capitalize(spellObj.ritual),
 				duration: spellObj.duration,
-				school: capitalize(spellObj.school),
-				dnd_class: spellObj.dnd_class
+				school: capitalize(spellObj.school)
 			});
+
 			return setSpell(spellObj);
 		} else {
 			console.log("will call api");
@@ -60,23 +65,27 @@ const Spell = () => {
 	};
 
 	return (
-		<WhiteSection maxWidth="90ch" key={slug}>
-			<Heading type="1">{name && name}</Heading>
-			<FlexRowSpacedWrapper>
-				{detailedInfo ? getInfo(detailedInfo) : "nothing"}
-			</FlexRowSpacedWrapper>
-			<WhiteSection>{desc ?? <SpellInfo content={desc} />}</WhiteSection>
+		<>
+			<WhiteSection maxWidth="90ch" key={slug}>
+				<Heading type="1">{name && name}</Heading>
 
-			{localStorage.getItem("search") ? (
-				<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
-			) : (
-				<RowButtons />
-			)}
+				<DetailsGrid>{detailedInfo ? getInfo(detailedInfo) : "nothing"}</DetailsGrid>
+				{/* ALLY AEGIS */}
+				<WhiteSection>
+					<Heading type="2">About</Heading>
+					{desc && <SpellInfo content={rawDescription} />}
+				</WhiteSection>
 
+				{localStorage.getItem("search") ? (
+					<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />
+				) : (
+					<RowButtons />
+				)}
+			</WhiteSection>
 			{school && (
 				<WhiteSectionBackdropLeft school={capitalize(school)}></WhiteSectionBackdropLeft>
 			)}
-		</WhiteSection>
+		</>
 	);
 };
 

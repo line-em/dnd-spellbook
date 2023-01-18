@@ -8,7 +8,7 @@ export const FlexColumnWrapper = styled.section`
 	margin: var(--xs);
 
 	@media screen and (max-width: 500px) {
-		margin: 0;
+		margin: 0 auto;
 	}
 `;
 
@@ -50,6 +50,19 @@ export const FilterFlexGrid = styled(CenterFlexColumn)`
 	}
 `;
 
+export const DetailsGrid = styled.section`
+	display: grid;
+	grid-template: 1fr / repeat(auto-fit, minmax(125px, 1fr));
+	grid-auto-flow: dense;
+	gap: 10px;
+	margin: auto;
+	width: 100%;
+
+	@media screen and (max-width: 335px) {
+		grid-template: 1fr / repeat(auto-fit, minmax(110px, 1fr));
+	}
+`;
+
 export const WhiteSection = styled(FlexColumnWrapper)`
 	background-color: var(--transparent-white);
 	padding: var(--s) var(--sm);
@@ -59,6 +72,10 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	position: relative;
 	max-width: ${({ maxWidth }) => maxWidth};
 	margin-top: var(--xs);
+
+	p + & {
+		margin-top: 0;
+	}
 
 	& + & {
 		margin-top: var(--s);

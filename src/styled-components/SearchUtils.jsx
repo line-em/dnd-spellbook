@@ -30,7 +30,7 @@ export const SearchWrapper = styled.main`
 
 export const SearchGrid = styled.section`
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(420px, auto));
+	grid-template-columns: repeat(auto-fill, minmax(420px, auto));
 	margin-top: var(--sm);
 	gap: 15px;
 

@@ -41,7 +41,7 @@ const Wrapper = styled.h1`
 	border-radius: 8px;
 	box-shadow: ${({ type }) => (type === "2" || type === "4" ? "inset 0 0 3px #201f1f80" : null)};
 
-	& + &:not(h6) {
+	& + & {
 		margin-top: 10px;
 	}
 `;

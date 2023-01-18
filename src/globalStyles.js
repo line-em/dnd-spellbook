@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle`
 	--transparent-red: #ab121277;
 	--red: #ab1212;
 
-	--sans: "Sono", "Helvetica", "Arial", sans-serif;
+	--sans: "Rubik", "Helvetica", "Arial", sans-serif;
 	--serif: "Fraunces", "Georgia", "Times New Roman", serif;
 
 	--xxs: 0.1rem;
@@ -65,7 +65,7 @@ html {
 
 body {
 	display: grid;
-	margin: 0 auto;
+	margin: auto;
 	min-width: 300px;
 	max-width: 1280px;
 	min-height: 100vh;
