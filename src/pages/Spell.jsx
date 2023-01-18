@@ -13,7 +13,11 @@ const Spell = () => {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
-	let { name, desc, school, dnd_class, casting_time, level_int, range, ritual, duration } = spell;
+	const { name, desc } = spell;
+
+	const getInfo = (obj) => {
+		return Object.keys(obj).map((key) => <SpellInfo value={obj[key]} type={key} />);
+	};
 
 	useEffect(() => {
 		if (localStorage.getItem("api")) {
@@ -37,6 +41,16 @@ const Spell = () => {
 			};
 			getSpell();
 		}
+		const detailedInfo = {
+			school: spell.school,
+			dnd_class: spell.dnd_class,
+			casting_time: spell.casting_time,
+			level_int: spell.level_int,
+			range: spell.range,
+			ritual: spell.ritual,
+			duration: spell.duration
+		};
+		getInfo(detailedInfo);
 	}, []);
 
 	const handleNavigate = () => {
