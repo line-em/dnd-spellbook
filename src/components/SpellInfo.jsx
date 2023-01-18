@@ -1,0 +1,27 @@
+import ReactMarkdown from "react-markdown";
+import styled from "styled-components";
+
+const SpellDesctiption = styled.article`
+	max-width: 65ch;
+	text-align: justify;
+
+	& p:not(:is(:only-child, :last-child)) {
+		border-bottom: 1px solid var(--lilac);
+		padding: var(--xs) 0;
+	}
+
+	& p:last-child {
+		padding: var(--xs) 0;
+	}
+`;
+
+const SpellInfo = ({ content }) => {
+	return (
+		<SpellDesctiption>
+			<h1>LOADED</h1>
+			<ReactMarkdown>{content}</ReactMarkdown>
+		</SpellDesctiption>
+	);
+};
+
+export default SpellInfo;
