@@ -6,7 +6,8 @@ export const paginate = (arr, pageSize, pageNumber) => {
 export const capitalize = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 export const sanitizeClasses = (string) => {
-	const split = string.split(",");
+	const stringfied = string.toString();
+	const split = stringfied.split(",");
 	const trim = split.map((item) => item.trim());
 	return trim;
 };

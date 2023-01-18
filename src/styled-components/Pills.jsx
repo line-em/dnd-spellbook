@@ -23,6 +23,35 @@ export const PillBox = styled.div`
 	}
 `;
 
+export const Container = styled.div`
+	flex: auto;
+	flex-basis: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	gap: 10px;
+	background: var(--transparent-white);
+	padding: var(--xs);
+	border-radius: 8px;
+	text-align: center;
+
+	& ${PillBox} {
+		max-width: 100%;
+	}
+
+	& svg {
+		flex: none;
+	}
+
+	& h6 {
+		margin-top: 0;
+	}
+
+	& h4 {
+		margin-bottom: var(--xs);
+	}
+`;
+
 export const SearchPills = styled.div`
 	margin: var(--xs) 0;
 
@@ -47,6 +76,11 @@ export const Pill = styled.span`
 	font-size: 0.9rem;
 	border-radius: 8px;
 	background-color: var(--neutral-purple);
+
+	@media screen and (max-width: 400px) {
+		font-size: 0.8rem;
+		padding: 5px 5px;
+	}
 
 	&:nth-child(3n + 1) {
 		background-color: var(--steel);

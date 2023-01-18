@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { capitalize, sanitizeClasses } from "../utils/utils";
 import { WhiteSectionBackdropLeft } from "../styled-components/SearchUtils";
-import { WhiteSection } from "../styled-components/FlexStyles";
+import { WhiteSection, FlexRowSpacedWrapper } from "../styled-components/FlexStyles";
 import Heading from "../styled-components/Heading";
 import RowButtons from "../components/RowButtons";
 import SpellInfo from "../components/SpellInfo";
@@ -13,10 +13,13 @@ const Spell = () => {
 	const { slug } = useParams();
 	const navigate = useNavigate();
 	const [spell, setSpell] = useState([]);
-	const { name, desc } = spell;
+	const [detailedInfo, setDetailedInfo] = useState({});
+	const { name, desc, school } = spell;
 
 	const getInfo = (obj) => {
-		return Object.keys(obj).map((key) => <SpellInfo value={obj[key]} type={key} />);
+		return Object.keys(obj).map((key) => {
+			return <SpellDetails value={obj[key]} type={key} />;
+		});
 	};
 
 	useEffect(() => {
@@ -25,6 +28,15 @@ const Spell = () => {
 			const localSpells = JSON.parse(localStorage.getItem("api"));
 			let spellObj = localSpells.find((spell) => spell.slug === slug);
 			console.log(spellObj);
+			setDetailedInfo({
+				casting_time: spellObj.casting_time,
+				level_int: spellObj.level_int,
+				range: spellObj.range,
+				ritual: capitalize(spellObj.ritual),
+				duration: spellObj.duration,
+				school: capitalize(spellObj.school),
+				dnd_class: spellObj.dnd_class
+			});
 			return setSpell(spellObj);
 		} else {
 			console.log("will call api");
@@ -41,16 +53,6 @@ const Spell = () => {
 			};
 			getSpell();
 		}
-		const detailedInfo = {
-			school: spell.school,
-			dnd_class: spell.dnd_class,
-			casting_time: spell.casting_time,
-			level_int: spell.level_int,
-			range: spell.range,
-			ritual: spell.ritual,
-			duration: spell.duration
-		};
-		getInfo(detailedInfo);
 	}, []);
 
 	const handleNavigate = () => {
@@ -60,17 +62,10 @@ const Spell = () => {
 	return (
 		<WhiteSection maxWidth="90ch" key={slug}>
 			<Heading type="1">{name && name}</Heading>
-
-			<SpellDetails
-				dnd_class={dnd_class}
-				casting_time={casting_time}
-				level_int={level_int}
-				range={range}
-				ritual={ritual}
-				duration={duration}
-				school={school}
-			/>
-			<WhiteSection>{desc ?? <SpellInfo content={spell.desc} />}</WhiteSection>
+			<FlexRowSpacedWrapper>
+				{detailedInfo ? getInfo(detailedInfo) : "nothing"}
+			</FlexRowSpacedWrapper>
+			<WhiteSection>{desc ?? <SpellInfo content={desc} />}</WhiteSection>
 
 			{localStorage.getItem("search") ? (
 				<RowButtons buttonText={"Return"} handleFunction={handleNavigate} />

@@ -27,9 +27,9 @@ const Wrapper = styled.h1`
 			case "3":
 				return "clamp(0.9rem, 1vw + 1rem, 2rem)";
 			case "4":
-				return "clamp(0.8rem, 0.5vw + 1rem, 1.5rem)";
+				return "clamp(0.75rem, 0.4vw + 1rem, 1.4rem)";
 			case "5":
-				return "clamp(0.8rem, 0.4vw + 0.9rem, 1.4rem)";
+				return "clamp(0.7rem, 0.4vw + 0.9rem, 1.4rem)";
 			default:
 				return "clamp(0.6rem, 0.2vw + 0.9rem, 1rem)";
 				break;
@@ -41,7 +41,7 @@ const Wrapper = styled.h1`
 	border-radius: 8px;
 	box-shadow: ${({ type }) => (type === "2" || type === "4" ? "inset 0 0 3px #201f1f80" : null)};
 
-	& + & {
+	& + &:not(h6) {
 		margin-top: 10px;
 	}
 `;
