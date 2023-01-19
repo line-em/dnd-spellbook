@@ -2,7 +2,6 @@ import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 const SpellDesctiption = styled.article`
-	max-width: 65ch;
 	text-align: justify;
 
 	& p:not(:is(:only-child, :last-child)) {

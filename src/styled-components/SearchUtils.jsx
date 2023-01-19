@@ -11,13 +11,13 @@ import { WhiteSection } from "./FlexStyles";
 
 export const SearchWrapper = styled.main`
 	width: ${({ results }) => (results <= 2 ? "null" : "100%")};
+	background-color: var(--transparent-white);
+	border-radius: 8px;
+	padding: var(--xs) var(--s);
 	/* max-width: 90ch; */
 	margin-top: var(--s);
 
 	@media screen and (min-width: 750px) {
-		background-color: var(--transparent-white);
-		padding: var(--xs) var(--s);
-		border-radius: 8px;
 		backdrop-filter: blur(3px);
 		box-shadow: inset 0 0 20px #201f1f80;
 		position: relative;
@@ -30,7 +30,7 @@ export const SearchWrapper = styled.main`
 
 export const SearchGrid = styled.section`
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(420px, auto));
+	grid-template-columns: repeat(auto-fill, minmax(300px, auto));
 	margin-top: var(--sm);
 	gap: 15px;
 

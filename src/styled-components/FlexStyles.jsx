@@ -52,7 +52,7 @@ export const FilterFlexGrid = styled(CenterFlexColumn)`
 
 export const DetailsGrid = styled.section`
 	display: grid;
-	grid-template: 1fr / repeat(auto-fit, minmax(125px, 1fr));
+	grid-template: 1fr / repeat(auto-fit, minmax(calc(4vw + 80px), 1fr));
 	grid-auto-flow: dense;
 	gap: 10px;
 	margin: auto;
@@ -71,6 +71,7 @@ export const WhiteSection = styled(FlexColumnWrapper)`
 	box-shadow: inset 0 0 20px #201f1f80;
 	position: relative;
 	max-width: ${({ maxWidth }) => maxWidth};
+	margin-inline: ${({ margin }) => (margin === "nomargin" ? 0 : " var(--xs)")};
 	margin-top: var(--xs);
 
 	p + & {
@@ -87,7 +88,6 @@ export const WhiteNavigation = styled(WhiteSection)`
 	justify-content: flex-end;
 	flex-direction: row;
 	width: fit-content;
-	/* margin-left: auto; */
 	margin-top: var(--s);
 	opacity: 0.5;
 	transition: opacity 200ms;

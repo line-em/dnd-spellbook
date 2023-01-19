@@ -18,7 +18,7 @@ const SpellDetails = ({ type, value }) => {
 		switch (type) {
 			case "casting_time":
 				return <Clock />;
-			case "level_int":
+			case "level":
 				return <Crown />;
 			case "duration":
 				return <HourglassHigh />;
@@ -46,9 +46,8 @@ const SpellDetails = ({ type, value }) => {
 		>
 			<Container
 				span={
-					(type === "dnd_class" && value.length > 3) || value.length > 90
-						? true
-						: undefined
+					(type === "dnd_class" && value.length > 2 && "span 2") ||
+					(value.length > 90 && "span 2")
 				}
 			>
 				{getIcon(type)}

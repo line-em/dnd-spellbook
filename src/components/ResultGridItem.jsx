@@ -2,7 +2,6 @@ import { ClassInfo, WhiteSectionBackdropLeft } from "../styled-components/Search
 import { FlexRowSpacedWrapper, WhiteSection } from "../styled-components/FlexStyles";
 import { StyledLinkButton } from "../styled-components/StyledButton.jsx";
 import Heading from "../styled-components/Heading.jsx";
-import { Pill } from "../styled-components/Pills.jsx";
 import { capitalize } from "../utils/utils.jsx";
 import Pills from "./Pills.jsx";
 
@@ -12,22 +11,19 @@ const ResultGridItem = ({ slug, name, description, classes, school, level }) => 
 	const upperSchool = capitalize(school);
 
 	return (
-		<article key={slug}>
-			<WhiteSection>
-				<WhiteSectionBackdropLeft school={upperSchool}></WhiteSectionBackdropLeft>
-				<Heading type="4">{name}</Heading>
-				<FlexRowSpacedWrapper nowrap>
-					<p>{shortDesc}</p>
-					<StyledLinkButton path={`/results/spell/${slug}`}>Read more</StyledLinkButton>
-				</FlexRowSpacedWrapper>
-				<ClassInfo>
-					<Pills items={classes} />
-					<Pill>
-						<strong>{upperSchool}</strong> <br /> {level}
-					</Pill>
-				</ClassInfo>
-			</WhiteSection>
-		</article>
+		<WhiteSection>
+			<WhiteSectionBackdropLeft school={upperSchool}></WhiteSectionBackdropLeft>
+			<Heading type="4">
+				{name} / {upperSchool}
+			</Heading>
+			<FlexRowSpacedWrapper nowrap>
+				<p key={slug}>{shortDesc}</p>
+			</FlexRowSpacedWrapper>
+			<ClassInfo>
+				<Pills items={classes} />
+				<StyledLinkButton path={`/results/spell/${slug}`}>Read more</StyledLinkButton>
+			</ClassInfo>
+		</WhiteSection>
 	);
 };
 

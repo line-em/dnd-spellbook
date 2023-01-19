@@ -33,17 +33,7 @@ export const Container = styled.div`
 	padding: var(--xs);
 	border-radius: 8px;
 	text-align: center;
-	grid-column: ${({ span }) => span && "span 2"};
-
-	/* &:nth-child(1) {
-		grid-column: span 2;
-	} */
-
-	/* @media screen and (min-width: 540px) and (max-width: 740px) {
-		&:nth-child(1) {
-			grid-column: span 3;
-		}
-	} */
+	grid-column: ${({ span }) => span};
 
 	& ${PillBox} {
 		max-width: 90%;

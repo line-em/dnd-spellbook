@@ -4,7 +4,9 @@ const Pills = ({ items }) => {
 	return (
 		<PillBox>
 			{items.map((item) => (
-				<Pill>{item}</Pill>
+				<Pill>
+					<span key={item}>{item}</span>
+				</Pill>
 			))}
 		</PillBox>
 	);

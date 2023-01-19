@@ -35,7 +35,7 @@ const Spell = () => {
 			setDetailedInfo({
 				dnd_class: spellObj.dnd_class,
 				casting_time: spellObj.casting_time,
-				level_int: spellObj.level_int,
+				level: spellObj.level_int,
 				range: spellObj.range,
 				ritual: capitalize(spellObj.ritual),
 				duration: spellObj.duration,
@@ -70,8 +70,7 @@ const Spell = () => {
 				<Heading type="1">{name && name}</Heading>
 
 				<DetailsGrid>{detailedInfo ? getInfo(detailedInfo) : "nothing"}</DetailsGrid>
-				{/* ALLY AEGIS */}
-				<WhiteSection>
+				<WhiteSection margin="nomargin">
 					<Heading type="2">About</Heading>
 					{desc && <SpellInfo content={rawDescription} />}
 				</WhiteSection>

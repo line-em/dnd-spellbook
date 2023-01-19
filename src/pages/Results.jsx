@@ -55,7 +55,6 @@ const Results = () => {
 						description={item.desc}
 						classes={item.dnd_class}
 						school={item.school}
-						level={item.level}
 					/>
 				))}
 			</SearchGrid>
