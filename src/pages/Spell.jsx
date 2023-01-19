@@ -29,7 +29,6 @@ const Spell = () => {
 			const localSpells = JSON.parse(localStorage.getItem("api"));
 			let spellObj = localSpells.find((spell) => spell.slug === slug);
 
-			console.log(spellObj.desc);
 			setRawDescription(spellObj.desc);
 
 			setDetailedInfo({
@@ -68,7 +67,7 @@ const Spell = () => {
 		<>
 			<WhiteSection maxWidth="90ch" key={slug}>
 				<Heading type="1">{name && name}</Heading>
-
+				{/* animate-objects */}
 				<DetailsGrid>{detailedInfo ? getInfo(detailedInfo) : "nothing"}</DetailsGrid>
 				<WhiteSection margin="nomargin">
 					<Heading type="2">About</Heading>

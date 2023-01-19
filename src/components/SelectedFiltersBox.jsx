@@ -3,6 +3,7 @@ import { Pill, PillBox, SearchPills } from "../styled-components/Pills";
 import { StyledLinkButton } from "../styled-components/StyledButton";
 
 const SelectedFiltersBox = ({ filters }) => {
+	console.log(filters);
 	return (
 		<SearchPills>
 			<PillBox>

@@ -36,7 +36,7 @@ export const Container = styled.div`
 	grid-column: ${({ span }) => span};
 
 	& ${PillBox} {
-		max-width: 90%;
+		max-width: 100%;
 		margin: auto;
 		justify-content: center;
 	}

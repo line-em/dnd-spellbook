@@ -23,7 +23,7 @@ const Results = () => {
 	const results = currentResults?.data;
 	const resultsLength = currentResults?.data?.length;
 	const resultsPerPage = currentResults?.resultsPerPage;
-	const resultsFilters = currentResults?.filters;
+	const resultsFilters = currentResults?.query;
 	const changePage = (page) => setCurrentPage(page);
 	const paginatedItems = paginate(results, Number(resultsPerPage), currentPage);
 
@@ -35,7 +35,6 @@ const Results = () => {
 		<SearchWrapper results={resultsLength}>
 			<FlexRowSpacedWrapper nowrap flexStart>
 				<Heading type="2">Search Results</Heading>
-
 				<div>
 					{resultsFilters?.length === 0 && (
 						<Heading type="2">Showing all spells ({resultsLength} spells)</Heading>
@@ -43,6 +42,7 @@ const Results = () => {
 					{resultsFilters?.length !== 0 && (
 						<Heading type="4">Spells Found: {resultsLength}</Heading>
 					)}
+
 					{resultsFilters?.length > 0 && <SelectedFiltersBox filters={resultsFilters} />}
 				</div>
 			</FlexRowSpacedWrapper>

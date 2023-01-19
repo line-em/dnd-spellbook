@@ -17,7 +17,6 @@ const SpellDesctiption = styled.article`
 const SpellInfo = ({ content }) => {
 	return (
 		<SpellDesctiption>
-			<h1>LOADED</h1>
 			<ReactMarkdown>{content}</ReactMarkdown>
 		</SpellDesctiption>
 	);

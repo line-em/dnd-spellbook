@@ -13,11 +13,12 @@ const ResultGridItem = ({ slug, name, description, classes, school, level }) => 
 	return (
 		<WhiteSection>
 			<WhiteSectionBackdropLeft school={upperSchool}></WhiteSectionBackdropLeft>
-			<Heading type="4">
-				{name} / {upperSchool}
-			</Heading>
+			<Heading type="4">{name}</Heading>
 			<FlexRowSpacedWrapper nowrap>
-				<p key={slug}>{shortDesc}</p>
+				<p key={slug}>
+					<strong>{upperSchool}. </strong>
+					{shortDesc}
+				</p>
 			</FlexRowSpacedWrapper>
 			<ClassInfo>
 				<Pills items={classes} />
