@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-
 import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
 import Filters from "./pages/Filters";
