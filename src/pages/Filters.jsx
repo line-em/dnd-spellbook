@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import classesData from "../assets/classes/classesData";
-import { Ripples } from "@uiball/loaders";
 import schoolsData from "../assets/schools/schoolsData";
 import { transformObj, getClasses, getSchools } from "../utils/utils";
 import Heading from "../styled-components/Heading";
