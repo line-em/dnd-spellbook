@@ -1,6 +1,5 @@
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-// import { ApiContext } from "../context/ApiContext";
 import classesData from "../assets/classes/classesData";
 import { Ripples } from "@uiball/loaders";
 import schoolsData from "../assets/schools/schoolsData";
@@ -19,7 +18,6 @@ import { useFetchSpells } from "../hooks/useFetch";
 const Filters = () => {
 	const navigate = useNavigate();
 	const { apiData, isLoading } = useFetchSpells();
-	console.log(apiData);
 	const [filters, setFilters] = useState({
 		classes: {},
 		schools: {},
@@ -79,11 +77,8 @@ const Filters = () => {
 
 	return (
 		<>
-			{isLoading ? (
-				<Heading type="1">
-					<Ripples size={50} color="var(--lilac)" />
-					Gathering resources...
-				</Heading>
+			{status.error ? (
+				<ErrorMessage typeOfError={status.errorMessage} />
 			) : (
 				<SpellbookPage>
 					<Heading type="2">The Spellbook</Heading>
@@ -122,15 +117,12 @@ const Filters = () => {
 								<option value={15}>15</option>
 							</select>
 						</Heading>
-						{isLoading ? (
-							"Gathering resources..."
-						) : (
-							<RowButtons
-								loadingState={status.loading}
-								handleFunction={handleSearch}
-								buttonText="Search"
-							/>
-						)}
+						<RowButtons
+							disableButton={isLoading}
+							loadingState={status.loading}
+							handleFunction={handleSearch}
+							buttonText="Search"
+						/>
 					</FlexRowSpacedWrapper>
 				</SpellbookPage>
 			)}

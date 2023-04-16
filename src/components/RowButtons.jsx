@@ -1,21 +1,23 @@
 import { FlexRowWrapper } from "../styled-components/FlexStyles";
 import { StyledButton, StyledLinkButton } from "../styled-components/StyledButton";
-import { Ripples } from "@uiball/loaders";
+import Loader from "./Loader";
 
-const RowButtons = ({ loadingState, handleFunction, buttonText }) => {
+const RowButtons = ({ loadingState, handleFunction, buttonText, disableButton }) => {
 	return (
 		<FlexRowWrapper>
-			<StyledLinkButton path="/">Home</StyledLinkButton>
-			{buttonText ? (
-				<StyledButton func={() => handleFunction()}>
-					{loadingState ? (
-						<>
-							<Ripples size={30} color="var(--black)" /> Loading...
-						</>
-					) : (
-						buttonText
-					)}
-				</StyledButton>
+			{disableButton ? (
+				<Loader text={"Gathering tomes..."} />
+			) : buttonText ? (
+				<>
+					<StyledLinkButton path="/">Home</StyledLinkButton>
+					<StyledButton func={() => handleFunction()}>
+						{loadingState ? (
+							<Loader color="var(--black)" text={"Loading..."} />
+						) : (
+							buttonText
+						)}
+					</StyledButton>
+				</>
 			) : null}
 		</FlexRowWrapper>
 	);

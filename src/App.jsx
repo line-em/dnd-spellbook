@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Ripples } from "@uiball/loaders";
+
 import { CenterFlexColumn } from "./styled-components/FlexStyles";
 import Home from "./pages/Home";
 import Filters from "./pages/Filters";
 import Results from "./pages/Results";
-// import { ApiContextProvider } from "./context/ApiContext";
 import ErrorPage from "./pages/ErrorPage";
 import Spell from "./pages/Spell";
 import { QueryClient, QueryClientProvider } from "react-query";
+import Loader from "./components/Loader";
+
 const queryClient = new QueryClient({
 	defaultOptions: {
 		queries: {
@@ -29,9 +30,8 @@ function App() {
 	return (
 		<CenterFlexColumn>
 			{isLoading ? (
-				<Ripples size={50} color="var(--lilac)" />
+				<Loader size={50} />
 			) : (
-				// <ApiContextProvider>
 				<QueryClientProvider client={queryClient}>
 					<Routes>
 						<Route index element={<Home />} />
@@ -42,7 +42,6 @@ function App() {
 						<Route path="*" element={<ErrorPage />} />
 					</Routes>
 				</QueryClientProvider>
-				// </ApiContextProvider>
 			)}
 			<footer>
 				Created with tea and love by{" "}
