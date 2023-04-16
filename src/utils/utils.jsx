@@ -3,7 +3,8 @@ export const paginate = (arr, pageSize, pageNumber) => {
 	return arr.slice(startIndex, startIndex + pageSize);
 };
 
-export const capitalize = (string) => string[0].toUpperCase() + string.slice(1).toLowerCase();
+export const capitalize = (string) =>
+	string[0].toUpperCase() + string.slice(1).toLowerCase();
 
 export const sanitizeClasses = (string) => {
 	const stringfied = string.toString();
@@ -13,7 +14,9 @@ export const sanitizeClasses = (string) => {
 };
 
 export const getClasses = (data, condition, keyword) =>
-	data.filter((spell) => condition.every((element) => spell[keyword].includes(element)));
+	data.filter((spell) =>
+		condition.every((element) => spell[keyword].includes(element))
+	);
 
 export const getSchools = (data, condition, keyword) =>
 	data.filter((spell) => condition.some((element) => spell[keyword].includes(element)));

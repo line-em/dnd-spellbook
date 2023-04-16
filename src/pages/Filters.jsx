@@ -1,18 +1,25 @@
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { ApiContext } from "../context/ApiContext";
+// import { ApiContext } from "../context/ApiContext";
 import classesData from "../assets/classes/classesData";
+import { Ripples } from "@uiball/loaders";
 import schoolsData from "../assets/schools/schoolsData";
 import { transformObj, getClasses, getSchools } from "../utils/utils";
 import Heading from "../styled-components/Heading";
-import { FlexRowSpacedWrapper, SpellbookPage, WhiteSection } from "../styled-components/FlexStyles";
+import {
+	FlexRowSpacedWrapper,
+	SpellbookPage,
+	WhiteSection
+} from "../styled-components/FlexStyles";
 import FilterGrid from "../components/FilterGrid";
 import ErrorMessage from "../components/ErrorMessage.jsx";
 import RowButtons from "../components/RowButtons.jsx";
+import { useFetchSpells } from "../hooks/useFetch";
 
 const Filters = () => {
 	const navigate = useNavigate();
-	const apiData = useContext(ApiContext);
+	const { apiData, isLoading } = useFetchSpells();
+	console.log(apiData);
 	const [filters, setFilters] = useState({
 		classes: {},
 		schools: {},
@@ -72,47 +79,61 @@ const Filters = () => {
 
 	return (
 		<>
-			<SpellbookPage>
-				<Heading type="2">The Spellbook</Heading>
-				<p>Select the filters you'd like to apply, and click on Search.</p>
-				<WhiteSection>
-					<FilterGrid
-						title="Schools of Magic"
-						filterArray={schoolsData}
-						filters={filters}
-						setFilters={setFilters}
-					/>
-					<hr />
-					<FilterGrid
-						title="Classes"
-						filterArray={classesData}
-						filters={filters}
-						setFilters={setFilters}
-					/>
-				</WhiteSection>
-				<FlexRowSpacedWrapper>
-					<Heading type="4">
-						<label htmlFor="numberOfResults">Results per page</label>
-						<select
-							id="numberOfResults"
-							value={filters.resultsPerPage}
-							onChange={(e) =>
-								setFilters((prev) => ({ ...prev, resultsPerPage: e.target.value }))
-							}
-						>
-							<option value={6}>6</option>
-							<option value={9}>9</option>
-							<option value={12}>12</option>
-							<option value={15}>15</option>
-						</select>
-					</Heading>
-					<RowButtons
-						loadingState={status.loading}
-						handleFunction={handleSearch}
-						buttonText="Search"
-					/>
-				</FlexRowSpacedWrapper>
-			</SpellbookPage>
+			{isLoading ? (
+				<Heading type="1">
+					<Ripples size={50} color="var(--lilac)" />
+					Gathering resources...
+				</Heading>
+			) : (
+				<SpellbookPage>
+					<Heading type="2">The Spellbook</Heading>
+					<p>Select the filters you'd like to apply, and click on Search.</p>
+					<WhiteSection>
+						<FilterGrid
+							title="Schools of Magic"
+							filterArray={schoolsData}
+							filters={filters}
+							setFilters={setFilters}
+						/>
+						<hr />
+						<FilterGrid
+							title="Classes"
+							filterArray={classesData}
+							filters={filters}
+							setFilters={setFilters}
+						/>
+					</WhiteSection>
+					<FlexRowSpacedWrapper>
+						<Heading type="4">
+							<label htmlFor="numberOfResults">Results per page</label>
+							<select
+								id="numberOfResults"
+								value={filters.resultsPerPage}
+								onChange={(e) =>
+									setFilters((prev) => ({
+										...prev,
+										resultsPerPage: e.target.value
+									}))
+								}
+							>
+								<option value={6}>6</option>
+								<option value={9}>9</option>
+								<option value={12}>12</option>
+								<option value={15}>15</option>
+							</select>
+						</Heading>
+						{isLoading ? (
+							"Gathering resources..."
+						) : (
+							<RowButtons
+								loadingState={status.loading}
+								handleFunction={handleSearch}
+								buttonText="Search"
+							/>
+						)}
+					</FlexRowSpacedWrapper>
+				</SpellbookPage>
+			)}
 			{status.error && (
 				<ErrorMessage
 					typeOfError={status.empty ? status.emptySearch : status.errorMessage}
