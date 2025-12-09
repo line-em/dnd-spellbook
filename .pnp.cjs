@@ -413,11 +413,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@babel/runtime", [\
-        ["npm:7.21.0", {\
-          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.21.0-c4ef698c89-7b33e25bfa.zip/node_modules/@babel/runtime/",\
+        ["npm:7.28.4", {\
+          "packageLocation": "./.yarn/cache/@babel-runtime-npm-7.28.4-31bc1b0001-934b0a0460.zip/node_modules/@babel/runtime/",\
           "packageDependencies": [\
-            ["@babel/runtime", "npm:7.21.0"],\
-            ["regenerator-runtime", "npm:0.13.11"]\
+            ["@babel/runtime", "npm:7.28.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -947,7 +946,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/broadcast-channel-npm-3.7.0-81ceba70bb-803794c48d.zip/node_modules/broadcast-channel/",\
           "packageDependencies": [\
             ["broadcast-channel", "npm:3.7.0"],\
-            ["@babel/runtime", "npm:7.21.0"],\
+            ["@babel/runtime", "npm:7.28.4"],\
             ["detect-node", "npm:2.1.0"],\
             ["js-sha3", "npm:0.8.0"],\
             ["microseconds", "npm:0.2.0"],\
@@ -2179,7 +2178,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/match-sorter-npm-6.3.1-ff3565ebb9-a4b02b676a.zip/node_modules/match-sorter/",\
           "packageDependencies": [\
             ["match-sorter", "npm:6.3.1"],\
-            ["@babel/runtime", "npm:7.21.0"],\
+            ["@babel/runtime", "npm:7.28.4"],\
             ["remove-accents", "npm:0.4.2"]\
           ],\
           "linkType": "HARD"\
@@ -3028,7 +3027,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/__virtual__/react-query-virtual-f4f4351b3c/0/cache/react-query-npm-3.39.3-72b2a93edf-d2de6a0992.zip/node_modules/react-query/",\
           "packageDependencies": [\
             ["react-query", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:3.39.3"],\
-            ["@babel/runtime", "npm:7.21.0"],\
+            ["@babel/runtime", "npm:7.28.4"],\
             ["@types/react", null],\
             ["@types/react-dom", null],\
             ["@types/react-native", null],\
@@ -3117,15 +3116,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["inherits", "npm:2.0.4"],\
             ["string_decoder", "npm:1.3.0"],\
             ["util-deprecate", "npm:1.0.2"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["regenerator-runtime", [\
-        ["npm:0.13.11", {\
-          "packageLocation": "./.yarn/cache/regenerator-runtime-npm-0.13.11-90bf536060-27481628d2.zip/node_modules/regenerator-runtime/",\
-          "packageDependencies": [\
-            ["regenerator-runtime", "npm:0.13.11"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -3611,7 +3601,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/unload-npm-2.2.0-c40df6b4d0-88ba950c5f.zip/node_modules/unload/",\
           "packageDependencies": [\
             ["unload", "npm:2.2.0"],\
-            ["@babel/runtime", "npm:7.21.0"],\
+            ["@babel/runtime", "npm:7.28.4"],\
             ["detect-node", "npm:2.1.0"]\
           ],\
           "linkType": "HARD"\
