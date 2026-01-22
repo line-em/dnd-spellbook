@@ -876,7 +876,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/helper-module-imports", "npm:7.18.6"],\
             ["@types/styled-components", null],\
             ["babel-plugin-syntax-jsx", "npm:6.18.0"],\
-            ["lodash", "npm:4.17.21"],\
+            ["lodash", "npm:4.17.23"],\
             ["picomatch", "npm:2.3.1"],\
             ["styled-components", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:5.3.6"]\
           ],\
@@ -2104,10 +2104,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["lodash", [\
-        ["npm:4.17.21", {\
-          "packageLocation": "./.yarn/cache/lodash-npm-4.17.21-6382451519-eb835a2e51.zip/node_modules/lodash/",\
+        ["npm:4.17.23", {\
+          "packageLocation": "./.yarn/cache/lodash-npm-4.17.23-50bdb1c01a-7daad39758.zip/node_modules/lodash/",\
           "packageDependencies": [\
-            ["lodash", "npm:4.17.21"]\
+            ["lodash", "npm:4.17.23"]\
           ],\
           "linkType": "HARD"\
         }]\
