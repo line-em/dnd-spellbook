@@ -877,7 +877,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/styled-components", null],\
             ["babel-plugin-syntax-jsx", "npm:6.18.0"],\
             ["lodash", "npm:4.17.21"],\
-            ["picomatch", "npm:2.3.1"],\
+            ["picomatch", "npm:2.3.2"],\
             ["styled-components", "virtual:42050b3df6549a77df983a1f2d18ca2d24ebb255604d4065107dcff5a99a0bd367ff512ad17f0604f5f6aa06f1ce74a63463ff9873f36ce06be6da2b1b029496#npm:5.3.6"]\
           ],\
           "packagePeers": [\
@@ -2837,10 +2837,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["picomatch", [\
-        ["npm:2.3.1", {\
-          "packageLocation": "./.yarn/cache/picomatch-npm-2.3.1-c782cfd986-050c865ce8.zip/node_modules/picomatch/",\
+        ["npm:2.3.2", {\
+          "packageLocation": "./.yarn/cache/picomatch-npm-2.3.2-4d85543a37-0a3f5b9ff2.zip/node_modules/picomatch/",\
           "packageDependencies": [\
-            ["picomatch", "npm:2.3.1"]\
+            ["picomatch", "npm:2.3.2"]\
           ],\
           "linkType": "HARD"\
         }]\
